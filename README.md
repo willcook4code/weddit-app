@@ -11,6 +11,10 @@
   [User Stories](https://trello.com/b/PIgwNyDL/weddit)
 
 ## Wire Frames
+  ![](./HomePage.jpg)
+  ![](./Modals.jpg)
+  ![](./UserProfile.jpg)
+  ![](./VoteView.jpg)
 
 ## Models
 
