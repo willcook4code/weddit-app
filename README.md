@@ -20,4 +20,4 @@
   ![](./Weddit-Models.png)
 
 ## APIs, Plugins, Libraries, Frameworks
-Frameworks: React.js APIs: Google, Spotify
+Frameworks: React.js <br> APIs: Google, Spotify, Filestack <br> Libraries: Perk, knex, react-router, Backbone, normalize.css, Node, jquery, underscore, bookshelf <br> Plugins: rayon
