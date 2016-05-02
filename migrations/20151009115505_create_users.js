@@ -5,9 +5,11 @@ exports.up = function(knex, Promise) {
 		t.dateTime('updatedAt').nullable();
 		t.dateTime('deletedAt').nullable();
 
-		t.string('firstName').nullable();
-		t.string('lastName').nullable();
-		t.string('email').nullable();
+		t.string('registrant1').notNull();
+		t.string('registrant2').notNull();
+		t.string('userName').notNull();
+		t.string('venueName').notNull();
+		t.string('venueZip').notNull();
 	});
 };
 
