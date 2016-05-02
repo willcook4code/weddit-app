@@ -1,54 +1,23 @@
-# Perk Framework
+# weddit-app
 
-## Build Node Web Apps with Ease
+## Description
+  Wedding planning has a large presence on the internet.  Many sites are available for couples to prepare for that big day.  Sites are available for locating venues, choosing the best vendors, picking out the best decorations, and setting all the dates for all these checkpoints to be made.
+  
+  Of course, it all coalesces into an event that serves to bring two people together to begin their new life.  But what is often forgotten is the group of people there to ring in the union.  The guests that come from all over to support the union of the ones who mean so much to them.  A wedding is about a couple, sure, but it is made possible by the gathering of those around them.
+  
+  With this app, Weddit, I would like to allow the guests to have a better planning experience through ease of RSVP and accomodations.  As well, attendees are invited to provide a piece of themselves through input on music and shared memories worthy of display via blog posts and photographs uploaded to the site.  Weddit will be a place for guests to be a greater part of the event, rather than the spectators of someone else's story.
 
-Perk is a sturdy node framework that gets out of your way, built on top of the best existing libraries out there. This framework is for developers who value simplicity and are looking for a solid set of tools to build sophisticated web applications.
+## User Stories
+  [User Stories](https://trello.com/b/PIgwNyDL/weddit)
 
-### [Getting Started](http://perkframework.com/guides/getting-started-os-x.html)
+## Wire Frames
+  [Home Page](./HomePage.jpg)
+  [Modals](./Modals.jpg)
+  [User Profile](./UserProfile.jpg)
+  [Votes Page](./VotesPage.jpg)
 
-Learn how to get up and running with Perk.
+## Models
+  ![](./Weddit-Models.png)
 
-### [Documentation](http://perkframework.com/api/index.html)
-
-Detailed description of the ins and outs of the framework.
-
-### [Guides](http://perkframework.com/guides/index.html)
-
-Need to build and API server? Set up user authentication or OAuth? This is the place to go for step by step guides.
-
-<!--
-1. Routing (express)
-1. Flash Messages / errors
-1. Database connection and ORM (knex and bookshelf)
-1. User registration and authentication (passport and custom adapters)
-1. Configuration [config-loader](https://github.com/alarner/config-loader)
-1. Nice gulp, babel, react configuration
-
-### Tools
-
-* express
-* react
-* gulp
-* sass
-* browserify
-* babel
-* knex
-* bookshelf
-* passport
-
-### To use...
-
-1. Download / fork / clone
-1. Run `npm install -g gulp knex` to install global dependencies
-1. Run `npm install` to install local dependencies
-1. Run `gulp` to start the server
-
-### Todo
-
-1. Local user login
-1. Password reset
-1. More oauth providers (facebook, twitter, amazon, github, bitbucket, dropbox, instagram, linkedin, slack, windows live, etc.)
-1. Hierarchical user permissioning system
-1. OAuth / API server
-1. CSRF protection
--->
+## APIs, Plugins, Libraries, Frameworks
+Frameworks: React.js <br> APIs: Google, Spotify, Filestack <br> Libraries: Perk, knex, react-router, Backbone, normalize.css, Node, jquery, underscore, bookshelf <br> Plugins: rayon
