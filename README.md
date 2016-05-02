@@ -17,6 +17,7 @@
   [Votes Page](./VotesPage.jpg)
 
 ## Models
-  [Users, Attendees, Accomodations, Songs](https://drive.google.com/file/d/0B69xUXFkXDd_UXdvc01xaTNwUzg/view?usp=sharing)
+  ![](./Weddit-Models.png)
 
 ## APIs, Plugins, Libraries, Frameworks
+Frameworks: React.js APIs: Google, Spotify
