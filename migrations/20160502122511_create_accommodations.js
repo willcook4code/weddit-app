@@ -1,5 +1,5 @@
 exports.up = function(knex, Promise) {
-	return knex.schema.createTable('accomodations', function(t) {
+	return knex.schema.createTable('accommodations', function(t) {
 		t.increments('id').unsigned().primary();
 		t.dateTime('createdAt').notNull();
 		t.dateTime('updatedAt').nullable();
@@ -8,11 +8,11 @@ exports.up = function(knex, Promise) {
 		t.string('hotelName').notNull();
 		t.string('hotelZip').notNull();
 		t.string('hotelUrl').notNull();
-		t.string('hotelPic').notNull();
-		t.string('ofUser').notNull();
+		t.integer('rate').nullable();
+		t.string('cutoffDate').nullable();
 	});
 };
 
 exports.down = function(knex, Promise) {
-	return knex.schema.dropTable('accomodations');
+	return knex.schema.dropTable('accommodations');
 };

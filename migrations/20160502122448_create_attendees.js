@@ -9,7 +9,6 @@ exports.up = function(knex, Promise) {
 		t.string('accessCode').notNull();
 		t.integer('guests').notNull();
 		t.boolean('isGoing').notNull().defaultTo(false);
-		t.string('ofUser').notNull();
 	});
 };
 

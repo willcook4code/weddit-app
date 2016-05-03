@@ -5,11 +5,11 @@ exports.up = function(knex, Promise) {
 		t.dateTime('updatedAt').nullable();
 		t.dateTime('deletedAt').nullable();
 
+		t.string('trackId').notNull();
 		t.string('pic').notNull();
 		t.string('title').notNull();
 		t.string('band').notNull();
-		t.integer('voteCount').notNull();
-		t.string('ofUser').notNull();
+		t.integer('requestCount').notNull();
 	});
 };
 
