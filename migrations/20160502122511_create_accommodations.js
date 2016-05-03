@@ -10,6 +10,13 @@ exports.up = function(knex, Promise) {
 		t.string('hotelUrl').notNull();
 		t.integer('rate').nullable();
 		t.string('cutoffDate').nullable();
+
+		t.integer('userId')
+			.unsigned()
+			.notNull()
+			.references('id')
+			.inTable('users')
+			.onDelete('CASCADE');
 	});
 };
 

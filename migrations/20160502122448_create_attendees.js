@@ -9,6 +9,13 @@ exports.up = function(knex, Promise) {
 		t.string('accessCode').notNull();
 		t.integer('guests').notNull();
 		t.boolean('isGoing').notNull().defaultTo(false);
+
+		t.integer('userId')
+			.unsigned()
+			.notNull()
+			.references('id')
+			.inTable('users')
+			.onDelete('CASCADE');
 	});
 };
 

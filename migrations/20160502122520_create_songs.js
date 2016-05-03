@@ -10,6 +10,13 @@ exports.up = function(knex, Promise) {
 		t.string('title').notNull();
 		t.string('band').notNull();
 		t.integer('requestCount').notNull();
+
+		t.integer('userId')
+			.unsigned()
+			.notNull()
+			.references('id')
+			.inTable('users')
+			.onDelete('CASCADE');
 	});
 };
 
