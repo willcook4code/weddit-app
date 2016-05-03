@@ -1,5 +1,5 @@
 exports.up = function(knex, Promise) {
-	return knex.schema.createTable('songs', function(t) {
+	return knex.schema.createTable('requests', function(t) {
 		t.increments('id').unsigned().primary();
 		t.dateTime('createdAt').notNull();
 		t.dateTime('updatedAt').nullable();
@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
 		t.string('pic').notNull();
 		t.string('title').notNull();
 		t.string('band').notNull();
-		t.integer('requestCount').notNull();
+		t.integer('requestCount').notNull().defaultTo(1);
 
 		t.integer('userId')
 			.unsigned()
@@ -21,5 +21,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-	return knex.schema.dropTable('songs');
+	return knex.schema.dropTable('requests');
 };

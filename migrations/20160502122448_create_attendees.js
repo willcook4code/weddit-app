@@ -7,8 +7,9 @@ exports.up = function(knex, Promise) {
 
 		t.string('name').notNull();
 		t.string('accessCode').notNull();
-		t.integer('guests').notNull();
-		t.boolean('isGoing').notNull().defaultTo(false);
+		t.integer('party').notNull().defaultTo(0);
+		t.integer('maxGuests').notNull().defaultTo(1);
+		t.boolean('isGoing').nullable();
 
 		t.integer('userId')
 			.unsigned()

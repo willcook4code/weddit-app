@@ -1,7 +1,7 @@
 require('./Authentication');
 require('./Accommodation');
 require('./Attendee');
-require('./Song');
+require('./Request');
 module.exports = bookshelf.model('User', {
 	tableName: 'users',
 	hasTimestamps: ['createdAt', 'updatedAt', 'deletedAt'],
@@ -14,7 +14,7 @@ module.exports = bookshelf.model('User', {
 	attendee: function() {
 		this.hasMany('Attendee', 'userId');
 	},
-	song: function() {
-		this.hasMany('Song', 'userId');
+	request: function() {
+		this.hasMany('Request', 'userId');
 	}
 });

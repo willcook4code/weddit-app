@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
 
 		t.string('registrant1').notNull();
 		t.string('registrant2').notNull();
-		t.string('userName').notNull();
+		t.string('email').notNull();
 		t.string('venueName').notNull();
 		t.string('venueZip').notNull();
 	});
