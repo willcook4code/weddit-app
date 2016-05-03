@@ -17,7 +17,7 @@
   [Votes Page](./VotesPage.jpg)
 
 ## Models
-  ![](./Weddit Models (1).png)
+  ![](./Weddit Models.png)
 
 ## APIs, Plugins, Libraries, Frameworks
 Frameworks: Perk, React.js <br> APIs: Google, Spotify, Filestack <br> Libraries: knex, react-router, Backbone, normalize.css, Node, jquery, underscore, bookshelf <br> Plugins: rayon
