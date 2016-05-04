@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 		t.string('hotelName').notNull();
 		t.string('hotelZip').notNull();
 		t.string('hotelUrl').notNull();
-		t.integer('rate').nullable();
+		t.string('rate').nullable();
 		t.date('cutoffDate').nullable();
 
 		t.integer('userId')

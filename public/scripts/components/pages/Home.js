@@ -5,7 +5,8 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			regModalVisible: false,
-			rsvpModalVisible: false
+			rsvpModalVisible: false,
+			infoModalVisible: false
 		};
 	},
 	render: function() {
@@ -19,26 +20,48 @@ export default React.createClass({
 					<button type='submit' className='button loginButton'>Login</button>
 					<p>Need to register an account?  Start <a href='#' onClick={this.openRegModal}>HERE</a>.</p>
 					<Rayon isOpen={this.state.regModalVisible} onClose={this.closeRegModal}>
-						<section>Registration Form</section>
-						<footer>
-							<button onClick={this.closeRegModal}>Close</button>
-						</footer>
+						<form onSubmit={this.closeRegModal}>
+							<p>Registration Form</p>
+							<footer>
+								<button>Submit</button>
+							</footer>
+						</form>
 					</Rayon>
 				</div>
 				<div className='attendeeLogin'>
 					<h1 className='loginType'>Attendee Links</h1>
 					<button className='attendeeLink' onClick={this.openRsvpModal}>RSVP</button>
 					<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal}>
-						<section>RSVP Form</section>
-						<footer>
-							<button onClick={this.closeRsvpModal}>Close</button>
-						</footer>
+						<form onSubmit={this.closeRsvpModal}>
+							<p>RSVP Form</p>
+							<footer>
+								<button type='submit'>Submit</button>
+							</footer>
+						</form>
 					</Rayon>
-					<button className='attendeeLink'>Event Info</button>
+					<button className='attendeeLink' onClick={this.openInfoModal}>Event Info</button>
+					<Rayon isOpen={this.state.infoModalVisible} onClose={this.closeInfoModal}>
+						<form onSubmit={this.closeInfoModal}>
+							<p>Info Link</p>
+							<footer>
+								<button>Go to Info Page</button>
+							</footer>
+						</form>
+					</Rayon>
 				</div>
 			</section>
 			);
 	},
+	openInfoModal: function() {
+        this.setState({
+            infoModalVisible: true
+        });
+    },
+    closeInfoModal: function() {
+        this.setState({
+            infoModalVisible: false
+        });
+    },
 	openRsvpModal: function() {
         this.setState({
             rsvpModalVisible: true
