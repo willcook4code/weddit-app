@@ -1,11 +1,11 @@
 import React from 'react';
-// import Navigation from './navigation';
+import Nav from './Nav';
 
 export default React.createClass({
 	render: function() {
 		return (
 			<main>
-				<Navigation />
+				<Nav />
 				{this.props.children}
 			</main>
 		);
