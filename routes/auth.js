@@ -196,7 +196,7 @@ router.post('/login', validateLocalCredentials, function(req, res, next) {
 								res.redirect(
 									req.body.redirect ||
 									config.auth.local.loginRedirect ||
-									'/dashboard'
+									'/profile'
 								);
 							}
 							else {

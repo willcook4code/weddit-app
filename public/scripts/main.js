@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
+import $ from 'jquery';
 import Attendees from './components/Pages/Attendees';
 import Home from './components/Pages/Home';
 import Profile from './components/Pages/Profile';
 import App from './components/App';
+
+$.ajaxSetup({
+	headers: {
+		Accept: 'application/json'
+	}
+});
 
 const router = (
 	<Router history={browserHistory}>

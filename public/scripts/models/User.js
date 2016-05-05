@@ -9,7 +9,7 @@ const UserModel = Backbone.Model.extend ({
 		venueZip: '',
 		createdAt: null,
 		updatedAt: null,
-		deletedAt: null,
+		deletedAt: null
 	},
 	urlRoot: '/api/v1/user',
 	idAttribute: 'id'
