@@ -1,12 +1,13 @@
 import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
 import Rayon from 'rayon';
+import Attendee from '../../collections/AttendeeCollection';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
 			inviteModalVisible: false,
-			hotelModalVisible: false,
+			hotelModalVisible: false
 		};
 	},
 	render: function() {
@@ -19,15 +20,15 @@ export default React.createClass({
 				<div className='infoEditsWrapper'>
 					<button onClick={this.openInviteModal}>Add Invites</button>
 					<Rayon isOpen={this.state.inviteModalVisible} onClose={this.closeInviteModal}>
-						<form onSubmit={this.closeInviteModal}>
+						<form>
 							<p>Invites Form</p>
 							<h3>Primary Name</h3>
-							<input type='text' placeholder='eg: Sam Smith'/>
+							<input type='text' placeholder='eg: Sam Smith' ref='name'/>
 							<h3>Maximum Number of Guests</h3>
-							<input type='text' placeholder='eg: 4'/>
+							<input type='text' placeholder='eg: 4' ref='max'/>
 							<footer>
-								<a href="#">Add Another Party</a>
-								<button>Submit and Close</button>
+								<a href="#" onClick={this.enterAttendee}>Add</a>
+								<button onClick={this.closeInviteModal}>Close</button>
 							</footer>
 						</form>
 					</Rayon>
@@ -58,6 +59,15 @@ export default React.createClass({
 				</div>
 			</section>
 			);
+	},
+	enterAttendee: function() {
+		let newAttendee = {
+			name: this.refs.name.value,
+			accessCode: 'h3k5i',
+			party: 0,
+			maxGuests: this.refs.max.value
+		};
+		Attendee.create(newAttendee);
 	},
 	openInviteModal: function() {
 		this.setState({

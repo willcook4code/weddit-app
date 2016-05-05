@@ -5,6 +5,16 @@ let bookshelfApi = require('bookshelf-api') ({
 	path: path.join(__dirname, '..', 'models')
 });
 
-router.use('/', bookshelfApi);
+
+// router.post('/',
+	
+// 	bookshelfApi);
+
+router.use('/', 
+	function(req, res, next){
+		req.body.userId = req.user.id;
+		next();
+	},
+	bookshelfApi);
 
 module.exports = router;
