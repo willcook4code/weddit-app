@@ -42,7 +42,7 @@ export default React.createClass({
 							<input type='text' placeholder='eg: 78701' ref='venueZip'/>
 							<footer>
 								<button type='submit'>Register</button>
-								<button onClick={this.closeRegModal}>Close</button>
+								<button type='button' onClick={this.closeRegModal}>Close</button>
 							</footer>
 						</form>
 					</Rayon>

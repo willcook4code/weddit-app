@@ -2,6 +2,7 @@ import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
 import Rayon from 'rayon';
 import Attendee from '../../collections/AttendeeCollection';
+import Hotel from '../../collections/AccommodationCollection';
 import user from '../../models/user';
 
 export default React.createClass({
@@ -36,28 +37,28 @@ export default React.createClass({
 							<h3>Maximum Number of Guests</h3>
 							<input type='text' placeholder='eg: 4' ref='max'/>
 							<footer>
-								<a href="#" onClick={this.enterAttendee}>Add</a>
-								<button onClick={this.closeInviteModal}>Close</button>
+								<a href="#" onClick={this.enterAttendee}>Add Party</a>
+								<button type='button' onClick={this.closeInviteModal}>Close</button>
 							</footer>
 						</form>
 					</Rayon>
 					<button onClick={this.openHotelModal}>Add Hotel</button>
 					<Rayon isOpen={this.state.hotelModalVisible} onClose={this.closeHotelModal}>
-						<form onSubmit={this.closeHotelModal}>
+						<form>
 							<p>Add Hotel Form</p>
 							<h3>Property Name</h3>
-							<input type='text' placeholder='eg: Sheraton'/>
+							<input type='text' placeholder='eg: Sheraton' ref='hotelName'/>
 							<h3>Zip Code</h3>
-							<input type='text' placeholder='eg: 78701'/>
+							<input type='text' placeholder='eg: 78701' ref='hotelZip'/>
 							<h3>Website</h3>
-							<input type='text' placeholder='eg: www.sheraton.com'/>
+							<input type='text' placeholder='eg: www.sheraton.com' ref='hotelUrl'/>
 							<h3>Rate</h3>
-							<input type='text' placeholder='eg: $99'/>
+							<input type='text' placeholder='eg: $99' ref='rate'/>
 							<h3>Cutoff Date</h3>
 							<input type='date'/>
 							<footer>
-								<a href="#">Add Another Property</a>
-								<button>Submit and Close</button>
+								<a href="#" onClick={this.addHotel}>Add Property</a>
+								<button type='button' onClick={this.closeHotelModal}>Close</button>
 							</footer>
 						</form>
 					</Rayon>
@@ -71,12 +72,26 @@ export default React.createClass({
 	},
 	randomPW: function () {	
 	const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890';
-	let pass = '';
+	let code = '';
 	for (let x = 0; x < 4; x++) {
     	let i = Math.floor(Math.random() * chars.length);
-    	pass += chars.charAt(i);
+    	code += chars.charAt(i);
 	 	}
-	return pass;
+	return code;
+	},
+	addHotel: function(e) {
+		e.preventDefault();
+		let newHotel = {
+			hotelName: this.refs.hotelName.value,
+			hotelZip: this.refs.hotelZip.value,
+			hotelUrl: this.refs.hotelUrl.value,
+			rate: this.refs.rate.value
+		};
+		Hotel.create(newHotel);
+		this.refs.hotelName.value = '';
+		this.refs.hotelZip.value = '';
+		this.refs.hotelUrl.value = '';
+		this.refs.rate.value = '';
 	},
 	enterAttendee: function(e) {
 		e.preventDefault();
