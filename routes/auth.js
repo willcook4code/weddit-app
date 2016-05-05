@@ -107,9 +107,11 @@ router.post('/register', validateLocalCredentials, function(req, res, next) {
 		else {
 			bookshelf.transaction(function(t) {
 				let newUser = new UserModel({
-					firstName: req.body.firstName,
-					lastName: req.body.lastName,
-					email: req.body.email
+					registrant1: req.body.registrant1,
+					registrant2: req.body.registrant2,
+					email: req.body.email,
+					venueName: req.body.venueName,
+					venueZip: req.body.venueZip
 				});
 				newUser.save(null, {transacting: t})
 				.then(function(user) {

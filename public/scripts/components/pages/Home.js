@@ -1,12 +1,16 @@
 import React from 'react';
 import Rayon from 'rayon';
+import $ from 'jquery';
+import {browserHistory} from 'react-router';
+import user from '../../models/user';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
 			regModalVisible: false,
 			rsvpModalVisible: false,
-			infoModalVisible: false
+			infoModalVisible: false,
+			user: user
 		};
 	},
 	render: function() {
@@ -20,22 +24,23 @@ export default React.createClass({
 					<button type='submit' className='button loginButton'>Login</button>
 					<p>Need to register an account?  Start <a href='#' onClick={this.openRegModal}>HERE</a>.</p>
 					<Rayon isOpen={this.state.regModalVisible} onClose={this.closeRegModal}>
-						<form onSubmit={this.closeRegModal}>
+						<form onSubmit={this.register}>
 							<p>Registration Form</p>
 							<h3>Your Name</h3>
-							<input type='text' placeholder='First Last'/>
+							<input type='text' placeholder='First Last' ref='registrant1'/>
 							<h3>Your Partner's Name</h3>
-							<input type='text' placeholder='First Last'/>
+							<input type='text' placeholder='First Last' ref='registrant2'/>
 							<h3>email</h3>
-							<input type='text' placeholder='email@domain.com'/>
+							<input type='text' placeholder='email@domain.com' ref='email'/>
 							<h3>password</h3>
-							<input type='password'/>
+							<input type='password' ref='password'/>
 							<h3>Venue</h3>
-							<input type='text' placeholder='eg: Downton Abbey'/>
+							<input type='text' placeholder='eg: Downton Abbey' ref='venueName'/>
 							<h3>Venue Zip</h3>
-							<input type='text' placeholder='eg: 78701'/>
+							<input type='text' placeholder='eg: 78701' ref='venueZip'/>
 							<footer>
 								<button type='submit'>Register</button>
+								<button onClick={this.closeRegModal}>Close</button>
 							</footer>
 						</form>
 					</Rayon>
@@ -72,6 +77,28 @@ export default React.createClass({
 				</div>
 			</section>
 			);
+	},
+	register: function(e) {
+	e.preventDefault();
+	$.ajax({
+		url: '/auth/register',
+		type: 'POST',
+		data: {
+			registrant1: this.refs.registrant1.value,
+			registrant2: this.refs.registrant2.value,
+			email: this.refs.email.value,
+			password: this.refs.password.value,
+			venueName: this.refs.venueName.value,
+			venueZip: this.refs.venueZip.value
+		},
+		success: (loggedArg) => {
+			this.state.user.set(loggedArg);
+			browserHistory.push('/profile');
+		},
+		error: (errorArg) => {
+				this.setState({errors: errorArg.responseJSON});
+			}
+		});
 	},
 	openInfoModal: function() {
         this.setState({

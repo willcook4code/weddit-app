@@ -6,7 +6,7 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			inviteModalVisible: false,
-			hotelModalVisible: false
+			hotelModalVisible: false,
 		};
 	},
 	render: function() {
