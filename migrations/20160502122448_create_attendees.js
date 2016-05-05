@@ -7,8 +7,12 @@ exports.up = function(knex, Promise) {
 
 		t.string('name').notNull();
 		t.string('accessCode').notNull();
-		t.integer('party').notNull().defaultTo(0);
-		t.integer('maxGuests').notNull().defaultTo(1);
+		t.integer('party')
+			.notNull()
+			.defaultTo(0);
+		t.string('maxGuests')
+			.notNull()
+			.defaultTo('1');
 		t.boolean('isGoing').nullable();
 
 		t.integer('userId')

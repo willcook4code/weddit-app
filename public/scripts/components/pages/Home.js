@@ -22,8 +22,20 @@ export default React.createClass({
 					<Rayon isOpen={this.state.regModalVisible} onClose={this.closeRegModal}>
 						<form onSubmit={this.closeRegModal}>
 							<p>Registration Form</p>
+							<h3>Your Name</h3>
+							<input type='text' placeholder='First Last'/>
+							<h3>Your Partner's Name</h3>
+							<input type='text' placeholder='First Last'/>
+							<h3>email</h3>
+							<input type='text' placeholder='email@domain.com'/>
+							<h3>password</h3>
+							<input type='password'/>
+							<h3>Venue</h3>
+							<input type='text' placeholder='eg: Downton Abbey'/>
+							<h3>Venue Zip</h3>
+							<input type='text' placeholder='eg: 78701'/>
 							<footer>
-								<button>Submit</button>
+								<button type='submit'>Register</button>
 							</footer>
 						</form>
 					</Rayon>
@@ -34,8 +46,15 @@ export default React.createClass({
 					<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal}>
 						<form onSubmit={this.closeRsvpModal}>
 							<p>RSVP Form</p>
+							<h3>Your Name</h3>
+							<input type='text' placeholder='Please enter as appears on invite'/>
+							<h3>Please Enter Your Access Code</h3>
+							<input type='text'/>
+							<h3>Number Attending</h3>
+							<input type='number' min='0' max='4'/>
 							<footer>
-								<button type='submit'>Submit</button>
+								<button>Accept</button>
+								<button>Decline</button>
 							</footer>
 						</form>
 					</Rayon>
@@ -43,6 +62,8 @@ export default React.createClass({
 					<Rayon isOpen={this.state.infoModalVisible} onClose={this.closeInfoModal}>
 						<form onSubmit={this.closeInfoModal}>
 							<p>Info Link</p>
+							<h3>Please Enter Your Access Code</h3>
+							<input type='text'/>
 							<footer>
 								<button>Go to Info Page</button>
 							</footer>
