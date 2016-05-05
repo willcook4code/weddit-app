@@ -2,13 +2,22 @@ import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
 import Rayon from 'rayon';
 import Attendee from '../../collections/AttendeeCollection';
+import user from '../../models/user';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
 			inviteModalVisible: false,
-			hotelModalVisible: false
+			hotelModalVisible: false,
+			user: user
 		};
+	},
+	componentDidMount: function() {
+		this.state.user.on('add', () => {
+			this.setState({
+				user: user
+			});
+		});
 	},
 	render: function() {
 		return(
@@ -60,14 +69,25 @@ export default React.createClass({
 			</section>
 			);
 	},
+	randomPW: function () {	
+	const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890';
+	let pass = '';
+	for (let x = 0; x < 4; x++) {
+    	let i = Math.floor(Math.random() * chars.length);
+    	pass += chars.charAt(i);
+	 	}
+	return pass;
+	},
 	enterAttendee: function() {
 		let newAttendee = {
 			name: this.refs.name.value,
-			accessCode: 'h3k5i',
+			accessCode: this.state.user.get('id')+this.randomPW(),
 			party: 0,
 			maxGuests: this.refs.max.value
 		};
 		Attendee.create(newAttendee);
+		this.refs.name.value = '';
+		this.refs.max.value = '';
 	},
 	openInviteModal: function() {
 		this.setState({

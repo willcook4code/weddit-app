@@ -5,11 +5,6 @@ let bookshelfApi = require('bookshelf-api') ({
 	path: path.join(__dirname, '..', 'models')
 });
 
-
-// router.post('/',
-	
-// 	bookshelfApi);
-
 router.use('/', 
 	function(req, res, next){
 		req.body.userId = req.user.id;
