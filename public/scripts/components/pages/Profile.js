@@ -78,10 +78,11 @@ export default React.createClass({
 	 	}
 	return pass;
 	},
-	enterAttendee: function() {
+	enterAttendee: function(e) {
+		e.preventDefault();
 		let newAttendee = {
 			name: this.refs.name.value,
-			accessCode: this.state.user.get('id')+this.randomPW(),
+			accessCode: this.state.user.get('id')+'-'+this.randomPW(),
 			party: 0,
 			maxGuests: this.refs.max.value
 		};
