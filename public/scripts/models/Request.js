@@ -8,6 +8,6 @@ export default Backbone.Model.extend({
 		band: '',
 		requestCount: 1
 	},
-	urlRoot: '/api/v1/request',
+	urlRoot: '/api/v1/public/request',
 	idAttribute: 'id'
 });

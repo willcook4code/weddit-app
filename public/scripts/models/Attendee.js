@@ -8,6 +8,6 @@ export default Backbone.Model.extend({
 		maxGuests: '',
 		isGoing: null
 	},
-	urlRoot: '/api/v1/attendee',
+	urlRoot: '/api/v1/public/attendee',
 	idAttribute: 'id'
 });

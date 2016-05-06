@@ -8,6 +8,6 @@ export default Backbone.Model.extend({
 		rate: '',
 		cutoffDate: null
 	},
-	urlRoot: '/api/v1/accommodation',
+	urlRoot: '/api/v1/public/accommodation',
 	idAttribute: 'id'
 });
