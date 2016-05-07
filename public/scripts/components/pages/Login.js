@@ -9,6 +9,7 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			regModalVisible: false,
+			errors: {},
 			user: user
 		};
 	},
@@ -19,7 +20,9 @@ export default React.createClass({
 				<h3>Login</h3>
 				<form className='loginForm' onSubmit={this.login}>
 					<input type='email' placeholder='email@domain.com' className='loginField' ref='email'/>
+					<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>
 					<input type='password' placeholder='password' className='loginField' ref='password'/>
+					<div className="error">{this.state.errors.password ? this.state.errors.password.message : null}</div>
 					<button type='submit' className='button loginButton'>Login</button>
 				</form>
 				<p>Need to register an account?  Start <a href='#' onClick={this.openRegModal}>HERE</a>.</p>
@@ -32,8 +35,10 @@ export default React.createClass({
 						<input type='text' placeholder='First Last' ref='registrant2'/>
 						<h3>email</h3>
 						<input type='text' placeholder='email@domain.com' ref='email'/>
+						<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>
 						<h3>password</h3>
 						<input type='password' ref='password'/>
+						<div className="error">{this.state.errors.password ? this.state.errors.password.message : null}</div>
 						<h3>Venue</h3>
 						<input type='text' placeholder='eg: Downton Abbey' ref='venueName'/>
 						<h3>Venue Zip</h3>

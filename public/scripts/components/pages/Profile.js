@@ -1,17 +1,20 @@
 import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
+import Song from './Subcomponents/SongList';
 import Rayon from 'rayon';
 import Attendees from '../../collections/AttendeeCollection';
 import Hotel from '../../collections/AccommodationCollection';
 import user from '../../models/user';
+import AddInvites from './AddInvites';
+import Requests from '../../collections/RequestCollection';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
-			inviteModalVisible: false,
 			hotelModalVisible: false,
 			user: user,
-			Attendees: Attendees
+			Attendees: Attendees,
+			Requests: Requests
 		};
 	},
 	componentDidMount: function() {
@@ -32,12 +35,30 @@ export default React.createClass({
 				}
 			}
 		});
-		console.log(this.state.user.get('id'));
+		Requests.on('update', () => {
+			this.setState({
+				Requests: Requests
+			});
+		});
+		Requests.fetch({
+			data: {
+				where: {
+					userId: this.state.user.get('id')
+				}
+			}
+		});
 	},
 	render: function() {
-		console.log('render');
-		console.log(this.state.Attendees.models);
-		console.log(this.state.user.get('id'));
+		const requested = this.state.Requests.models.map((song, i, array) => {
+			return(
+				<Song 
+				key = {song.get('id')}
+				pic = {song.get('pic')}
+				title = {song.get('title')}
+				band = {song.get('band')}
+				/>
+				);
+		});
 		const invited = this.state.Attendees.models.map((invitee, i, array) => {
 			return(
 				<Rsvp 
@@ -60,20 +81,7 @@ export default React.createClass({
 					{invited}
 				</div>
 				<div className='infoEditsWrapper'>
-					<button onClick={this.openInviteModal}>Add Invites</button>
-					<Rayon isOpen={this.state.inviteModalVisible} onClose={this.closeInviteModal}>
-						<form>
-							<p>Invites Form</p>
-							<h3>Primary Name</h3>
-							<input type='text' placeholder='eg: Sam Smith' ref='name'/>
-							<h3>Maximum Number of Guests</h3>
-							<input type='text' placeholder='eg: 4' ref='max'/>
-							<footer>
-								<a href="#" onClick={this.enterAttendee}>Add Party</a>
-								<button type='button' onClick={this.closeInviteModal}>Close</button>
-							</footer>
-						</form>
-					</Rayon>
+					<AddInvites />
 					<button onClick={this.openHotelModal}>Add Hotel</button>
 					<Rayon isOpen={this.state.hotelModalVisible} onClose={this.closeHotelModal}>
 						<form>
@@ -97,19 +105,10 @@ export default React.createClass({
 				</div>
 				<div className='requestsWrapper'>
 					<h2>Song Requests</h2>
-
+					{requested}
 				</div>
 			</section>
 			);
-	},
-	randomPW: function () {	
-	const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP1234567890';
-	let code = '';
-	for (let x = 0; x < 4; x++) {
-    	let i = Math.floor(Math.random() * chars.length);
-    	code += chars.charAt(i);
-	 	}
-	return code;
 	},
 	addHotel: function(e) {
 		e.preventDefault();
@@ -124,28 +123,6 @@ export default React.createClass({
 		this.refs.hotelZip.value = '';
 		this.refs.hotelUrl.value = '';
 		this.refs.rate.value = '';
-	},
-	enterAttendee: function(e) {
-		e.preventDefault();
-		let newAttendee = {
-			name: this.refs.name.value,
-			accessCode: this.state.user.get('id')+'-'+this.randomPW(),
-			party: 0,
-			maxGuests: this.refs.max.value
-		};
-		Attendees.create(newAttendee);
-		this.refs.name.value = '';
-		this.refs.max.value = '';
-	},
-	openInviteModal: function() {
-		this.setState({
-			inviteModalVisible: true
-		});
-	},
-	closeInviteModal: function() {
-		this.setState({
-			inviteModalVisible: false
-		});
 	},
 	openHotelModal: function() {
 		this.setState({

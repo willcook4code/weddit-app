@@ -3,6 +3,9 @@ import Rayon from 'rayon';
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
 import attendee from '../../models/attendee';
+import Attendees from '../../collections/AttendeeCollection';
+import User from '../../collections/UserCollection';
+import user from '../../models/user';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -10,7 +13,9 @@ export default React.createClass({
 			rsvpModalVisible: false,
 			infoModalVisible: false,
 			attendee: new attendee,
-			attStatusMessage: null
+			attStatusMessage: null,
+			User: User,
+			user: user
 		};
 	},
 	componentWillMount: function() {
@@ -19,28 +24,22 @@ export default React.createClass({
 				attendee: this.state.attendee
 			});
 		});
+		this.state.user.on('change', () => {
+			this.setState({
+				user: this.state.user
+			});
+		});
 	},
 	render: function() {
-		console.log('render');
 		return(
 			<div className='attendeeLogin'>
-					<h1 className='loginType'>Attendee Links</h1>
-					<button className='attendeeLink' onClick={this.openRsvpModal}>RSVP</button>
-					<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal}>
-						{this.showRsvpJSX(this.state.attStatusMessage)}
-					</Rayon>
-					<button className='attendeeLink' onClick={this.openInfoModal}>Event Info</button>
-					<Rayon isOpen={this.state.infoModalVisible} onClose={this.closeInfoModal}>
-						<form onSubmit={this.closeInfoModal}>
-							<p>Info Link</p>
-							<h3>Please Enter Your Access Code</h3>
-							<input type='text'/>
-							<footer>
-								<button>Go to Info Page</button>
-							</footer>
-						</form>
-					</Rayon>
-				</div>
+				<h1 className='loginType'>Attendee Links</h1>
+				<button className='attendeeLink' onClick={this.openRsvpModal}>RSVP</button>
+				<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal}>
+					{this.showRsvpJSX(this.state.attStatusMessage)}
+				</Rayon>
+				<button className='attendeeLink' onClick={this.toInfo}>Event Info</button>
+			</div>
 				);
 	},
 	showRsvpJSX: function(attStatusMessage) {
@@ -77,13 +76,19 @@ export default React.createClass({
 			);
 		}
 	},
+	toInfo: function(e) {
+		browserHistory.push('/attendees');
+	},
 	attend: function(e) {
 		e.preventDefault();
 		this.state.attendee.save({
-				party: this.refs.party.value,
-				isGoing: true
-			});
-			browserHistory.push('/attendees');
+			party: this.refs.party.value,
+			isGoing: true
+		});
+		this.setState({
+			attStatusMessage: 'Thanks!  We\'ll see you there!'
+		});
+		browserHistory.push('/attendees');
 	},
 	decline: function(e) {
 		e.preventDefault();
@@ -92,7 +97,7 @@ export default React.createClass({
 			isGoing: false
 		});
 		this.setState({
-			attStatusMessage: 'Your RSVP has been logged'
+			attStatusMessage: 'Ok, have a good life!'
 		});
 	},
 	verify: function(e) {
@@ -134,3 +139,16 @@ export default React.createClass({
     }
 });
 
+// <button className='attendeeLink' onClick={this.openInfoModal}>Event Info</button>
+// 					<Rayon isOpen={this.state.infoModalVisible} onClose={this.closeInfoModal}>
+// 						<form onSubmit={this.closeInfoModal}>
+// 							<p>Info Link</p>
+// 							<h3>Your Name</h3>
+// 							<input type='text' placeholder='Please enter as appears on invite' ref='name'/>
+// 							<h3>Please Enter Your Access Code</h3>
+// 							<input type='text' ref='accessCode'/>
+// 							<footer>
+// 								<button onClick={this.toInfo}>Go to Info Page</button>
+// 							</footer>
+// 						</form>
+// 					</Rayon>
