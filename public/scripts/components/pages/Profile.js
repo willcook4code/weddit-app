@@ -1,7 +1,7 @@
 import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
 import Rayon from 'rayon';
-import Attendee from '../../collections/AttendeeCollection';
+import Attendees from '../../collections/AttendeeCollection';
 import Hotel from '../../collections/AccommodationCollection';
 import user from '../../models/user';
 
@@ -10,22 +10,54 @@ export default React.createClass({
 		return {
 			inviteModalVisible: false,
 			hotelModalVisible: false,
-			user: user
+			user: user,
+			Attendees: Attendees
 		};
 	},
 	componentDidMount: function() {
-		this.state.user.on('add', () => {
+		this.state.user.on('update', () => {
 			this.setState({
 				user: user
 			});
 		});
+		Attendees.on('update', () => {
+			this.setState({
+				Attendees: Attendees
+			});
+		});
+		Attendees.fetch({
+			data: {
+				where: {
+					userId: this.state.user.get('id')
+				}
+			}
+		});
+		console.log(this.state.user.get('id'));
 	},
 	render: function() {
+		console.log('render');
+		console.log(this.state.Attendees.models);
+		console.log(this.state.user.get('id'));
+		const invited = this.state.Attendees.models.map((invitee, i, array) => {
+			return(
+				<Rsvp 
+				key = {invitee.get('id')}
+				name = {invitee.get('name')}
+				party = {invitee.get('party')}
+				isGoing = {invitee.get('isGoing')}
+				/>
+				);
+		});
 		return(
 			<section className='profilePage'>
 				<div className='attendeesWrapper'>
 					<h2>Attendees</h2>
-					<Rsvp/>
+					<header className='rsvpHeader'>
+						<span>Name</span>
+						<span># in Party</span>
+						<span>Going?</span>
+					</header>
+					{invited}
 				</div>
 				<div className='infoEditsWrapper'>
 					<button onClick={this.openInviteModal}>Add Invites</button>
@@ -101,7 +133,7 @@ export default React.createClass({
 			party: 0,
 			maxGuests: this.refs.max.value
 		};
-		Attendee.create(newAttendee);
+		Attendees.create(newAttendee);
 		this.refs.name.value = '';
 		this.refs.max.value = '';
 	},
