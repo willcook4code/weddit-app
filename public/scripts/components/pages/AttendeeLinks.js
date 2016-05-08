@@ -3,17 +3,15 @@ import Rayon from 'rayon';
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
 import attendee from '../../models/attendee';
-import User from '../../collections/UserCollection';
+// import User from '../../collections/UserCollection';
 import user from '../../models/user';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
 			rsvpModalVisible: false,
-			infoModalVisible: false,
 			attendee: new attendee,
 			attStatusMessage: null,
-			User: User,
 			user: user
 		};
 	},

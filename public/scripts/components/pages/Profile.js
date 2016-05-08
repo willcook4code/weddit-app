@@ -63,6 +63,7 @@ export default React.createClass({
 				<Rsvp 
 				key = {invitee.get('id')}
 				name = {invitee.get('name')}
+				accessCode = {invitee.get('accessCode')}
 				party = {invitee.get('party')}
 				isGoing = {invitee.get('isGoing')}
 				/>
@@ -74,6 +75,7 @@ export default React.createClass({
 					<h2>Attendees</h2>
 					<header className='rsvpHeader'>
 						<span>Name</span>
+						<span>Access Code</span>
 						<span># in Party</span>
 						<span>Going?</span>
 					</header>

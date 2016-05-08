@@ -12,6 +12,7 @@ export default React.createClass({
 			<div className='rsvpWrapper'>
 				<div>
 					<p>{this.props.name}</p>
+					<p>{this.props.accessCode}</p>
 					<p>{this.props.party}</p>
 					<p>{rsvp}</p>
 				</div>
