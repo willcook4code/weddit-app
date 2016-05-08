@@ -3,7 +3,7 @@ import Iframe from 'react-iframe';
 
 export default React.createClass({
 	render: function() {
-		let hotel = function(name) {
+		let venue = function(name) {
 			let wordsArr = [];
 			let newSent = [];
 			let sentArr = name.split(' ');
@@ -15,10 +15,9 @@ export default React.createClass({
 			}
 			return newSent;
 		};
-		let location = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDORTq8B5-auRcsIQ5pE3lVosmLftZIwmk&q='+hotel(this.props.name)+','+this.props.zip;
-		console.log(location);
+		let location = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDORTq8B5-auRcsIQ5pE3lVosmLftZIwmk&q='+venue(this.props.venName)+','+this.props.venZip;
 		return(
-			<div className='hotelWrapper'>
+			<div className='venueWrapper'>
 				<Iframe
 					url={location}
 					width="300"
@@ -27,8 +26,6 @@ export default React.createClass({
 					frameborder="0" style="border:0"
 					allowfullscreen
 				/>
-				<a href={this.props.hotelUrl}>Website</a>
-				<p>{this.props.rate}</p>
 			</div>
 			);
 	}

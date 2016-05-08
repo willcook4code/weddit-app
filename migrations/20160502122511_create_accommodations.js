@@ -5,9 +5,10 @@ exports.up = function(knex, Promise) {
 		t.dateTime('updatedAt').nullable();
 		t.dateTime('deletedAt').nullable();
 
-		t.string('hotelName').notNull();
-		t.string('hotelZip').notNull();
-		t.string('hotelUrl').notNull();
+		t.string('name').notNull();
+		t.string('zip').notNull();
+		t.string('locationType').notNull();
+		t.string('hotelUrl').nullable();
 		t.string('rate').nullable();
 		t.date('cutoffDate').nullable();
 

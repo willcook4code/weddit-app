@@ -2,8 +2,9 @@ import Backbone from 'backbone';
 
 export default Backbone.Model.extend({
 	defaults: {
-		hotelName: '',
-		hotelZip: '',
+		name: '',
+		zip: '',
+		locationType: '',
 		hotelUrl: '',
 		rate: '',
 		cutoffDate: null

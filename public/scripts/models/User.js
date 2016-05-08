@@ -5,8 +5,6 @@ const UserModel = Backbone.Model.extend ({
 		registrant1: '',
 		registrant2: '',
 		email: '',
-		venueName: '',
-		venueZip: '',
 		createdAt: null,
 		updatedAt: null,
 		deletedAt: null

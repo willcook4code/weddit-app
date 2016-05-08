@@ -1,0 +1,61 @@
+import React from 'react';
+import Rayon from 'rayon';
+import user from '../../models/user';
+import Location from '../../collections/AccommodationCollection';
+
+export default React.createClass({
+	getInitialState: function() {
+		return {
+			venueModalVisible: false,
+			user: user
+		};
+	},
+	componentDidMount: function() {
+		this.state.user.on('add', () => {
+			this.setState({
+				user: user
+			});
+		});
+	},
+	render: function() {
+		return (
+			<div>
+				<button onClick={this.openVenueModal}>Add Venue</button>
+					<Rayon isOpen={this.state.venueModalVisible} onClose={this.closeVenueModal}>
+						<form>
+							<p>Add Venue Form</p>
+							<h3>Venue Name</h3>
+							<input type='text' placeholder='eg: Some Hall' ref='name'/>
+							<h3>Zip Code</h3>
+							<input type='text' placeholder='eg: 78701' ref='zip'/>
+							<footer>
+								<a href="#" onClick={this.addVenue}>Add Venue</a>
+								<button type='button' onClick={this.closeVenueModal}>Close</button>
+							</footer>
+						</form>
+					</Rayon>
+			</div>
+			);
+	},
+	addVenue: function(e) {
+		e.preventDefault();
+		let newVenue = {
+			name: this.refs.name.value,
+			zip: this.refs.zip.value,
+			locationType: 'venue'
+		};
+		Location.create(newVenue);
+		this.refs.name.value = '';
+		this.refs.zip.value = '';
+	},
+	openVenueModal: function() {
+		this.setState({
+			venueModalVisible: true
+		});
+	},
+	closeVenueModal: function() {
+		this.setState({
+			venueModalVisible: false
+		});
+	}
+});

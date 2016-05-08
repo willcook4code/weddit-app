@@ -1,30 +1,45 @@
 import React from 'react';
 import Rayon from 'rayon';
-import Hotels from '../../collections/AccommodationCollection';
+import Locations from '../../collections/AccommodationCollection';
 import HotelDisplay from './Subcomponents/HotelList';
+import VenueDisplay from './Subcomponents/VenueMap';
 import SongSearch from './SongSearch';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
 			infoModalVisible: true,
-			Hotels: Hotels
+			Locations: Locations,
+			venName: '',
+			venZip: ''
 		};
 	},
-	componentDidMount: function() {
-		Hotels.on('update', () => {
+	componentWillMount: function() {
+		Locations.on('update', () => {
 			this.setState({
-				Hotels: Hotels
+				Locations: Locations
+			});
+		});
+		Locations.on('update', () => {
+			this.setState({
+				venName: Locations.findWhere({locationType: 'venue'}).get('name'),
+				venZip: Locations.findWhere({locationType: 'venue'}).get('zip')
 			});
 		});
 	},
 	render: function() {
-		const listed = this.state.Hotels.models.map((hotel, i, array) => {
+		const listedHotels = this.state.Locations.models.filter((location, i, array) => {
+			if (location.get('locationType') === 'hotel') {
+				return true;
+			} else {
+				return false;
+			}
+		}).map((hotel, i, array) => {
 			return (
 				<HotelDisplay 
 				key = {hotel.get('id')}
-				hotelName = {hotel.get('hotelName')}
-				hotelZip = {hotel.get('hotelZip')}
+				name = {hotel.get('name')}
+				zip = {hotel.get('zip')}
 				hotelUrl = {hotel.get('hotelUrl')}
 				rate = {hotel.get('rate')}
 				/>
@@ -41,11 +56,14 @@ export default React.createClass({
 				</Rayon>
 				<div className='hotelDisplay'>
 					<h2>Hotels</h2>
-					{listed}
+					{listedHotels}
 				</div>
 				<div className='wideSearchDisplay'>
-					<h2>Other Hotels</h2>
-					
+					<h2>Venue</h2>
+					<VenueDisplay 
+					venName = {this.state.venName}
+					venZip = {this.state.venZip}
+					/>
 				</div>
 				<SongSearch />
 			</section>
@@ -53,7 +71,7 @@ export default React.createClass({
 	},
 	access: function(e) {
 		e.preventDefault();
-		Hotels.fetch({
+		Locations.fetch({
 			data: {
 				where: {
 					userId: parseFloat(this.refs.accessCode.value.charAt(0))

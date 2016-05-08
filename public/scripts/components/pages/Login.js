@@ -39,10 +39,6 @@ export default React.createClass({
 						<h3>password</h3>
 						<input type='password' ref='password'/>
 						<div className="error">{this.state.errors.password ? this.state.errors.password.message : null}</div>
-						<h3>Venue</h3>
-						<input type='text' placeholder='eg: Downton Abbey' ref='venueName'/>
-						<h3>Venue Zip</h3>
-						<input type='text' placeholder='eg: 78701' ref='venueZip'/>
 						<footer>
 							<button type='submit'>Register</button>
 							<button type='button' onClick={this.closeRegModal}>Close</button>
@@ -80,8 +76,6 @@ export default React.createClass({
 			registrant2: this.refs.registrant2.value,
 			email: this.refs.email.value,
 			password: this.refs.password.value,
-			venueName: this.refs.venueName.value,
-			venueZip: this.refs.venueZip.value
 		},
 		success: (loggedArg) => {
 			this.state.user.set(loggedArg);

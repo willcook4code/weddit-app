@@ -3,7 +3,6 @@ import Rayon from 'rayon';
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
 import attendee from '../../models/attendee';
-import Attendees from '../../collections/AttendeeCollection';
 import User from '../../collections/UserCollection';
 import user from '../../models/user';
 
@@ -88,7 +87,6 @@ export default React.createClass({
 		this.setState({
 			attStatusMessage: 'Thanks!  We\'ll see you there!'
 		});
-		browserHistory.push('/attendees');
 	},
 	decline: function(e) {
 		e.preventDefault();
@@ -138,17 +136,3 @@ export default React.createClass({
         });
     }
 });
-
-// <button className='attendeeLink' onClick={this.openInfoModal}>Event Info</button>
-// 					<Rayon isOpen={this.state.infoModalVisible} onClose={this.closeInfoModal}>
-// 						<form onSubmit={this.closeInfoModal}>
-// 							<p>Info Link</p>
-// 							<h3>Your Name</h3>
-// 							<input type='text' placeholder='Please enter as appears on invite' ref='name'/>
-// 							<h3>Please Enter Your Access Code</h3>
-// 							<input type='text' ref='accessCode'/>
-// 							<footer>
-// 								<button onClick={this.toInfo}>Go to Info Page</button>
-// 							</footer>
-// 						</form>
-// 					</Rayon>

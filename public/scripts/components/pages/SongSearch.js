@@ -9,7 +9,6 @@ export default React.createClass({
 		};
 	},
 	render: function() {
-		console.log(this.state);
 		const eachSong = this.state.song.map((song, i, array) => {
 			if (!song.album.images[0]) {
 				song.album.images.push({url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'});
@@ -40,5 +39,6 @@ export default React.createClass({
 				song: songs.tracks.items
 			});
 		}.bind(this));
+		this.refs.songSearch.value = '';
 	}
 });

@@ -22,5 +22,6 @@ export default React.createClass({
 			userId: parseFloat(this.refs.userId.value.charAt(0))
 		};
 		Request.create(newRequest);
+		this.refs.userId.value = '';
 	}
 });
