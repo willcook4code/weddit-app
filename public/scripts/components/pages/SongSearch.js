@@ -8,6 +8,15 @@ export default React.createClass({
 			song: []
 		};
 	},
+	runSearch: function() {
+		let songSearch = this.refs.songSearch.value;
+		this.spotifySearch = $.get('https://api.spotify.com/v1/search?q=%27'+songSearch+'%27&type=track', function(songs) {
+			this.setState({
+				song: songs.tracks.items
+			});
+		}.bind(this));
+		this.refs.songSearch.value = '';
+	},
 	render: function() {
 		const eachSong = this.state.song.map((song, i, array) => {
 			if (!song.album.images[0]) {
@@ -32,14 +41,5 @@ export default React.createClass({
 				{eachSong}
 			</div>
 		);
-	},
-	runSearch: function() {
-		let songSearch = this.refs.songSearch.value;
-		this.spotifySearch = $.get('https://api.spotify.com/v1/search?q=%27'+songSearch+'%27&type=track', function(songs) {
-			this.setState({
-				song: songs.tracks.items
-			});
-		}.bind(this));
-		this.refs.songSearch.value = '';
 	}
 });

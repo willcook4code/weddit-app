@@ -7,7 +7,8 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			inviteModalVisible: false,
-			user: user
+			user: user,
+			addedMsg: null
 		};
 	},
 	componentDidMount: function() {
@@ -15,6 +16,31 @@ export default React.createClass({
 			this.setState({
 				user: user
 			});
+		});
+	},
+	enterAttendee: function(e) {
+		e.preventDefault();
+		let newAttendee = {
+			name: this.refs.name.value,
+			accessCode: this.state.user.get('id')+'-'+this.randomPW(),
+			party: 0,
+			maxGuests: this.refs.max.value
+		};
+		Attendees.create(newAttendee);
+		this.setState({
+			addedMsg: this.refs.name.value+' was added with a maximum allotment of '+this.refs.max.value+' to their party.'
+		});
+		this.refs.name.value = '';
+		this.refs.max.value = '';
+	},
+	openInviteModal: function() {
+		this.setState({
+			inviteModalVisible: true
+		});
+	},
+	closeInviteModal: function() {
+		this.setState({
+			inviteModalVisible: false
 		});
 	},
 	render: function() {
@@ -28,6 +54,7 @@ export default React.createClass({
 						<input type='text' placeholder='eg: Sam Smith' ref='name'/>
 						<h3>Maximum Number of Guests</h3>
 						<input type='text' placeholder='eg: 4' ref='max'/>
+						<p>{this.state.addedMsg}</p>
 						<footer>
 							<a href="#" onClick={this.enterAttendee}>Add Party</a>
 							<button type='button' onClick={this.closeInviteModal}>Close</button>
@@ -45,27 +72,5 @@ export default React.createClass({
     	code += chars.charAt(i);
 	 	}
 	return code;
-	},
-	enterAttendee: function(e) {
-		e.preventDefault();
-		let newAttendee = {
-			name: this.refs.name.value,
-			accessCode: this.state.user.get('id')+'-'+this.randomPW(),
-			party: 0,
-			maxGuests: this.refs.max.value
-		};
-		Attendees.create(newAttendee);
-		this.refs.name.value = '';
-		this.refs.max.value = '';
-	},
-	openInviteModal: function() {
-		this.setState({
-			inviteModalVisible: true
-		});
-	},
-	closeInviteModal: function() {
-		this.setState({
-			inviteModalVisible: false
-		});
 	}
 });

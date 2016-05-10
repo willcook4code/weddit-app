@@ -2,6 +2,7 @@ import React from 'react';
 import Locations from '../../collections/AccommodationCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
+import LocationsDisplay from './Subcomponents/NearbyMaps';
 import SongSearch from './SongSearch';
 import user from '../../stores/user';
 import attendee from '../../stores/attendee';
@@ -13,8 +14,8 @@ export default React.createClass({
 			user: user,
 			attendee: attendee,
 			Locations: Locations,
-			venName: '',
-			venZip: ''
+			searchType: ['Restaurants', 'Attractions'],
+			areaZip: ''
 		};
 	},
 	componentWillMount: function() {
@@ -30,8 +31,7 @@ export default React.createClass({
 		});
 		Locations.on('update', () => {
 			this.setState({
-				venName: Locations.findWhere({locationType: 'venue'}).get('name'),
-				venZip: Locations.findWhere({locationType: 'venue'}).get('zip')
+				areaZip: Locations.findWhere({locationType: 'venue'}).get('zip')
 			});
 		});
 		if (attendee.get('userId')) {
@@ -50,8 +50,20 @@ export default React.createClass({
 					}
 				}
 			});
+		} else {
+			browserHistory.push('/');
 		}
 	},
+	openInfoModal: function() {
+        this.setState({
+            infoModalVisible: true
+        });
+    },
+    closeInfoModal: function() {
+        this.setState({
+            infoModalVisible: false
+        });
+    },
 	render: function() {
 		const listedHotels = this.state.Locations.models.filter((location, i, array) => {
 			if (location.get('locationType') === 'hotel') {
@@ -70,33 +82,47 @@ export default React.createClass({
 				/>
 				);
 		});
+		const listedVenue = this.state.Locations.models.filter((location, i, array) => {
+			if (location.get('locationType') === 'venue') {
+				return true;
+			} else {
+				return false;
+			}
+		}).map((venue, i, array) => {
+			return (
+				<VenueDisplay
+				key = {venue.get('id')}
+				venName = {venue.get('name')}
+				venZip = {venue.get('zip')}
+				/>
+			);
+		});
+		const eachSearch = this.state.searchType.map((type, i, array) => {
+			return (
+				<LocationsDisplay
+				key = {i}
+				searchType = {type}
+				areaZip = {this.state.areaZip}
+				/>
+			);
+		});
 		return(
 			<section className='attendeesPage'>
 				<div className='hotelDisplay'>
 					<h2>Hotels</h2>
 					{listedHotels}
 				</div>
+				<div className='venueDisplay'>
+					<h2>Venue(s)</h2>
+					{listedVenue}
+				</div>
 				<div className='wideSearchDisplay'>
-					<h2>Venue</h2>
-					<VenueDisplay
-					venName = {this.state.venName}
-					venZip = {this.state.venZip}
-					/>
+					{eachSearch}
 				</div>
 				<SongSearch 
 				userId = {this.state.attendee.get('userId')}
 				/>
 			</section>
 			);
-	},
-	openInfoModal: function() {
-        this.setState({
-            infoModalVisible: true
-        });
-    },
-    closeInfoModal: function() {
-        this.setState({
-            infoModalVisible: false
-        });
-    }
+	}
 });

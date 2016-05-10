@@ -3,7 +3,6 @@ import Iframe from 'react-iframe';
 
 export default React.createClass({
 	render: function() {
-		
 		let venue = function(name) {
 			let wordsArr = [];
 			let newSent = [];
@@ -27,7 +26,6 @@ export default React.createClass({
 					frameborder="0" style="border:0"
 					allowfullscreen
 				/>
-
 			</div>
 			);
 	}

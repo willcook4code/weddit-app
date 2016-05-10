@@ -7,7 +7,8 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			hotelModalVisible: false,
-			user: user
+			user: user,
+			addedMsg: null
 		};
 	},
 	componentDidMount: function() {
@@ -15,6 +16,34 @@ export default React.createClass({
 			this.setState({
 				user: user
 			});
+		});
+	},
+	addHotel: function(e) {
+		e.preventDefault();
+		let newHotel = {
+			name: this.refs.hotelName.value,
+			zip: this.refs.hotelZip.value,
+			hotelUrl: this.refs.hotelUrl.value,
+			rate: this.refs.rate.value,
+			locationType: 'hotel'
+		};
+		Location.create(newHotel);
+		this.setState({
+			addedMsg: this.refs.hotelName.value+' was added at the rate of '+this.refs.rate.value+'.'
+		});
+		this.refs.hotelName.value = '';
+		this.refs.hotelZip.value = '';
+		this.refs.hotelUrl.value = '';
+		this.refs.rate.value = '';
+	},
+	openHotelModal: function() {
+		this.setState({
+			hotelModalVisible: true
+		});
+	},
+	closeHotelModal: function() {
+		this.setState({
+			hotelModalVisible: false
 		});
 	},
 	render: function() {
@@ -32,6 +61,7 @@ export default React.createClass({
 							<input type='text' placeholder='eg: www.sheraton.com' ref='hotelUrl'/>
 							<h3>Rate</h3>
 							<input type='text' placeholder='eg: $99' ref='rate'/>
+							<p>{this.state.addedMsg}</p>
 							<footer>
 								<a href="#" onClick={this.addHotel}>Add Property</a>
 								<button type='button' onClick={this.closeHotelModal}>Close</button>
@@ -40,30 +70,5 @@ export default React.createClass({
 					</Rayon>
 			</div>
 			);
-	},
-	addHotel: function(e) {
-		e.preventDefault();
-		let newHotel = {
-			name: this.refs.hotelName.value,
-			zip: this.refs.hotelZip.value,
-			hotelUrl: this.refs.hotelUrl.value,
-			rate: this.refs.rate.value,
-			locationType: 'hotel'
-		};
-		Location.create(newHotel);
-		this.refs.hotelName.value = '';
-		this.refs.hotelZip.value = '';
-		this.refs.hotelUrl.value = '';
-		this.refs.rate.value = '';
-	},
-	openHotelModal: function() {
-		this.setState({
-			hotelModalVisible: true
-		});
-	},
-	closeHotelModal: function() {
-		this.setState({
-			hotelModalVisible: false
-		});
 	}
 });

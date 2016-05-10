@@ -13,6 +13,54 @@ export default React.createClass({
 			user: user
 		};
 	},
+	login: function(e) {
+	e.preventDefault();
+	$.ajax({
+		url: '/auth/login',
+		type: 'POST',
+		data: {
+			email: this.refs.email.value,
+			password: this.refs.password.value
+		},
+		success: (loggedArg) => {
+			this.state.user.set(loggedArg);
+			browserHistory.push('/profile');
+		},
+		error: (errorArg) => {
+				this.setState({errors: errorArg.responseJSON});
+			}
+		});
+	},
+	register: function(e) {
+	e.preventDefault();
+	$.ajax({
+		url: '/auth/register',
+		type: 'POST',
+		data: {
+			registrant1: this.refs.registrant1.value,
+			registrant2: this.refs.registrant2.value,
+			email: this.refs.email.value,
+			password: this.refs.password.value
+		},
+		success: (loggedArg) => {
+			this.state.user.set(loggedArg);
+			browserHistory.push('/profile');
+		},
+		error: (errorArg) => {
+				this.setState({errors: errorArg.responseJSON});
+			}
+		});
+	},
+	openRegModal: function() {
+        this.setState({
+            regModalVisible: true
+        });
+    },
+    closeRegModal: function() {
+        this.setState({
+            regModalVisible: false
+        });
+    },
 	render: function() {
 		return(
 			<div className='userLogin'>
@@ -47,53 +95,5 @@ export default React.createClass({
 				</Rayon>
 			</div>
 			);
-	},
-	login: function(e) {
-	e.preventDefault();
-	$.ajax({
-		url: '/auth/login',
-		type: 'POST',
-		data: {
-			email: this.refs.email.value,
-			password: this.refs.password.value
-		},
-		success: (loggedArg) => {
-			this.state.user.set(loggedArg);
-			browserHistory.push('/profile');
-		},
-		error: (errorArg) => {
-				this.setState({errors: errorArg.responseJSON});
-			}
-		});
-	},
-	register: function(e) {
-	e.preventDefault();
-	$.ajax({
-		url: '/auth/register',
-		type: 'POST',
-		data: {
-			registrant1: this.refs.registrant1.value,
-			registrant2: this.refs.registrant2.value,
-			email: this.refs.email.value,
-			password: this.refs.password.value,
-		},
-		success: (loggedArg) => {
-			this.state.user.set(loggedArg);
-			browserHistory.push('/profile');
-		},
-		error: (errorArg) => {
-				this.setState({errors: errorArg.responseJSON});
-			}
-		});
-	},
-	openRegModal: function() {
-        this.setState({
-            regModalVisible: true
-        });
-    },
-    closeRegModal: function() {
-        this.setState({
-            regModalVisible: false
-        });
-    }
+	}
 });

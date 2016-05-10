@@ -7,7 +7,8 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			venueModalVisible: false,
-			user: user
+			user: user,
+			addedMsg: null
 		};
 	},
 	componentDidMount: function() {
@@ -15,6 +16,30 @@ export default React.createClass({
 			this.setState({
 				user: user
 			});
+		});
+	},
+	addVenue: function(e) {
+		e.preventDefault();
+		let newVenue = {
+			name: this.refs.name.value,
+			zip: this.refs.zip.value,
+			locationType: 'venue'
+		};
+		Location.create(newVenue);
+		this.setState({
+			addedMsg: this.refs.name.value+' was added as a venue.'
+		});
+		this.refs.name.value = '';
+		this.refs.zip.value = '';
+	},
+	openVenueModal: function() {
+		this.setState({
+			venueModalVisible: true
+		});
+	},
+	closeVenueModal: function() {
+		this.setState({
+			venueModalVisible: false
 		});
 	},
 	render: function() {
@@ -28,6 +53,7 @@ export default React.createClass({
 							<input type='text' placeholder='eg: Some Hall' ref='name'/>
 							<h3>Zip Code</h3>
 							<input type='text' placeholder='eg: 78701' ref='zip'/>
+							<p>{this.state.addedMsg}</p>
 							<footer>
 								<a href="#" onClick={this.addVenue}>Add Venue</a>
 								<button type='button' onClick={this.closeVenueModal}>Close</button>
@@ -36,26 +62,5 @@ export default React.createClass({
 					</Rayon>
 			</div>
 			);
-	},
-	addVenue: function(e) {
-		e.preventDefault();
-		let newVenue = {
-			name: this.refs.name.value,
-			zip: this.refs.zip.value,
-			locationType: 'venue'
-		};
-		Location.create(newVenue);
-		this.refs.name.value = '';
-		this.refs.zip.value = '';
-	},
-	openVenueModal: function() {
-		this.setState({
-			venueModalVisible: true
-		});
-	},
-	closeVenueModal: function() {
-		this.setState({
-			venueModalVisible: false
-		});
 	}
 });
