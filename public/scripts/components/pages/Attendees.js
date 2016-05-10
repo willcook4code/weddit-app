@@ -3,12 +3,14 @@ import Locations from '../../collections/AccommodationCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
 import SongSearch from './SongSearch';
+import user from '../../stores/user';
 import attendee from '../../stores/attendee';
 import {browserHistory} from 'react-router';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
+			user: user,
 			attendee: attendee,
 			Locations: Locations,
 			venName: '',
@@ -19,6 +21,11 @@ export default React.createClass({
 		this.state.attendee.on('change', () => {
 			this.setState({
 				attendee: attendee
+			});
+		});
+		this.state.user.on('change', () => {
+			this.setState({
+				user: user
 			});
 		});
 		Locations.on('update', () => {
@@ -35,8 +42,14 @@ export default React.createClass({
 					}
 				}
 			});
-		} else {
-			browserHistory.push('/');
+		} else if (user.get('id')) {
+			Locations.fetch({
+				data: {
+					where: {
+						userId: user.get('id')
+					}
+				}
+			});
 		}
 	},
 	render: function() {
