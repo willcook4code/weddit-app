@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
-import user from '../models/user';
+import user from '../stores/user';
 import $ from 'jquery';
 
 

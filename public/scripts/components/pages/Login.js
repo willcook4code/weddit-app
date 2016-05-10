@@ -2,7 +2,7 @@ import React from 'react';
 import Rayon from 'rayon';
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
-import user from '../../models/user';
+import user from '../../stores/user';
 
 				
 export default React.createClass({

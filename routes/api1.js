@@ -4,16 +4,17 @@ let path = require('path');
 let bookshelfApi = require('bookshelf-api') ({
 	path: path.join(__dirname, '..', 'models')
 });
+let loggedIn = require('../lib/middleware/logged-in');
 
-router.use('/public', bookshelfApi);
-router.use('/', 
-	function(req, res, next){
-		req.body.userId = req.user.id;
-		next();
-	},
-	bookshelfApi);
+const attachUser = function(req, res, next){
+	req.body.userId = req.user.id;
+	next();
+};
 
+router.get('/user', loggedIn, bookshelfApi);
+router.post('/attendee', loggedIn, attachUser, bookshelfApi);
+router.post('/accommodation', loggedIn, attachUser, bookshelfApi);
 
-
+router.use('/', bookshelfApi);
 
 module.exports = router;

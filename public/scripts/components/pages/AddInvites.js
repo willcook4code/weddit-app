@@ -1,6 +1,6 @@
 import React from 'react';
 import Rayon from 'rayon';
-import user from '../../models/user';
+import user from '../../stores/user';
 import Attendees from '../../collections/AttendeeCollection';
 
 export default React.createClass({

@@ -8,7 +8,6 @@ export default React.createClass({
 				<img src={this.props.pic}/>
 				<p>{this.props.title}</p>
 				<p>By: {this.props.band}</p>
-				<input type='text' placeholder='Enter access code' ref='userId'/>
 				<button onClick = {this.postRequest}>Request</button>
 			</div>
 			);
@@ -19,9 +18,8 @@ export default React.createClass({
 			pic: this.props.pic,
 			title: this.props.title,
 			band: this.props.band,
-			userId: parseFloat(this.refs.userId.value.charAt(0))
+			userId: this.props.userId
 		};
 		Request.create(newRequest);
-		this.refs.userId.value = '';
 	}
 });

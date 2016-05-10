@@ -2,7 +2,7 @@ import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
 import Song from './Subcomponents/SongList';
 import Attendees from '../../collections/AttendeeCollection';
-import user from '../../models/user';
+import user from '../../stores/user';
 import AddInvites from './AddInvites';
 import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';

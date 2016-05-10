@@ -20,6 +20,7 @@ export default React.createClass({
 				pic = {song.album.images[0].url}
 				title ={song.name}
 				band = {song.artists[0].name}
+				userId = {this.props.userId}
 				/>
 				);
 		});

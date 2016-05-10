@@ -1,23 +1,24 @@
 import React from 'react';
-import Rayon from 'rayon';
 import Locations from '../../collections/AccommodationCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
 import SongSearch from './SongSearch';
+import attendee from '../../stores/attendee';
+import {browserHistory} from 'react-router';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
-			infoModalVisible: true,
+			attendee: attendee,
 			Locations: Locations,
 			venName: '',
 			venZip: ''
 		};
 	},
 	componentWillMount: function() {
-		Locations.on('update', () => {
+		this.state.attendee.on('change', () => {
 			this.setState({
-				Locations: Locations
+				attendee: attendee
 			});
 		});
 		Locations.on('update', () => {
@@ -26,6 +27,17 @@ export default React.createClass({
 				venZip: Locations.findWhere({locationType: 'venue'}).get('zip')
 			});
 		});
+		if (attendee.get('userId')) {
+			Locations.fetch({
+				data: {
+					where: {
+						userId: attendee.get('userId')
+					}
+				}
+			});
+		} else {
+			browserHistory.push('/');
+		}
 	},
 	render: function() {
 		const listedHotels = this.state.Locations.models.filter((location, i, array) => {
@@ -47,40 +59,22 @@ export default React.createClass({
 		});
 		return(
 			<section className='attendeesPage'>
-				<Rayon isOpen={this.state.infoModalVisible} onClose={this.closeInfoModal}>
-					<form>
-						<h3>Please Enter Your Access Code</h3>
-						<input type='text' ref='accessCode'/>
-						<button onClick={this.access}>Enter</button>
-					</form>
-				</Rayon>
 				<div className='hotelDisplay'>
 					<h2>Hotels</h2>
 					{listedHotels}
 				</div>
 				<div className='wideSearchDisplay'>
 					<h2>Venue</h2>
-					<VenueDisplay 
+					<VenueDisplay
 					venName = {this.state.venName}
 					venZip = {this.state.venZip}
 					/>
 				</div>
-				<SongSearch />
+				<SongSearch 
+				userId = {this.state.attendee.get('userId')}
+				/>
 			</section>
 			);
-	},
-	access: function(e) {
-		e.preventDefault();
-		Locations.fetch({
-			data: {
-				where: {
-					userId: parseFloat(this.refs.accessCode.value.charAt(0))
-				}
-			}
-		});
-		this.setState({
-            infoModalVisible: false
-        });
 	},
 	openInfoModal: function() {
         this.setState({
@@ -93,4 +87,3 @@ export default React.createClass({
         });
     }
 });
-
