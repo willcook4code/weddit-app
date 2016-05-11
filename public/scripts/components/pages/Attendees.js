@@ -19,21 +19,9 @@ export default React.createClass({
 		};
 	},
 	componentWillMount: function() {
-		this.state.attendee.on('change', () => {
-			this.setState({
-				attendee: attendee
-			});
-		});
-		this.state.user.on('change', () => {
-			this.setState({
-				user: user
-			});
-		});
-		Locations.on('update', () => {
-			this.setState({
-				areaZip: Locations.findWhere({locationType: 'venue'}).get('zip')
-			});
-		});
+		this.state.attendee.on('change', this.changeAttendee);
+		this.state.user.on('change', this.changeUser);
+		Locations.on('update', this.updateAreaZip);
 		if (attendee.get('userId')) {
 			Locations.fetch({
 				data: {
@@ -53,6 +41,26 @@ export default React.createClass({
 		} else {
 			browserHistory.push('/');
 		}
+	},
+	componentWillUnmount: function () {
+		this.state.attendee.off('change', this.changeAttendee);
+		this.state.user.off('change', this.changeUser);
+		Locations.off('update', this.updateAreaZip);
+	},
+	updateAreaZip: function () {
+		this.setState({
+			areaZip: Locations.findWhere({locationType: 'venue'}).get('zip')
+		});
+	},
+	changeUser: function() {
+		this.setState({
+			user: user
+		});
+	},
+	changeAttendee: function () {
+		this.setState({
+			attendee: attendee
+		});
 	},
 	openInfoModal: function() {
         this.setState({

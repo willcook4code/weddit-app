@@ -17,16 +17,9 @@ export default React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		this.state.user.on('update', () => {
-			this.setState({
-				user: user
-			});
-		});
-		Attendees.on('update', () => {
-			this.setState({
-				Attendees: Attendees
-			});
-		});
+		this.state.user.on('update', this.updateUser);
+		Attendees.on('update', this.updateAttendees);
+		Requests.on('update', this.updateRequests);
 		Attendees.fetch({
 			data: {
 				where: {
@@ -34,17 +27,32 @@ export default React.createClass({
 				}
 			}
 		});
-		Requests.on('update', () => {
-			this.setState({
-				Requests: Requests
-			});
-		});
 		Requests.fetch({
 			data: {
 				where: {
 					userId: this.state.user.get('id')
 				}
 			}
+		});
+	},
+	componentWillUnmount: function() {
+		this.state.user.off('update', this.updateUser);
+		Attendees.off('update', this.updateAttendees);
+		Requests.off('update', this.updateRequests);
+	},
+	updateUser: function() {
+		this.setState({
+			user: this.state.user
+		});
+	},
+	updateAttendees: function() {
+		this.setState({
+			Attendees: Attendees
+		});
+	},
+	updateRequests: function() {
+		this.setState({
+			Requests: Requests
 		});
 	},
 	render: function() {
