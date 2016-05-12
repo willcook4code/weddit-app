@@ -111,7 +111,7 @@ export default React.createClass({
 					<div className='infoEditsWrapper'>
 						<AddInvites />
 						<AddHotel />
-						
+						<AddVenue />
 					</div>
 					<h2>Attendees</h2>
 					<header className='rsvpHeader'>
@@ -130,7 +130,6 @@ export default React.createClass({
 					<h2>Song Requests</h2>
 					{requested}
 				</div>
-				<AddVenue />
 			</section>
 			);
 	}
