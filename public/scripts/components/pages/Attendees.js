@@ -103,6 +103,7 @@ export default React.createClass({
 				name = {hotel.get('name')}
 				zip = {hotel.get('zip')}
 				hotelUrl = {hotel.get('hotelUrl')}
+				cutoffDate = {hotel.get('cutoffDate')}
 				rate = {hotel.get('rate')}
 				/>
 				);

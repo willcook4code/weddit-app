@@ -1,8 +1,17 @@
 import React from 'react';
 import Iframe from 'react-iframe';
+import moment from 'moment';
 
 export default React.createClass({
 	render: function() {
+		// let date = function(cutoffDate) {
+		// 	if (!cutoffDate) {
+		// 		cutoffDate = 'none';
+		// 	}
+		// 	let day = new Date(cutoffDate);
+		// 	let cutDay = day.getDay(cutoffDate)
+		// 	return cutDay;
+		// };
 		let hotel = function(name) {
 			let wordsArr = [];
 			let newSent = [];
@@ -27,6 +36,7 @@ export default React.createClass({
 					allowfullscreen
 				/>
 				<a href={this.props.hotelUrl}>Website</a>
+				<p>{moment(this.props.cutoffDate).format('MMM Do YYYY')}</p>
 				<p>{this.props.rate}</p>
 			</div>
 			);

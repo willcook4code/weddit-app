@@ -25,8 +25,10 @@ export default React.createClass({
 			zip: this.refs.hotelZip.value,
 			hotelUrl: this.refs.hotelUrl.value,
 			rate: this.refs.rate.value,
+			cutoffDate: this.refs.cutoff.value,
 			locationType: 'hotel'
 		};
+		console.log(newHotel);
 		Location.create(newHotel);
 		this.setState({
 			addedMsg: this.refs.hotelName.value+' was added at the rate of '+this.refs.rate.value+'.'
@@ -61,6 +63,7 @@ export default React.createClass({
 							<input type='text' placeholder='eg: www.sheraton.com' ref='hotelUrl'/>
 							<h3>Rate</h3>
 							<input type='text' placeholder='eg: $99' ref='rate'/>
+							<input type='date' ref='cutoff'/>
 							<p>{this.state.addedMsg}</p>
 							<footer>
 								<a href="#" onClick={this.addHotel}>Add Property</a>
