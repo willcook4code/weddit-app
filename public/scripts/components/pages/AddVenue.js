@@ -46,7 +46,7 @@ export default React.createClass({
 		return (
 			<div>
 				<button onClick={this.openVenueModal}>Add Venue</button>
-					<Rayon isOpen={this.state.venueModalVisible} onClose={this.closeVenueModal}>
+					<Rayon isOpen={this.state.venueModalVisible} onClose={this.closeVenueModal} bodyClass="rayon-no-overflow">
 						<form>
 							<p>Add Venue Form</p>
 							<h3>Venue Name</h3>

@@ -52,7 +52,7 @@ export default React.createClass({
 		return (
 			<div>
 				<button onClick={this.openHotelModal}>Add Hotel</button>
-					<Rayon isOpen={this.state.hotelModalVisible} onClose={this.closeHotelModal}>
+					<Rayon isOpen={this.state.hotelModalVisible} onClose={this.closeHotelModal} bodyClass="rayon-no-overflow">
 						<form>
 							<p>Add Hotel Form</p>
 							<h3>Property Name</h3>

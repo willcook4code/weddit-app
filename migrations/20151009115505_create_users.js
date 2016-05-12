@@ -5,8 +5,6 @@ exports.up = function(knex, Promise) {
 		t.dateTime('updatedAt').nullable();
 		t.dateTime('deletedAt').nullable();
 
-		t.string('registrant1').notNull();
-		t.string('registrant2').notNull();
 		t.string('email').notNull();
 	});
 };

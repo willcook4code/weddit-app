@@ -2,6 +2,7 @@ require('./Authentication');
 require('./Accommodation');
 require('./Attendee');
 require('./Request');
+require('./Bio');
 module.exports = bookshelf.model('User', {
 	tableName: 'users',
 	hasTimestamps: ['createdAt', 'updatedAt', 'deletedAt'],
@@ -16,5 +17,8 @@ module.exports = bookshelf.model('User', {
 	},
 	request: function() {
 		this.hasMany('Request', 'userId');
+	},
+	bio: function() {
+		this.hasOne('Bio', 'userId');
 	}
 });
