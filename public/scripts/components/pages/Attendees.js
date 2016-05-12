@@ -15,7 +15,8 @@ export default React.createClass({
 			attendee: attendee,
 			Locations: Locations,
 			searchType: ['Restaurants', 'Attractions'],
-			areaZip: ''
+			areaZip: '',
+			updateMsg: ''
 		};
 	},
 	componentWillMount: function() {
@@ -30,6 +31,13 @@ export default React.createClass({
 					}
 				}
 			});
+			// User.fetch({
+			// 	data: {
+			// 		where: {
+			// 			id: attendee.get('userId')
+			// 		}
+			// 	}
+			// });
 		} else if (user.get('id')) {
 			Locations.fetch({
 				data: {
@@ -44,7 +52,7 @@ export default React.createClass({
 	},
 	componentWillUnmount: function () {
 		this.state.attendee.off('change', this.changeAttendee);
-		this.state.user.off('change', this.changeUser);
+		this.state.user.off('update', this.changeUser);
 		Locations.off('update', this.updateAreaZip);
 	},
 	updateAreaZip: function () {
@@ -71,6 +79,15 @@ export default React.createClass({
         this.setState({
             infoModalVisible: false
         });
+    },
+    updateAtt: function(e) {
+    	e.preventDefault();
+		this.state.attendee.save({
+			party: this.refs.party.value
+		});
+		this.setState({
+			updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
+		});
     },
 	render: function() {
 		const listedHotels = this.state.Locations.models.filter((location, i, array) => {
@@ -126,6 +143,13 @@ export default React.createClass({
 				</div>
 				<div className='wideSearchDisplay'>
 					{eachSearch}
+				</div>
+				<div className='whenVerified'>
+					<h3>Update RSVP</h3>
+					<p>Number Attending</p>
+					<input type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
+					<p>{this.state.updateMsg}</p>
+					<button onClick={this.updateAtt}>Submit</button>
 				</div>
 				<SongSearch 
 				userId = {this.state.attendee.get('userId')}

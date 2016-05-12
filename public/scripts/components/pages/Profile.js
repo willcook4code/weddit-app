@@ -1,18 +1,21 @@
 import React from 'react';
 import Rsvp from './Subcomponents/RsvpList';
 import Song from './Subcomponents/SongList';
+import UserPlaceList from './Subcomponents/UserPlaceList';
 import Attendees from '../../collections/AttendeeCollection';
+import Locations from '../../collections/AccommodationCollection';
+import Requests from '../../collections/RequestCollection';
 import user from '../../stores/user';
 import AddInvites from './AddInvites';
 import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';
-import Requests from '../../collections/RequestCollection';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
 			user: user,
 			Attendees: Attendees,
+			Locations: Locations,
 			Requests: Requests
 		};
 	},
@@ -20,6 +23,7 @@ export default React.createClass({
 		this.state.user.on('update', this.updateUser);
 		Attendees.on('update', this.updateAttendees);
 		Requests.on('update', this.updateRequests);
+		Locations.on('update', this.updateLocations);
 		Attendees.fetch({
 			data: {
 				where: {
@@ -34,11 +38,19 @@ export default React.createClass({
 				}
 			}
 		});
+		Locations.fetch({
+			data: {
+				where: {
+					userId: user.get('id')
+				}
+			}
+		});
 	},
 	componentWillUnmount: function() {
 		this.state.user.off('update', this.updateUser);
 		Attendees.off('update', this.updateAttendees);
 		Requests.off('update', this.updateRequests);
+		Locations.off('update', this.updateLocations);
 	},
 	updateUser: function() {
 		this.setState({
@@ -55,13 +67,29 @@ export default React.createClass({
 			Requests: Requests
 		});
 	},
+	updateLocations: function() {
+		this.setState({
+			Locations: Locations
+		});
+	},
 	render: function() {
+		const places = this.state.Locations.models.map((place, i, array) => {
+			return(
+				<UserPlaceList 
+				key = {place.get('id')}
+				location = {place}
+				name = {place.get('name')}
+				/>
+			);
+		});
 		const requested = this.state.Requests.models.map((song, i, array) => {
 			return(
 				<Song 
 				key = {song.get('id')}
+				track = {song.get('trackId')}
 				pic = {song.get('pic')}
 				title = {song.get('title')}
+				total = {song.get('requestCount')}
 				band = {song.get('band')}
 				/>
 				);
@@ -80,6 +108,11 @@ export default React.createClass({
 		return(
 			<section className='profilePage'>
 				<div className='attendeesWrapper'>
+					<div className='infoEditsWrapper'>
+						<AddInvites />
+						<AddHotel />
+						<AddVenue />
+					</div>
 					<h2>Attendees</h2>
 					<header className='rsvpHeader'>
 						<span>Name</span>
@@ -89,10 +122,9 @@ export default React.createClass({
 					</header>
 					{invited}
 				</div>
-				<div className='infoEditsWrapper'>
-					<AddInvites />
-					<AddHotel />
-					<AddVenue />
+				<div className='placesWrapper'>
+					<h2>Places Added</h2>
+					{places}
 				</div>
 				<div className='requestsWrapper'>
 					<h2>Song Requests</h2>
