@@ -52,7 +52,7 @@ export default React.createClass({
 						<input className="modalInput" type='text' placeholder='email@domain.com' ref='email'/>
 						<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>
 						<h3 className="formPrompt">Set a password</h3>
-						<input className="modalInput" type='password' ref='password'/>
+						<input className="modalInput modalAccessInput" type='password' ref='password'/>
 						<div className="error">{this.state.errors.password ? this.state.errors.password.message : null}</div>
 						<footer>
 							<button type='submit'>Register</button>

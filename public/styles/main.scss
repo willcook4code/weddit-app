@@ -21,7 +21,7 @@ button {
 .formPrompt {
     text-align: left;
     padding-top: 1em;
-    padding-left: 3em;
+    padding-left: 8%;
     margin: 0;
 }
 .modalInput {
@@ -36,13 +36,21 @@ button {
     height: 1.5em;
     text-align: left;
     position: relative;
-    right: 6.5em;
+    right: 8.5em;
     margin-bottom: 1em;
 }
 nav {
 	padding: 1em;
 }
-
+.navLinks {
+	font-size: 1.5em;
+}
+.loginForm {
+	padding: 1em;
+}
+.loginField {
+	margin-bottom: 1em;
+}
 .loginLink {
 	float: right;
 	cursor: pointer;
@@ -52,19 +60,26 @@ nav {
     display: block;
     overflow: hidden;
     margin-top: 2em;
-    padding: 5em;
-    background-color: white;
+    padding: 7em 12em;
+    background-image: url("./../images/homePage.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0em 80%;
 }
 .homeWrapper {
 	display: block;
-	overflow: hidden;
-	padding: 5%;
-    padding-top: 3em;
+    overflow: hidden;
+    padding: 5%;
+    padding-top: 0em;
     height: 12em;
-    width: 40%;
-	font-family: 'Lato', sans-serif;
-	font-weight: 700;
-	text-align: center;
+    width: 28%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .5);
+}
+.introHeader {
+	padding-top: .5em;
 }
 .modalOpenBtn {
 	display: block;
@@ -75,8 +90,14 @@ nav {
 }
 .regWrapper {
 	float: left;
+	.introHeader {
+		padding-top: .5em;
+	}
+	.modalAccessInput {
+		margin-bottom: 1em;
+	}
 	.modalOpenBtn {
-		margin-top: 10%;
+		margin-top: 15%;
 	}
 }
 .rsvpWrapper {
@@ -85,20 +106,15 @@ nav {
     	min-height: 14em;
     }
     .modalInput {
-		width: 40%;
+		width: 14.5em;
 	    height: 1.5em;
 	    text-align: left;
 	    position: relative;
-	    right: 8.5em;
-	}
-	.modalAccessInput {
-	    right: 8.5em;
-	    margin-bottom: 1em;
+	    right: 23%;
 	}
 	.verifyBtn {
-	    width: 40%;
-	    display: block;
-	    margin: 0 auto;
+	    width: 18%;
+	    position: absolute;
 	}
 }
 
