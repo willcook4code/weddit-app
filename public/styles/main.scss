@@ -15,7 +15,7 @@ button {
 	font-weight: 400;
 	font-size: 1.2em;
 	color: $silk;
-	text-shadow: .5px .5px 1.8px $charcoal;
+	text-shadow: .5px .5px 1px $charcoal;
 	border: 3px solid $silk;
 }
 .formPrompt {
@@ -41,6 +41,9 @@ button {
 }
 nav {
 	padding: 1em;
+	.logoPic {
+		width: 15%;
+	}
 }
 .navLinks {
 	font-size: 1.5em;
@@ -59,7 +62,6 @@ nav {
 .homePage {
     display: block;
     overflow: hidden;
-    margin-top: 2em;
     padding: 7em 12em;
     background-image: url("./../images/homePage.jpeg");
     background-size: cover;
@@ -92,6 +94,7 @@ nav {
 	float: left;
 	.introHeader {
 		padding-top: .5em;
+		padding-bottom: 0;
 	}
 	.modalAccessInput {
 		margin-bottom: 1em;

@@ -18,6 +18,13 @@ export default React.createClass({
 			});
 		});
 	},
+	componentDidUnmount: function() {
+		this.state.user.off('add', () => {
+			this.setState({
+				user: user
+			});
+		});
+	},
 	enterAttendee: function(e) {
 		e.preventDefault();
 		let newAttendee = {

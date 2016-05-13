@@ -46,7 +46,7 @@ export default React.createClass({
 			}
 		});
 	},
-	componentWillUnmount: function() {
+	componentDidUnmount: function() {
 		this.state.user.off('update', this.updateUser);
 		Attendees.off('update', this.updateAttendees);
 		Requests.off('update', this.updateRequests);

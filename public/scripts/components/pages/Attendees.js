@@ -52,7 +52,7 @@ export default React.createClass({
 	},
 	componentWillUnmount: function () {
 		this.state.attendee.off('change', this.changeAttendee);
-		this.state.user.off('update', this.changeUser);
+		this.state.user.off('change', this.changeUser);
 		Locations.off('update', this.updateAreaZip);
 	},
 	updateAreaZip: function () {

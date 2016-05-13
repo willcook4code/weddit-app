@@ -55,7 +55,7 @@ export default React.createClass({
 		if (this.state.user.get('id')) {
 			return(
 				<nav>
-					<Link className="logo" to="/">LOGO</Link>
+					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
 					<Link className="navLinks" to="/profile">Profile</Link>
 					<Link className="navLinks" to="/attendees">Attendees</Link>
 					<a href="#" className="navLinks" onClick={this.logout}>Logout</a>
@@ -64,7 +64,7 @@ export default React.createClass({
 		} else {
 			return (
 				<nav>
-					<Link className="logo" to="/">LOGO</Link>
+					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
 					<a className="navLinks loginLink" onClick={this.openLogModal}>Login</a>
 					<Rayon isOpen={this.state.logModalVisible} onClose={this.closeLogModal} bodyClass="rayon-no-overflow">
 						<form className='loginForm' onSubmit={this.login}>

@@ -1,13 +1,14 @@
 import React from 'react';
 import request from '../../../models/Request';
 import Request from '../../../collections/RequestCollection';
+import Rayon from 'rayon';
 
 export default React.createClass({
 	getInitialState: function() {
 		return({
 			Request: Request,
 			request: new request(),
-			confirmReq: null
+			confirmModalVisible: false
 		});
 	},
 	componentDidMount: function() {
@@ -21,7 +22,7 @@ export default React.createClass({
 		Request.on('update', this.updateRequest);
 		this.state.request.on('change', this.updaterequest);
 	},
-	componentDidUnmount: function() {
+	componentWillUnmount: function() {
 		Request.off('update', this.updateRequest);
 		this.state.request.off('change', this.updaterequest);
 	},
@@ -31,6 +32,11 @@ export default React.createClass({
 	updaterequest: function() {
 		this.setState({request: request});
 	},
+	closeConfirmModal: function() {
+		this.setState({
+			confirmModalVisible: false
+		});
+	},
 	render: function() {
 		return (
 			<div>
@@ -39,6 +45,11 @@ export default React.createClass({
 				<p>By: {this.props.band}</p>
 				<p>{this.state.confirmReq}</p>
 				<button onClick = {this.postRequest}>Request</button>
+				<Rayon isOpen={this.state.confirmModalVisible} onClose={this.closeConfirmModal} bodyClass="rayon-no-overflow">
+					<form>
+						<h3>{this.props.title} has been added to the request list.</h3>
+					</form>
+				</Rayon>
 			</div>
 			);
 	},
@@ -68,7 +79,7 @@ export default React.createClass({
 		// 	});
 		// }
 		this.setState({
-			confirmReq: '"'+this.props.title+'" has been added to the song request list.'
+			confirmModalVisible: true
 		});
 	}
 });
