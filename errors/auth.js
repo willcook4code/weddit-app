@@ -16,7 +16,7 @@ module.exports = {
 		status: 401
 	},
 	UNKNOWN_USER: {
-		message: 'There is no user with that email. Would you like to <a href="/auth/register">register</a>?',
+		message: 'There is no user with that email. Please register using the \'Get Started\' button below.',
 		status: 404
 	},
 	MISSING_EMAIL: {

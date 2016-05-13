@@ -47,7 +47,7 @@ export default React.createClass({
 		return (
 			<div>
 				<button onClick={this.openInviteModal}>Add Invites</button>
-				<Rayon isOpen={this.state.inviteModalVisible} onClose={this.closeInviteModal}>
+				<Rayon isOpen={this.state.inviteModalVisible} onClose={this.closeInviteModal} bodyClass="rayon-no-overflow">
 					<form>
 						<p>Invites Form</p>
 						<h3>Primary Name</h3>

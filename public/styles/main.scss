@@ -1,6 +1,106 @@
 @import '../../node_modules/normalize.css/normalize';
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Parisienne);
+@import 'variables';
 @import 'node_modules/rayon/src/styles/rayon';
 @import 'node_modules/rayon/src/styles/theme';
+
+body {
+	background: $paper;
+	color: $charcoal;
+	text-decoration: none;
+}
+button {
+	background: white;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 1.2em;
+	color: $silk;
+	text-shadow: .5px .5px 1.8px $charcoal;
+	border: 3px solid $silk;
+}
+.formPrompt {
+    text-align: left;
+    padding-top: 1em;
+    padding-left: 3em;
+    margin: 0;
+}
+.modalInput {
+	width: 40%;
+    height: 1.5em;
+    text-align: left;
+    position: relative;
+    right: 8.5em;
+}
+.modalAccessInput {
+    width: 40%;
+    height: 1.5em;
+    text-align: left;
+    position: relative;
+    right: 6.5em;
+    margin-bottom: 1em;
+}
+nav {
+	padding: 1em;
+}
+
+.loginLink {
+	float: right;
+	cursor: pointer;
+	font-family: 'Lato', sans-serif;
+}
+.homePage {
+    display: block;
+    overflow: hidden;
+    margin-top: 2em;
+    padding: 5em;
+    background-color: white;
+}
+.homeWrapper {
+	display: block;
+	overflow: hidden;
+	padding: 5%;
+    padding-top: 3em;
+    height: 12em;
+    width: 40%;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	text-align: center;
+}
+.modalOpenBtn {
+	display: block;
+	overflow: visible;
+	text-align: center;
+	width: 50%;
+	margin: .6em 26%;
+}
+.regWrapper {
+	float: left;
+	.modalOpenBtn {
+		margin-top: 10%;
+	}
+}
+.rsvpWrapper {
+    float: right;
+    .rayon {
+    	min-height: 14em;
+    }
+    .modalInput {
+		width: 40%;
+	    height: 1.5em;
+	    text-align: left;
+	    position: relative;
+	    right: 8.5em;
+	}
+	.modalAccessInput {
+	    right: 8.5em;
+	    margin-bottom: 1em;
+	}
+	.verifyBtn {
+	    width: 40%;
+	    display: block;
+	    margin: 0 auto;
+	}
+}
 
 .rayon-parent {
     width: 100%;

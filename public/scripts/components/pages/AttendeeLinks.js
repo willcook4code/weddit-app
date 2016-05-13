@@ -26,13 +26,13 @@ export default React.createClass({
 	},
 	render: function() {
 		return(
-			<div className='attendeeLogin'>
-				<h1 className='loginType'>Attendee Links</h1>
-				<button className='attendeeLink' onClick={this.openRsvpModal}>RSVP</button>
-				<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal}>
+			<div className='rsvpWrapper homeWrapper'>
+				<h1 className="introHeader"><i>Received an Invite?</i></h1>
+				<button className="modalOpenBtn rsvpBtn" onClick={this.openRsvpModal}><i>RSVP</i></button>
+				<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal} bodyClass="rayon-no-overflow">
 					{this.showRsvpJSX(this.state.attStatusMessage)}
 				</Rayon>
-				<button className='attendeeLink' onClick={this.openRsvpModal}>Event Info</button>
+				<button className="modalOpenBtn infoBtn" onClick={this.openRsvpModal}><i>Event Info</i></button>
 			</div>
 				);
 	},
@@ -51,8 +51,8 @@ export default React.createClass({
 		if (this.state.attendee.get('accessCode')) {
 			whenVerified = (
 				<div className='whenVerified'>
-					<h3>Number Attending</h3>
-					<input type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
+					<h3 className="formPrompt">Number Attending</h3>
+					<input className="modalInput" type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
 					<footer>
 						<button onClick={this.attend}>Accept</button>
 						<button onClick={this.decline}>Decline</button>
@@ -64,21 +64,20 @@ export default React.createClass({
 		return (
 			<form>
 				<div>
-					<p>RSVP/Event Info Form</p>
-					<p>{this.state.rsvpMsg}</p>
-					<p>{this.state.errorMsg}</p>
-					<h3>Your Name</h3>
-					<input type='text' placeholder='Please enter as appears on invite' ref='name'/>
-					<h3>Please Enter Your Access Code</h3>
-					<input type='text' ref='accessCode'/>
-					<button onClick={this.verify}>Enter</button>
+					<p className="error">{this.state.rsvpMsg}</p>
+					<p className="error">{this.state.errorMsg}</p>
+					<h3 className="formPrompt">Your Name</h3>
+					<input className="modalInput" type='text' placeholder='Please enter as appears on invite' ref='name'/>
+					<h3 className="formPrompt">Please Enter Your Access Code</h3>
+					<input className="modalInput modalAccessInput" type='text' ref='accessCode'/>
+					<button className="verifyBtn" onClick={this.verify}>Enter</button>
 				</div>
 				{whenVerified}
 			</form>
 			);
 		} else {
 			return (
-			<h3>{attStatusMessage}</h3>
+			<h3 className="successMsg">{attStatusMessage}</h3>
 			);
 		}
 	},
