@@ -9,14 +9,12 @@ export default React.createClass({
 			rsvp = 'yes';
 		}
 		return(
-			<div className='rsvpWrapper'>
-				<div>
-					<p>{this.props.name}</p>
-					<p>{this.props.accessCode}</p>
-					<p>{this.props.party}</p>
-					<p>{rsvp}</p>
-				</div>
-			</div>
+			<tr>
+			    <td>{this.props.name}</td>
+				<td className="leftAlign">{this.props.accessCode}</td>
+				<td className="leftAlign">{this.props.party}</td>
+				<td className="leftAlign">{rsvp}</td>
+			</tr>
 			);
 	}
 });

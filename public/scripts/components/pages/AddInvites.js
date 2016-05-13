@@ -18,13 +18,13 @@ export default React.createClass({
 			});
 		});
 	},
-	componentDidUnmount: function() {
-		this.state.user.off('add', () => {
-			this.setState({
-				user: user
-			});
-		});
-	},
+	// componentDidUnmount: function() {
+	// 	this.state.user.off('add', () => {
+	// 		this.setState({
+	// 			user: user
+	// 		});
+	// 	});
+	// },
 	enterAttendee: function(e) {
 		e.preventDefault();
 		let newAttendee = {
@@ -53,7 +53,7 @@ export default React.createClass({
 	render: function() {
 		return (
 			<div>
-				<button onClick={this.openInviteModal}>Add Invites</button>
+				<button onClick={this.openInviteModal} className="addListingBtn">Add Invites</button>
 				<Rayon isOpen={this.state.inviteModalVisible} onClose={this.closeInviteModal} bodyClass="rayon-no-overflow">
 					<form>
 						<p>Invites Form</p>

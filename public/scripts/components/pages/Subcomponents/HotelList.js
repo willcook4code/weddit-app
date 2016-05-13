@@ -4,14 +4,6 @@ import moment from 'moment';
 
 export default React.createClass({
 	render: function() {
-		// let date = function(cutoffDate) {
-		// 	if (!cutoffDate) {
-		// 		cutoffDate = 'none';
-		// 	}
-		// 	let day = new Date(cutoffDate);
-		// 	let cutDay = day.getDay(cutoffDate)
-		// 	return cutDay;
-		// };
 		let hotel = function(name) {
 			let wordsArr = [];
 			let newSent = [];
@@ -25,6 +17,12 @@ export default React.createClass({
 			return newSent.join('+');
 		};
 		let location = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDORTq8B5-auRcsIQ5pE3lVosmLftZIwmk&q='+hotel(this.props.name)+','+this.props.zip;
+		let url = null;
+		if (this.props.hotelUrl.indexOf('http://') === -1) {
+			url = 'http://'+this.props.hotelUrl;
+		} else {
+			url = this.props.hotelUrl;
+		}
 		return(
 			<div className='hotelWrapper'>
 				<Iframe
@@ -35,7 +33,7 @@ export default React.createClass({
 					frameborder="0" style="border:0"
 					allowfullscreen
 				/>
-				<a href={this.props.hotelUrl}>Website</a>
+				<a href={url} target='_blank'>Website</a>
 				<p>{moment(this.props.cutoffDate).format('MMM Do YYYY')}</p>
 				<p>{this.props.rate}</p>
 			</div>

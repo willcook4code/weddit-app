@@ -4,6 +4,7 @@
 @import 'node_modules/rayon/src/styles/rayon';
 @import 'node_modules/rayon/src/styles/theme';
 
+//Global
 body {
 	background: $paper;
 	color: $charcoal;
@@ -17,48 +18,44 @@ button {
 	color: $silk;
 	text-shadow: .5px .5px 1px $charcoal;
 	border: 3px solid $silk;
+	cursor: pointer;
 }
-.formPrompt {
-    text-align: left;
-    padding-top: 1em;
-    padding-left: 8%;
-    margin: 0;
+table {
+	border-collapse: collapse;
+	border-spacing: 0px;
 }
-.modalInput {
-	width: 40%;
-    height: 1.5em;
-    text-align: left;
-    position: relative;
-    right: 8.5em;
+table, th, td {
+	padding: 5px 20px;
 }
-.modalAccessInput {
-    width: 40%;
-    height: 1.5em;
-    text-align: left;
-    position: relative;
-    right: 8.5em;
-    margin-bottom: 1em;
+th {
+	border-bottom: 1px solid $charcoal;
 }
+//Navbar
 nav {
 	padding: 1em;
 	.logoPic {
 		width: 15%;
 	}
+	.navLinks {
+		font-size: 1.5em;
+	}
+	.loginForm {
+		padding: 1em;
+	}
+	.loginField {
+		margin-bottom: 1em;
+	}
+	.pageLink {
+		float: right;
+		margin-left: .5em;
+		margin-top: .3em;
+		cursor: pointer;
+		font-family: 'Lato', sans-serif;
+		text-decoration: none;
+		color: $charcoal;
+	}
 }
-.navLinks {
-	font-size: 1.5em;
-}
-.loginForm {
-	padding: 1em;
-}
-.loginField {
-	margin-bottom: 1em;
-}
-.loginLink {
-	float: right;
-	cursor: pointer;
-	font-family: 'Lato', sans-serif;
-}
+//Home Page
 .homePage {
     display: block;
     overflow: hidden;
@@ -66,7 +63,7 @@ nav {
     background-image: url("./../images/homePage.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 0em 80%;
+    background-position: 0em 73%;
 }
 .homeWrapper {
 	display: block;
@@ -75,20 +72,8 @@ nav {
     padding-top: 0em;
     height: 15em;
     width: 47%;
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.5);
-}
-.introHeader {
-	padding-top: .5em;
-}
-.modalOpenBtn {
-	display: block;
-	overflow: visible;
-	text-align: center;
-	width: 50%;
-	margin: .6em 26%;
 }
 .regWrapper {
 	float: left;
@@ -120,7 +105,18 @@ nav {
 	    position: absolute;
 	}
 }
-
+.introHeader {
+	padding-top: .5em;
+	font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+//Modals
+.formPrompt {
+    text-align: left;
+    padding-top: 1em;
+    padding-left: 8%;
+    margin: 0;
+}
 .rayon-parent {
     width: 100%;
     height: 100%;
@@ -129,3 +125,91 @@ nav {
     left: 0;
     overflow-y: scroll;
 }
+.modalInput {
+	width: 40%;
+    height: 1.5em;
+    text-align: left;
+    position: relative;
+    right: 8.5em;
+}
+.modalAccessInput {
+    width: 40%;
+    height: 1.5em;
+    text-align: left;
+    position: relative;
+    right: 8.5em;
+    margin-bottom: 1em;
+}
+.modalOpenBtn {
+	display: block;
+	overflow: visible;
+	text-align: center;
+	width: 50%;
+	margin: .6em 26%;
+}
+.successMsg {
+	padding-top: 2.7em;
+}
+//Profiles Page
+.attendeesWrapper {
+	display: block;
+	overflow: hidden;
+	float: left;
+	width: 60%;
+}
+.attHeader {
+	display: block;
+	overflow: hidden;
+	float: left;
+	width: 5em;
+	margin-left: 1em;
+}
+.infoEditsWrapper {
+	display: block;
+	overflow: hidden;
+	float: right;
+	margin-top: 1em;
+	width: 30em;
+}
+.addListingBtn {
+	display: block;
+	overflow: hidden;
+	float: left;
+	margin-left: .5em;
+}
+.rightSide {
+	overflow: hidden;
+	float: right;
+	width: 40%;
+}
+.attTable {
+	clear: both;
+	margin-left: 1.5em;
+}
+.leftAlign {
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

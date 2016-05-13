@@ -56,16 +56,16 @@ export default React.createClass({
 			return(
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
-					<Link className="navLinks" to="/profile">Profile</Link>
-					<Link className="navLinks" to="/attendees">Attendees</Link>
-					<a href="#" className="navLinks" onClick={this.logout}>Logout</a>
+					<a href="#" className="navLinks pageLink" onClick={this.logout}>Logout</a>
+					<Link className="navLinks pageLink" to="/attendees">Attendees</Link>
+					<Link className="navLinks pageLink" to="/profile">Profile</Link>
 				</nav>
 			);
 		} else {
 			return (
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
-					<a className="navLinks loginLink" onClick={this.openLogModal}>Login</a>
+					<a className="navLinks pageLink" onClick={this.openLogModal}>Login</a>
 					<Rayon isOpen={this.state.logModalVisible} onClose={this.closeLogModal} bodyClass="rayon-no-overflow">
 						<form className='loginForm' onSubmit={this.login}>
 							<input type='email' placeholder='email@domain.com' className='loginField' ref='email'/>

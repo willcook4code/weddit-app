@@ -77,7 +77,7 @@ export default React.createClass({
 			);
 		} else {
 			return (
-			<h3 className="successMsg">{attStatusMessage}</h3>
+			<h1 className="successMsg">{attStatusMessage}</h1>
 			);
 		}
 	},

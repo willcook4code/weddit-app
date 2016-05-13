@@ -91,7 +91,7 @@ export default React.createClass({
     },
 	render: function() {
 		const listedHotels = this.state.Locations.models.filter((location, i, array) => {
-			if (location.get('locationType') === 'hotel') {
+			if (location.get('locationType') === 'Hotel') {
 				return true;
 			} else {
 				return false;
@@ -109,7 +109,7 @@ export default React.createClass({
 				);
 		});
 		const listedVenue = this.state.Locations.models.filter((location, i, array) => {
-			if (location.get('locationType') === 'venue') {
+			if (location.get('locationType') === 'Venue') {
 				return true;
 			} else {
 				return false;

@@ -46,12 +46,12 @@ export default React.createClass({
 			}
 		});
 	},
-	componentDidUnmount: function() {
-		this.state.user.off('update', this.updateUser);
-		Attendees.off('update', this.updateAttendees);
-		Requests.off('update', this.updateRequests);
-		Locations.off('update', this.updateLocations);
-	},
+	// componentDidUnmount: function() {
+	// 	this.state.user.off('update', this.updateUser);
+	// 	Attendees.off('update', this.updateAttendees);
+	// 	Requests.off('update', this.updateRequests);
+	// 	Locations.off('update', this.updateLocations);
+	// },
 	updateUser: function() {
 		this.setState({
 			user: this.state.user
@@ -79,6 +79,10 @@ export default React.createClass({
 				key = {place.get('id')}
 				location = {place}
 				name = {place.get('name')}
+				website = {place.get('hotelUrl')}
+				rate = {place.get('rate')}
+				cutoffDate = {place.get('cutoffDate')}
+				type = {place.get('locationType')}
 				/>
 			);
 		});
@@ -108,27 +112,35 @@ export default React.createClass({
 		return(
 			<section className='profilePage'>
 				<div className='attendeesWrapper'>
+					<h2 className='attHeader' >Attendees</h2>
 					<div className='infoEditsWrapper'>
 						<AddInvites />
 						<AddHotel />
 						<AddVenue />
 					</div>
-					<h2>Attendees</h2>
-					<header className='rsvpHeader'>
-						<span>Name</span>
-						<span>Access Code</span>
-						<span># in Party</span>
-						<span>Going?</span>
-					</header>
-					{invited}
+					<table className="attTable">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Access Code</th>
+								<th># in Party</th>
+								<th>RSVP Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							{invited}
+						</tbody>
+					</table>
 				</div>
-				<div className='placesWrapper'>
-					<h2>Places Added</h2>
-					{places}
-				</div>
-				<div className='requestsWrapper'>
-					<h2>Song Requests</h2>
-					{requested}
+				<div className="rightSide">
+					<div className='placesWrapper'>
+						<h2>Places Added</h2>
+						{places}
+					</div>
+					<div className='requestsWrapper'>
+						<h2>Song Requests</h2>
+						{requested}
+					</div>
 				</div>
 			</section>
 			);

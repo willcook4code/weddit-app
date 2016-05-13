@@ -18,13 +18,13 @@ export default React.createClass({
 			});
 		});
 	},
-	componentDidUnmount: function() {
-		this.state.user.off('add', () => {
-			this.setState({
-				user: user
-			});
-		});
-	},
+	// componentDidUnmount: function() {
+	// 	this.state.user.off('add', () => {
+	// 		this.setState({
+	// 			user: user
+	// 		});
+	// 	});
+	// },
 	addHotel: function(e) {
 		e.preventDefault();
 		let newHotel = {
@@ -33,9 +33,8 @@ export default React.createClass({
 			hotelUrl: this.refs.hotelUrl.value,
 			rate: this.refs.rate.value,
 			cutoffDate: this.refs.cutoff.value,
-			locationType: 'hotel'
+			locationType: 'Hotel'
 		};
-		console.log(newHotel);
 		Location.create(newHotel);
 		this.setState({
 			addedMsg: this.refs.hotelName.value+' was added at the rate of '+this.refs.rate.value+'.'
@@ -58,7 +57,7 @@ export default React.createClass({
 	render: function() {
 		return (
 			<div>
-				<button onClick={this.openHotelModal}>Add Hotel</button>
+				<button onClick={this.openHotelModal} className="addListingBtn">Add Hotel</button>
 					<Rayon isOpen={this.state.hotelModalVisible} onClose={this.closeHotelModal} bodyClass="rayon-no-overflow">
 						<form>
 							<p>Add Hotel Form</p>

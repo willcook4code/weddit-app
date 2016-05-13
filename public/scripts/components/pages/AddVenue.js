@@ -18,19 +18,19 @@ export default React.createClass({
 			});
 		});
 	},
-	componentDidUnmount: function() {
-		this.state.user.off('add', () => {
-			this.setState({
-				user: user
-			});
-		});
-	},
+	// componentDidUnmount: function() {
+	// 	this.state.user.off('add', () => {
+	// 		this.setState({
+	// 			user: user
+	// 		});
+	// 	});
+	// },
 	addVenue: function(e) {
 		e.preventDefault();
 		let newVenue = {
 			name: this.refs.name.value,
 			zip: this.refs.zip.value,
-			locationType: 'venue'
+			locationType: 'Venue'
 		};
 		Location.create(newVenue);
 		this.setState({
@@ -52,7 +52,7 @@ export default React.createClass({
 	render: function() {
 		return (
 			<div>
-				<button onClick={this.openVenueModal}>Add Venue</button>
+				<button onClick={this.openVenueModal} className="addListingBtn">Add Venue</button>
 					<Rayon isOpen={this.state.venueModalVisible} onClose={this.closeVenueModal} bodyClass="rayon-no-overflow">
 						<form>
 							<p>Add Venue Form</p>
