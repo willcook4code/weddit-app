@@ -71,14 +71,14 @@ nav {
 .homeWrapper {
 	display: block;
     overflow: hidden;
-    padding: 5%;
+    padding: 1px;
     padding-top: 0em;
-    height: 12em;
-    width: 28%;
+    height: 15em;
+    width: 47%;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     text-align: center;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 .introHeader {
 	padding-top: .5em;
@@ -100,7 +100,7 @@ nav {
 		margin-bottom: 1em;
 	}
 	.modalOpenBtn {
-		margin-top: 15%;
+		margin-top: 2em;
 	}
 }
 .rsvpWrapper {
