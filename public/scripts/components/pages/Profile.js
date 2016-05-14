@@ -112,34 +112,34 @@ export default React.createClass({
 		return(
 			<section className='profilePage'>
 				<div className='attendeesWrapper'>
-					<h2 className='attHeader' >Attendees</h2>
+					<h2 className='attHeader' ><i>Attendees</i></h2>
 					<div className='infoEditsWrapper'>
 						<AddInvites />
 						<AddHotel />
 						<AddVenue />
 					</div>
-					<table className="attTable">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Access Code</th>
-								<th># in Party</th>
-								<th>RSVP Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							{invited}
-						</tbody>
-					</table>
+					<div className="container attTable">
+						<div className="row tblRow tblHead">
+							<div className='column tblColumn tblTitle nameHeader colName'>Name</div>
+							<div className='column tblColumn tblTitle'>Access Code</div>
+							<div className='column tblColumn tblTitle'># in Party</div>
+							<div className='column tblColumn tblTitle'>RSVP Status</div>
+						</div>
+						{invited}
+					</div>
 				</div>
 				<div className="rightSide">
 					<div className='placesWrapper'>
-						<h2>Places Added</h2>
-						{places}
+						<h2 className="placeHeader"><i>Places Added</i></h2>
+						<div className="placeBoxWrapper">
+							{places}
+						</div>
 					</div>
 					<div className='requestsWrapper'>
-						<h2>Song Requests</h2>
-						{requested}
+						<h2><i>Song Requests</i></h2>
+						<div className="requested">
+							{requested}
+						</div>
 					</div>
 				</div>
 			</section>

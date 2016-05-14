@@ -7,7 +7,7 @@ export default React.createClass({
 		if (moment(this.props.cutoffDate).format('MMM Do YYYY') === 'Invalid date') {
 			date = null;
 		} else {
-			date = moment(this.props.cutoffDate).format('MMM Do YYYY');
+			date = 'Booking cutoff: '+moment(this.props.cutoffDate).format('MMM Do YYYY');
 		}
 		let url = null;
 		if (this.props.website.indexOf('http://') === -1) {
@@ -16,12 +16,12 @@ export default React.createClass({
 			url = this.props.website;
 		}
 		return(
-			<div>
-				<p>{this.props.name}</p>
-				<a href={url} target='_blank'>Website</a>
-				<p>{this.props.rate}</p>
-				<p>{date}</p>
-				<p>{this.props.type}</p>
+			<div className="placeBox">
+				<span className="placeName">{this.props.name} - </span>
+				<span className="placeType">{this.props.type}</span>
+				<a href={url} target='_blank' className="placeUrl">Website</a>
+				<span className="placeRate">{this.props.rate}</span>
+				<span className="cutoffDate">{date}</span>
 				<button onClick={this.deletePlace}>Remove</button>
 			</div>
 		);

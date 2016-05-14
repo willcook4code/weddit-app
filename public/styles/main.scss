@@ -1,4 +1,5 @@
 @import '../../node_modules/normalize.css/normalize';
+@import '../../node_modules/milligram/dist/milligram.min.css';
 @import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Parisienne);
 @import 'variables';
 @import 'node_modules/rayon/src/styles/rayon';
@@ -19,16 +20,6 @@ button {
 	text-shadow: .5px .5px 1px $charcoal;
 	border: 3px solid $silk;
 	cursor: pointer;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0px;
-}
-table, th, td {
-	padding: 5px 20px;
-}
-th {
-	border-bottom: 1px solid $charcoal;
 }
 //Navbar
 nav {
@@ -155,7 +146,7 @@ nav {
 	display: block;
 	overflow: hidden;
 	float: left;
-	width: 60%;
+	width: 65%;
 }
 .attHeader {
 	display: block;
@@ -169,7 +160,47 @@ nav {
 	overflow: hidden;
 	float: right;
 	margin-top: 1em;
-	width: 30em;
+	width: 25em;
+}
+.attTable {
+	display: block;
+	overflow: hidden;
+	clear: both;
+	margin: 0 3%;
+}
+.tblRow {
+	display: block;
+	overflow: visible;
+	position: relative;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.tblTitle {
+	text-align: center;
+	font-weight: 700;
+}
+.tblColumn {
+	display: inline-block;
+	width: 20%;
+	padding: .4em 0;
+}
+.colName {
+	width: 30%;
+    padding-left: 2em;
+}
+.nameHeader {
+    padding-left: 0;
+    margin-right: 4em;
+    width: 25%;
+}
+.tblHead {
+	border-top: 2px solid $charcoal;
+}
+.tblEntry {
+	margin-bottom: .6em;
+	background-color: white;
+	box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
 }
 .addListingBtn {
 	display: block;
@@ -180,15 +211,46 @@ nav {
 .rightSide {
 	overflow: hidden;
 	float: right;
-	width: 40%;
+	width: 35%;
 }
-.attTable {
-	clear: both;
-	margin-left: 1.5em;
-}
-.leftAlign {
+.centerAlign {
 	text-align: center;
 }
+.placeHeader {
+	margin: 0;
+    padding: 0.83em 0 0.83em 0;
+}
+.placeBox {
+	background-color: white;
+	height: 12em;
+    width: 48%;
+    overflow: hidden;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2em;
+    box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
+}
+.songBox {
+    height: 16em;
+    width: 41%;
+    float: left;
+    margin: 0 auto;
+    margin: 2%;
+    padding: 2%;
+}
+.songPic {
+    width: 94%;
+    height: 10em;
+    text-align: center;
+    position: relative;
+    left: 3.5%;
+}
+.picWrapper {
+	background-color: white;
+	padding-top: 4px;
+	box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
+}
+
 
 
 

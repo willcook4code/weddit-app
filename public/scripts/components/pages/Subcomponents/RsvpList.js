@@ -2,19 +2,19 @@ import React from 'react';
 
 export default React.createClass({
 	render: function() {
-		let rsvp = 'unknown';
+		let rsvp = 'N/A';
 		if (this.props.isGoing === false) {
-			rsvp = 'no';
+			rsvp = 'No';
 		} else if (this.props.isGoing === true) {
-			rsvp = 'yes';
+			rsvp = 'Yes';
 		}
 		return(
-			<tr>
-			    <td>{this.props.name}</td>
-				<td className="leftAlign">{this.props.accessCode}</td>
-				<td className="leftAlign">{this.props.party}</td>
-				<td className="leftAlign">{rsvp}</td>
-			</tr>
+			<div className="row tblRow">
+			    <div className="column tblColumn tblEntry colName colName">{this.props.name}</div>
+				<div className="column tblColumn tblEntry centerAlign">{this.props.accessCode}</div>
+				<div className="column tblColumn tblEntry centerAlign">{this.props.party}</div>
+				<div className="column tblColumn tblEntry centerAlign">{rsvp}</div>
+			</div>
 			);
 	}
 });
