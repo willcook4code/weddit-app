@@ -3,11 +3,15 @@ import moment from 'moment';
 
 export default React.createClass({
 	render: function() {
+		let website = null;
+		if (this.props.website) {
+			website = 'Website';
+		}
 		let date = null;
 		if (moment(this.props.cutoffDate).format('MMM Do YYYY') === 'Invalid date') {
 			date = null;
 		} else {
-			date = 'Booking cutoff: '+moment(this.props.cutoffDate).format('MMM Do YYYY');
+			date = 'Cutoff: '+moment(this.props.cutoffDate).format('MMM Do YYYY');
 		}
 		let url = null;
 		if (this.props.website.indexOf('http://') === -1) {
@@ -17,12 +21,12 @@ export default React.createClass({
 		}
 		return(
 			<div className="placeBox">
-				<span className="placeName">{this.props.name} - </span>
-				<span className="placeType">{this.props.type}</span>
-				<a href={url} target='_blank' className="placeUrl">Website</a>
-				<span className="placeRate">{this.props.rate}</span>
-				<span className="cutoffDate">{date}</span>
-				<button onClick={this.deletePlace}>Remove</button>
+				<h4 className="placeType">{this.props.type}</h4>
+				<span className="placeName placeInfo">{this.props.name}</span>
+				<a href={url} target='_blank' className="placeUrl placeInfo smlInfo">{website}</a>
+				<span className="placeRate placeInfo smlInfo">{this.props.rate}</span>
+				<span className="cutoffDate placeInfo smlInfo">{date}</span>
+				<button className="placeBtn" onClick={this.deletePlace}>Remove</button>
 			</div>
 		);
 	},

@@ -2,8 +2,6 @@ import Backbone from 'backbone';
 
 export default Backbone.Model.extend ({
 	defaults:{
-		registrant1: '',
-		registrant2: '',
 		email: '',
 		createdAt: null,
 		updatedAt: null,

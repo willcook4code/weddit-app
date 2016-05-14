@@ -20,7 +20,7 @@ export default React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		this.state.user.on('update', this.updateUser);
+		this.state.user.on('update change', this.updateUser);
 		Attendees.on('update', this.updateAttendees);
 		Requests.on('update', this.updateRequests);
 		Locations.on('update', this.updateLocations);

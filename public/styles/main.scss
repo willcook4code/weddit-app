@@ -171,7 +171,6 @@ nav {
 .tblRow {
 	display: block;
 	overflow: visible;
-	position: relative;
 	float: left;
 	clear: left;
 	width: 100%;
@@ -221,35 +220,67 @@ nav {
     padding: 0.83em 0 0.83em 0;
 }
 .placeBox {
-	background-color: white;
-	height: 12em;
+	height:11em;
     width: 48%;
     overflow: hidden;
     float: left;
     margin-right: 2%;
     margin-bottom: 2em;
-    box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
+    box-shadow: 2px 2px 7px -2px rgba(42, 42, 42, 0.25);
+}
+.placeType {
+	text-decoration: underline;
+	margin: .3em 0 .4em .1em;
+}
+.placeInfo {
+	display: block;
+	margin: .2em;
+}
+.smlInfo {
+	font-size: 0.85em;
+}
+.placeBtn {
+    bottom: .2em;
+    left: 0.2em;
+}
+.requestsWrapper {
+	clear: left;
 }
 .songBox {
-    height: 16em;
+    height: 13em;
+    overflow: hidden;
     width: 41%;
     float: left;
     margin: 0 auto;
     margin: 2%;
     padding: 2%;
+    white-space: nowrap;
 }
 .songPic {
-    width: 94%;
-    height: 10em;
+	border: 4px solid white;
+    box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
+    height: 9em;
     text-align: center;
-    position: relative;
-    left: 3.5%;
+    margin: 0em;
 }
-.picWrapper {
-	background-color: white;
-	padding-top: 4px;
-	box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
+.songInfo {
+	margin: .4em 0 .3em 0;
+	font-size: 0.85em;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }
+.addMod {
+	.modalInput {
+		left: 3em;
+	}
+	.submitAdd {
+		text-decoration: none;
+		color: $charcoal;
+		margin-left: 2em;
+	}
+}
+
+
 
 
 

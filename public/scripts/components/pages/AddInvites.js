@@ -55,15 +55,14 @@ export default React.createClass({
 			<div>
 				<button onClick={this.openInviteModal} className="addListingBtn">Add Invites</button>
 				<Rayon isOpen={this.state.inviteModalVisible} onClose={this.closeInviteModal} bodyClass="rayon-no-overflow">
-					<form>
-						<p>Invites Form</p>
-						<h3>Primary Name</h3>
-						<input type='text' placeholder='eg: Sam Smith' ref='name'/>
-						<h3>Maximum Number of Guests</h3>
-						<input type='text' placeholder='eg: 4' ref='max'/>
+					<form className="addMod">
+						<h3 className="formPrompt">Primary Name</h3>
+						<input className="modalInput" type='text' placeholder='eg: Sam Smith' ref='name'/>
+						<h3 className="formPrompt">Maximum Number of Guests</h3>
+						<input className="modalInput" type='text' placeholder='eg: 4' ref='max'/>
 						<p>{this.state.addedMsg}</p>
 						<footer>
-							<a href="#" onClick={this.enterAttendee}>Add Party</a>
+							<a className="submitAdd" href="#" onClick={this.enterAttendee}>Add Party</a>
 							<button type='button' onClick={this.closeInviteModal}>Close</button>
 						</footer>
 					</form>

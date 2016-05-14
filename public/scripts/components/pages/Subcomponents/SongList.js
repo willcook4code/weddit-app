@@ -7,8 +7,8 @@ export default React.createClass({
 				<div className="picWrapper">
 					<img className="songPic" src={this.props.pic}/>
 				</div>
-				<p className="songTitle">{this.props.title}</p>
-				<p className="artist">By: {this.props.band}</p>
+				<p className="songInfo songTitle">{this.props.title}</p>
+				<p className="songInfo artist">By: {this.props.band}</p>
 			</div>
 			);
 	}

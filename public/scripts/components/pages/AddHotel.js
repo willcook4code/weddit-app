@@ -59,20 +59,20 @@ export default React.createClass({
 			<div>
 				<button onClick={this.openHotelModal} className="addListingBtn">Add Hotel</button>
 					<Rayon isOpen={this.state.hotelModalVisible} onClose={this.closeHotelModal} bodyClass="rayon-no-overflow">
-						<form>
-							<p>Add Hotel Form</p>
-							<h3>Property Name</h3>
-							<input type='text' placeholder='eg: Sheraton' ref='hotelName'/>
-							<h3>Zip Code</h3>
-							<input type='text' placeholder='eg: 78701' ref='hotelZip'/>
-							<h3>Website</h3>
-							<input type='text' placeholder='eg: www.sheraton.com' ref='hotelUrl'/>
-							<h3>Rate</h3>
-							<input type='text' placeholder='eg: $99' ref='rate'/>
-							<input type='date' ref='cutoff'/>
+						<form className="addMod">
+							<h3 className="formPrompt">Property Name</h3>
+							<input className="modalInput" type='text' placeholder='eg: Sheraton' ref='hotelName'/>
+							<h3 className="formPrompt">Zip Code</h3>
+							<input className="modalInput" type='text' placeholder='eg: 78701' ref='hotelZip'/>
+							<h3 className="formPrompt">Website</h3>
+							<input className="modalInput" type='text' placeholder='eg: www.sheraton.com' ref='hotelUrl'/>
+							<h3 className="formPrompt">Rate</h3>
+							<input className="modalInput" type='text' placeholder='eg: $99' ref='rate'/>
+							<h3 className="formPrompt">Rate Cutoff Date</h3>
+							<input className="modalInput" type='date' ref='cutoff'/>
 							<p>{this.state.addedMsg}</p>
 							<footer>
-								<a href="#" onClick={this.addHotel}>Add Property</a>
+								<a className="submitAdd" href="#" onClick={this.addHotel}>Add Property</a>
 								<button type='button' onClick={this.closeHotelModal}>Close</button>
 							</footer>
 						</form>

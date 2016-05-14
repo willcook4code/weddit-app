@@ -54,15 +54,14 @@ export default React.createClass({
 			<div>
 				<button onClick={this.openVenueModal} className="addListingBtn">Add Venue</button>
 					<Rayon isOpen={this.state.venueModalVisible} onClose={this.closeVenueModal} bodyClass="rayon-no-overflow">
-						<form>
-							<p>Add Venue Form</p>
-							<h3>Venue Name</h3>
-							<input type='text' placeholder='eg: Some Hall' ref='name'/>
-							<h3>Zip Code</h3>
-							<input type='text' placeholder='eg: 78701' ref='zip'/>
+						<form className="addMod">
+							<h3 className="formPrompt">Venue Name</h3>
+							<input className="modalInput" type='text' placeholder='eg: Some Hall' ref='name'/>
+							<h3 className="formPrompt">Zip Code</h3>
+							<input className="modalInput" type='text' placeholder='eg: 78701' ref='zip'/>
 							<p>{this.state.addedMsg}</p>
 							<footer>
-								<a href="#" onClick={this.addVenue}>Add Venue</a>
+								<a className="submitAdd" href="#" onClick={this.addVenue}>Add Venue</a>
 								<button type='button' onClick={this.closeVenueModal}>Close</button>
 							</footer>
 						</form>
