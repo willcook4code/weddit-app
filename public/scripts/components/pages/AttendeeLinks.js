@@ -117,6 +117,9 @@ export default React.createClass({
 		    			errorMsg: 'The information you entered was not found.  Please verify and re-enter.'
 		    		});
 		    	} else if (this.state.attendee.get('isGoing')) {
+	    		 	this.setState({
+			            rsvpModalVisible: false
+			        });
 		    		browserHistory.push('/attendees');
 		    	}
 		    }

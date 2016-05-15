@@ -19,6 +19,6 @@ module.exports = bookshelf.model('User', {
 		return this.hasMany('Request', 'userId');
 	},
 	bio: function() {
-		return this.belongsTo('Bio', 'userId');
+		return this.hasOne('Bio', 'userId');
 	}
 });

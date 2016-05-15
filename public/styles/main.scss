@@ -274,6 +274,9 @@ nav {
 	.modalInput {
 		left: 3em;
 	}
+	.addedMsg {
+		margin-left: 3em;
+	}
 	.submitAdd {
 		text-decoration: none;
 		color: $charcoal;
@@ -281,25 +284,48 @@ nav {
 	}
 }
 //AttendeesPage
-.mapContainer {
+.attLeftSide {
 	display: block;
 	overflow: hidden;
 	float: left;
-	width: 75%;
+	width: 75%;    
+    background-size: cover;
+    background-position: 50% 50%;
 }
-.attActionContainer {
-	overflow: hidden;
-	float: right;
-	width: 25%;
+.greeting {
+	padding-left: 4%;
+	padding-bottom: .1em;
+	margin-top: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 2em;
+    box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
+}
+.bioWrapper {
+    padding-left: .5em;
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+    padding-top: 1em;
+}
+.stryHeading {
+	margin-top: 0;
+	margin-left: 1.3em;
+}
+.bioBody {
+	width: 80%;
+    line-height: 1.5em;
+    margin: 0 auto;
 }
 .mapDisplay {
 	display: block;
 	overflow: hidden;
-    width: 98%;
+    width: 100%;
     float: left;
     clear: left;
     margin-top: 1em;
     padding-bottom: .7em;
+    background-color: rgba(255, 255, 255, 0.75);
     box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
 }
 .mapTitle {
@@ -331,13 +357,13 @@ nav {
     	font-weight: 700;
     }
 }
-.btmMaps {
-	// border-top: 2px solid rgba(42, 42, 42, 0.25);
-}
 .btmTitle {
 	margin-top: .2em;
 }
 .attActionContainer {
+	overflow: hidden;
+	float: right;
+	width: 25%;
 	.songBox {
 		height: 20em;
 		clear: left;

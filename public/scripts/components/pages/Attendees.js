@@ -1,6 +1,6 @@
 import React from 'react';
 import Locations from '../../collections/AccommodationCollection';
-import Bio from '../../collections/BioCollection';
+// import Bio from '../../collections/BioCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
 import LocationsDisplay from './Subcomponents/NearbyMaps';
@@ -8,6 +8,8 @@ import SongSearch from './SongSearch';
 import user from '../../stores/user';
 import attendee from '../../stores/attendee';
 import {browserHistory} from 'react-router';
+import bio from '../../stores/bio';
+import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -15,7 +17,8 @@ export default React.createClass({
 			user: user,
 			attendee: attendee,
 			Locations: Locations,
-			Bio: Bio,
+			// Bio: Bio,
+			bio: bio,
 			searchType: ['Restaurants', 'Attractions'],
 			areaZip: '',
 			updateMsg: ''
@@ -25,7 +28,12 @@ export default React.createClass({
 		this.state.attendee.on('change', this.changeAttendee);
 		this.state.user.on('change', this.changeUser);
 		Locations.on('update', this.updateAreaZip);
-		Bio.on('update', this.updateBio);
+		// Bio.on('update', this.updateBio);
+		this.state.bio.on('update change', () => {
+			this.setState({
+				bio: this.state.bio
+			});
+		});
 		if (attendee.get('userId')) {
 			Locations.fetch({
 				data: {
@@ -34,12 +42,15 @@ export default React.createClass({
 					}
 				}
 			});
-			Bio.fetch({
-				data: {
-					where: {
-						userId: attendee.get('userId')
-					}
-				}
+			$.ajax({
+		    url: '/api/v1/bio',
+		    method: 'get',
+		    data: {
+		        where: {
+		            userId: attendee.get('userId')
+		        }
+		    },
+		    success: (entry) => {this.state.bio.set(entry[0]);}
 			});
 		} else if (user.get('id')) {
 			Locations.fetch({
@@ -49,12 +60,15 @@ export default React.createClass({
 					}
 				}
 			});
-			Bio.fetch({
-				data: {
-					where: {
-						userId: user.get('id')
-					}
-				}
+			$.ajax({
+		    url: '/api/v1/bio',
+		    method: 'get',
+		    data: {
+		        where: {
+		            userId: this.state.user.get('id')
+		        }
+		    },
+		    success: (entry) => {this.state.bio.set(entry[0]);}
 			});
 		} else {
 			browserHistory.push('/');
@@ -80,11 +94,11 @@ export default React.createClass({
 			attendee: attendee
 		});
 	},
-	updateBio: function () {
-		this.setState({
-			Bio: this.state.Bio.models
-		});
-	},
+	// updateBio: function () {
+	// 	this.setState({
+	// 		Bio: this.state.Bio.models
+	// 	});
+	// },
 	openInfoModal: function() {
         this.setState({
             infoModalVisible: true
@@ -126,7 +140,7 @@ export default React.createClass({
 		}).map((hotel, i, array) => {
 			return (
 				<HotelDisplay 
-				key = {hotel.get('id')}
+				key = {i}
 				name = {hotel.get('name')}
 				zip = {hotel.get('zip')}
 				hotelUrl = {hotel.get('hotelUrl')}
@@ -144,7 +158,7 @@ export default React.createClass({
 		}).map((venue, i, array) => {
 			return (
 				<VenueDisplay
-				key = {venue.get('id')}
+				key = {i}
 				venName = {venue.get('name')}
 				venZip = {venue.get('zip')}
 				/>
@@ -159,31 +173,29 @@ export default React.createClass({
 				/>
 			);
 		});
-		const info = this.state.Bio.map((entry, i, array) => {
-			return (
-				<div key={entry.get('id')} className="bioContainer">
-					<h2>Greetings from {entry.get('registrant1')} & {entry.get('registrant2')}!</h2>
-					<img src={entry.get('pic')}/>
-					<h3>Our Story</h3>
-					<p>{entry.get('story')}</p>
-				</div>
-			);
-		});
+		let bioPicture = {backgroundImage: 'url('+this.state.bio.get('pic')+')'};
 		return(
 			<section className='attendeesPage'>
-					
-				<div className="mapContainer">
-					{info}
-					<div className='hotelDisplay mapDisplay'>
-						<h2 className="mapTitle"><i>Hotels</i></h2>
-						{listedHotels}
+				<div className="attLeftSide" style={bioPicture}>
+					<div key={this.state.bio.get('id')} className="bioContainer">
+						<h2 className="greeting"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
+						<div className="bioWrapper">
+							<h2 className="stryHeading">Our Story</h2>
+							<p className="bioBody">{this.state.bio.get('story')}</p>
+						</div>
 					</div>
-					<div className='venueDisplay mapDisplay btmMaps'>
-						<h2 className="mapTitle btmTitle"><i>Venue(s)</i></h2>
-						{listedVenue}
-					</div>
-					<div className='wideSearchDisplay mapDisplay btmMaps'>
-						{eachSearch}
+					<div className="mapContainer">
+						<div className='hotelDisplay mapDisplay'>
+							<h2 className="mapTitle"><i>Hotels</i></h2>
+							{listedHotels}
+						</div>
+						<div className='venueDisplay mapDisplay btmMaps'>
+							<h2 className="mapTitle btmTitle"><i>Venue(s)</i></h2>
+							{listedVenue}
+						</div>
+						<div className='wideSearchDisplay mapDisplay btmMaps'>
+							{eachSearch}
+						</div>
 					</div>
 				</div>
 				<div className="attActionContainer">

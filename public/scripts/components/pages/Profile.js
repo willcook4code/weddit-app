@@ -11,6 +11,7 @@ import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';
 import AddBio from './AddBio';
 import bio from '../../stores/bio';
+// import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -27,11 +28,7 @@ export default React.createClass({
 		Attendees.on('update', this.updateAttendees);
 		Requests.on('update', this.updateRequests);
 		Locations.on('update', this.updateLocations);
-		this.state.bio.on('change', () => {
-			this.setState({
-				bio: this.state.bio
-			});
-		});
+		this.state.bio.on('update change', this.updateBio);
 		bio.fetch({
 			data: {
 				where: {
@@ -61,15 +58,21 @@ export default React.createClass({
 			}
 		});
 	},
-	// componentDidUnmount: function() {
-	// 	this.state.user.off('update', this.updateUser);
-	// 	Attendees.off('update', this.updateAttendees);
-	// 	Requests.off('update', this.updateRequests);
-	// 	Locations.off('update', this.updateLocations);
-	// },
+	componentWillUnmount: function() {
+		this.state.user.off('update', this.updateUser);
+		Attendees.off('update', this.updateAttendees);
+		Requests.off('update', this.updateRequests);
+		Locations.off('update', this.updateLocations);
+		this.state.bio.on('update change', this.updateBio);
+	},
 	updateUser: function() {
 		this.setState({
 			user: this.state.user
+		});
+	},
+	updateBio: function() {
+		this.setState({
+			bio: this.state.bio
 		});
 	},
 	updateAttendees: function() {
@@ -89,22 +92,60 @@ export default React.createClass({
 	},
 	handleFilestack: function(e) {
 		e.preventDefault();
+		// $.ajax({
+		//     url: '/api/v1/bio',
+		//     method: 'get',
+		//     data: {
+		//         where: {
+		//             userId: this.state.user.get('id')
+		//         }
+		//     },
+		//     success: (entry) => {
+		//     	this.state.bio.set(entry[0]);
+		//     	console.log(this.state.bio);
+		//     	console.log(bio);
+		//  		filepicker.pick({
+		// 		    	mimetype: 'image/*',
+		// 		    	conversions: ['crop', 'rotate'],
+		// 				cropRatio: 1,
+		// 				cropForce: true,
+		// 		    	container: 'window',
+		// 		    	services: ['COMPUTER', 'FACEBOOK']
+		// 		   	},
+		// 		   	(Blob) => {
+		// 		     	bio.save({
+		// 		     		pic: Blob.url,
+		// 		     		userId: this.state.user.get('id')
+		// 		     	});
+		// 		   	}
+		// 		); 
+		//     }
+		// });
+		bio.fetch({
+			data: {
+				where: {
+					userId: this.state.user.get('id')
+				}
+			}
+		});
+		this.state.bio.on('change', () => {
+			this.setState({
+				bio: this.state.bio
+			});
+		});
+		console.log(bio);
  		filepicker.pick({
-		    	mimetype: 'image/*',
 		    	conversions: ['crop', 'rotate'],
-				cropRatio: 16/9,
+				cropRatio: 1,
 				cropForce: true,
-		    	container: 'window',
-		    	services: ['COMPUTER', 'FACEBOOK']
+		    	services: ['COMPUTER', 'CONVERT', 'FACEBOOK'],
+		    	mimetype: 'image/*'
 		   	},
 		   	(Blob) => {
 		     	bio.save({
 		     		pic: Blob.url,
 		     		userId: this.state.user.get('id')
 		     	});
-		   	},
-		   	function(FPError){
-		  		console.log(FPError.toString()); //- print errors to console
 		   	}
 		); 
 	},
@@ -112,7 +153,7 @@ export default React.createClass({
 		const places = this.state.Locations.models.map((place, i, array) => {
 			return(
 				<UserPlaceList 
-				key = {place.get('id')}
+				key = {i}
 				location = {place}
 				name = {place.get('name')}
 				website = {place.get('hotelUrl')}
@@ -125,7 +166,7 @@ export default React.createClass({
 		const requested = this.state.Requests.models.map((song, i, array) => {
 			return(
 				<Song 
-				key = {song.get('id')}
+				key = {i}
 				track = {song.get('trackId')}
 				pic = {song.get('pic')}
 				title = {song.get('title')}
@@ -137,7 +178,7 @@ export default React.createClass({
 		const invited = this.state.Attendees.models.map((invitee, i, array) => {
 			return(
 				<Rsvp 
-				key = {invitee.get('id')}
+				key = {i}
 				name = {invitee.get('name')}
 				accessCode = {invitee.get('accessCode')}
 				party = {invitee.get('party')}

@@ -70,7 +70,7 @@ export default React.createClass({
 							<input className="modalInput" type='text' placeholder='eg: $99' ref='rate'/>
 							<h3 className="formPrompt">Rate Cutoff Date</h3>
 							<input className="modalInput" type='date' ref='cutoff'/>
-							<p>{this.state.addedMsg}</p>
+							<p className="addedMsg">{this.state.addedMsg}</p>
 							<footer>
 								<a className="submitAdd" href="#" onClick={this.addHotel}>Add Property</a>
 								<button type='button' onClick={this.closeHotelModal}>Close</button>

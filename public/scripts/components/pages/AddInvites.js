@@ -60,7 +60,7 @@ export default React.createClass({
 						<input className="modalInput" type='text' placeholder='eg: Sam Smith' ref='name'/>
 						<h3 className="formPrompt">Maximum Number of Guests</h3>
 						<input className="modalInput" type='text' placeholder='eg: 4' ref='max'/>
-						<p>{this.state.addedMsg}</p>
+						<p className="addedMsg">{this.state.addedMsg}</p>
 						<footer>
 							<a className="submitAdd" href="#" onClick={this.enterAttendee}>Add Party</a>
 							<button type='button' onClick={this.closeInviteModal}>Close</button>

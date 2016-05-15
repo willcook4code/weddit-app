@@ -24,6 +24,9 @@ export default React.createClass({
 		},
 		success: (loggedArg) => {
 			this.state.user.set(loggedArg);
+			this.setState({
+	            regModalVisible: false
+	        });
 			browserHistory.push('/profile');
 		},
 		error: (errorArg) => {

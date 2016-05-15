@@ -14,16 +14,8 @@ export default React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		this.state.user.on('add', () => {
-			this.setState({
-				user: user
-			});
-		});
-		this.state.bio.on('update change', () => {
-			this.setState({
-				bio: this.state.bio
-			});
-		});
+		this.state.user.on('add', this.updateUser);
+		this.state.user.on('update change', this.updateBio);
 		this.state.bio.fetch({
 			data: {
 				where: {
@@ -32,13 +24,20 @@ export default React.createClass({
 			}
 		});
 	},
-	// componentDidUnmount: function() {
-	// 	this.state.user.off('add', () => {
-	// 		this.setState({
-	// 			user: user
-	// 		});
-	// 	});
-	// },
+	componentWillUnmount: function() {
+		this.state.user.off('add', this.updateUser);
+		this.state.user.off('update change', this.updateBio);
+	},
+	updateUser: function() {
+		this.setState({
+			user: user
+		});
+	},
+	updateBio: function() {
+		this.setState({
+			bio: this.state.bio
+		});
+	},
 	addBio: function(e) {
 		e.preventDefault();
 		bio.save({
@@ -67,16 +66,16 @@ export default React.createClass({
 					<Rayon isOpen={this.state.bioModalVisible} onClose={this.closeBioModal} bodyClass="rayon-no-overflow">
 						<form className="addMod">
 							<h3 className="formPrompt">Your First & Last Name</h3>
-							<input className="modalInput" type='text' placeholder='eg: Sam Jones' ref='registrant1'/>
+							<input className="modalInput" type='text' placeholder='First Last' ref='registrant1'/>
 							<h3 className="formPrompt">Your Partner's First & Last Name</h3>
-							<input className="modalInput" type='text' placeholder='eg: Cary Smith' ref='registrant2'/>
+							<input className="modalInput" type='text' placeholder='First Last' ref='registrant2'/>
 							<h3 className="formPrompt">Tell Us Your Story</h3>
-							<input className="modalTextInput" type='textarea' ref='story'/>
+							<textarea className="modalInput" type='textarea' ref='story'/>
 							<h3 className="formPrompt">Registry 1 Url</h3>
 							<input className="modalInput" type='text' placeholder='optional' ref='registry1'/>
 							<h3 className="formPrompt">Registry 2 Url</h3>
 							<input className="modalInput" type='text' placeholder='optional' ref='registry2'/>
-							<p>{this.state.addedMsg}</p>
+							<p className="addedMsg">{this.state.addedMsg}</p>
 							<footer>
 								<a className="submitAdd" href="#" onClick={this.addBio}>Add Bio</a>
 								<button type='button' onClick={this.closeBioModal}>Close</button>
