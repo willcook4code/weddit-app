@@ -1,5 +1,6 @@
 import React from 'react';
 import Locations from '../../collections/AccommodationCollection';
+import Bio from '../../collections/BioCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
 import LocationsDisplay from './Subcomponents/NearbyMaps';
@@ -14,6 +15,7 @@ export default React.createClass({
 			user: user,
 			attendee: attendee,
 			Locations: Locations,
+			Bio: Bio,
 			searchType: ['Restaurants', 'Attractions'],
 			areaZip: '',
 			updateMsg: ''
@@ -23,6 +25,7 @@ export default React.createClass({
 		this.state.attendee.on('change', this.changeAttendee);
 		this.state.user.on('change', this.changeUser);
 		Locations.on('update', this.updateAreaZip);
+		Bio.on('update', this.updateBio);
 		if (attendee.get('userId')) {
 			Locations.fetch({
 				data: {
@@ -31,15 +34,22 @@ export default React.createClass({
 					}
 				}
 			});
-			// User.fetch({
-			// 	data: {
-			// 		where: {
-			// 			id: attendee.get('userId')
-			// 		}
-			// 	}
-			// });
+			Bio.fetch({
+				data: {
+					where: {
+						userId: attendee.get('userId')
+					}
+				}
+			});
 		} else if (user.get('id')) {
 			Locations.fetch({
+				data: {
+					where: {
+						userId: user.get('id')
+					}
+				}
+			});
+			Bio.fetch({
 				data: {
 					where: {
 						userId: user.get('id')
@@ -68,6 +78,11 @@ export default React.createClass({
 	changeAttendee: function () {
 		this.setState({
 			attendee: attendee
+		});
+	},
+	updateBio: function () {
+		this.setState({
+			Bio: this.state.Bio.models
 		});
 	},
 	openInfoModal: function() {
@@ -144,9 +159,21 @@ export default React.createClass({
 				/>
 			);
 		});
+		const info = this.state.Bio.map((entry, i, array) => {
+			return (
+				<div key={entry.get('id')} className="bioContainer">
+					<h2>Greetings from {entry.get('registrant1')} & {entry.get('registrant2')}!</h2>
+					<img src={entry.get('pic')}/>
+					<h3>Our Story</h3>
+					<p>{entry.get('story')}</p>
+				</div>
+			);
+		});
 		return(
 			<section className='attendeesPage'>
+					
 				<div className="mapContainer">
+					{info}
 					<div className='hotelDisplay mapDisplay'>
 						<h2 className="mapTitle"><i>Hotels</i></h2>
 						{listedHotels}

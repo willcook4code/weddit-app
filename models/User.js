@@ -7,18 +7,18 @@ module.exports = bookshelf.model('User', {
 	tableName: 'users',
 	hasTimestamps: ['createdAt', 'updatedAt', 'deletedAt'],
 	authentication: function() {
-		this.hasMany('Authentication', 'userId');
+		return this.hasMany('Authentication', 'userId');
 	},
 	accommodation: function() {
-		this.hasMany('Accommodation', 'userId');
+		return this.hasMany('Accommodation', 'userId');
 	},
 	attendee: function() {
-		this.hasMany('Attendee', 'userId');
+		return this.hasMany('Attendee', 'userId');
 	},
 	request: function() {
-		this.hasMany('Request', 'userId');
+		return this.hasMany('Request', 'userId');
 	},
 	bio: function() {
-		this.hasOne('Bio', 'userId');
+		return this.belongsTo('Bio', 'userId');
 	}
 });

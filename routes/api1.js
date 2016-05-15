@@ -14,6 +14,7 @@ const attachUser = function(req, res, next){
 router.get('/user', loggedIn, bookshelfApi);
 router.post('/attendee', loggedIn, attachUser, bookshelfApi);
 router.post('/accommodation', loggedIn, attachUser, bookshelfApi);
+router.post('/bio', loggedIn, attachUser, bookshelfApi);
 
 router.use('/', bookshelfApi);
 

@@ -9,6 +9,8 @@ import user from '../../stores/user';
 import AddInvites from './AddInvites';
 import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';
+import AddBio from './AddBio';
+import bio from '../../stores/bio';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -16,7 +18,8 @@ export default React.createClass({
 			user: user,
 			Attendees: Attendees,
 			Locations: Locations,
-			Requests: Requests
+			Requests: Requests,
+			bio: bio
 		};
 	},
 	componentDidMount: function() {
@@ -24,6 +27,18 @@ export default React.createClass({
 		Attendees.on('update', this.updateAttendees);
 		Requests.on('update', this.updateRequests);
 		Locations.on('update', this.updateLocations);
+		this.state.bio.on('change', () => {
+			this.setState({
+				bio: this.state.bio
+			});
+		});
+		bio.fetch({
+			data: {
+				where: {
+					userId: this.state.user.get('id')
+				}
+			}
+		});
 		Attendees.fetch({
 			data: {
 				where: {
@@ -72,6 +87,27 @@ export default React.createClass({
 			Locations: Locations
 		});
 	},
+	handleFilestack: function(e) {
+		e.preventDefault();
+ 		filepicker.pick({
+		    	mimetype: 'image/*',
+		    	conversions: ['crop', 'rotate'],
+				cropRatio: 16/9,
+				cropForce: true,
+		    	container: 'window',
+		    	services: ['COMPUTER', 'FACEBOOK']
+		   	},
+		   	(Blob) => {
+		     	bio.save({
+		     		pic: Blob.url,
+		     		userId: this.state.user.get('id')
+		     	});
+		   	},
+		   	function(FPError){
+		  		console.log(FPError.toString()); //- print errors to console
+		   	}
+		); 
+	},
 	render: function() {
 		const places = this.state.Locations.models.map((place, i, array) => {
 			return(
@@ -114,6 +150,8 @@ export default React.createClass({
 				<div className='attendeesWrapper'>
 					<h2 className='attHeader' ><i>Attendees</i></h2>
 					<div className='infoEditsWrapper'>
+						<button className="addListingBtn" onClick={this.handleFilestack}>Choose Profile Photo</button>
+						<AddBio />
 						<AddInvites />
 						<AddHotel />
 						<AddVenue />

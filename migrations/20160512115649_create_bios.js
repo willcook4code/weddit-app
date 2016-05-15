@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 		t.string('registrant1').notNull();
 		t.string('registrant2').notNull();
 		t.string('pic').notNull();
-		t.string('story').notNull();
+		t.text('story').notNull();
 		t.string('registry1').nullable();
 		t.string('registry2').nullable();
 
