@@ -10,13 +10,20 @@ export default React.createClass({
 			bioModalVisible: false,
 			user: user,
 			addedMsg: null,
-			bio: bio,
-			addedMsg: null
+			bio: bio
 		};
 	},
-	componentDidMount: function() {
-		this.state.user.on('add', this.updateUser);
-		this.state.user.on('update change', this.updateBio);
+	componentWillMount: function() {
+		this.state.user.on('add', () => {
+			this.setState({
+				user: user
+			});
+		});
+		this.state.bio.on('update change', () => {
+			this.setState({
+				bio: this.state.bio
+			});
+		});
 		this.state.bio.fetch({
 			data: {
 				where: {
@@ -26,17 +33,15 @@ export default React.createClass({
 		});
 	},
 	componentWillUnmount: function() {
-		this.state.user.off('add', this.updateUser);
-		this.state.user.off('update change', this.updateBio);
-	},
-	updateUser: function() {
-		this.setState({
-			user: user
+		this.state.user.off('add', () => {
+			this.setState({
+				user: user
+			});
 		});
-	},
-	updateBio: function() {
-		this.setState({
-			bio: this.state.bio
+		this.state.bio.off('update change', () => {
+			this.setState({
+				bio: this.state.bio
+			});
 		});
 	},
 	addBio: function(e) {
@@ -48,9 +53,6 @@ export default React.createClass({
 			registry1: this.refs.registry1.value,
 			registry2: this.refs.registry2.value,
 			userId: this.state.user.get('id')
-		});
-		this.setState({
-			addedMsg: 'Your information has been stored.'
 		});
 	},
 	openBioModal: function() {

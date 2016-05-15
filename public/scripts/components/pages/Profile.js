@@ -23,7 +23,7 @@ export default React.createClass({
 			bio: bio
 		};
 	},
-	componentDidMount: function() {
+	componentWillMount: function() {
 		this.state.user.on('update change', this.updateUser);
 		Attendees.on('update', this.updateAttendees);
 		Requests.on('update', this.updateRequests);
@@ -133,7 +133,6 @@ export default React.createClass({
 				bio: this.state.bio
 			});
 		});
-		console.log(bio);
  		filepicker.pick({
 		    	conversions: ['crop', 'rotate'],
 				cropRatio: 1,
