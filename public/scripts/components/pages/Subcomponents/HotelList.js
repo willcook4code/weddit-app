@@ -24,18 +24,25 @@ export default React.createClass({
 			url = this.props.hotelUrl;
 		}
 		return(
-			<div className='hotelWrapper'>
-				<Iframe
-					url={location}
-					width="300"
-					height="225"
-					position="relative"
-					frameborder="0" style="border:0"
-					allowfullscreen
-				/>
-				<a href={url} target='_blank'>Website</a>
-				<p>{moment(this.props.cutoffDate).format('MMM Do YYYY')}</p>
-				<p>{this.props.rate}</p>
+			<div className='hotelWrapper mapWrapper'>
+				<div className='frameWrap'>
+					<Iframe
+						url={location}
+						width="100%"
+						height="180"
+						position="relative"
+						float="left"
+						frameborder="0" style="border:0"
+						allowfullscreen
+					/>
+				</div>
+				<div className="hotelInfo">
+				<p className="infoLine infoName">{this.props.name}</p>
+				<p className="infoLine">Rate: {this.props.rate}</p>
+				<p className="infoLine">Book by:</p>
+				<p className="infoLine">{moment(this.props.cutoffDate).format('MMM Do YYYY')}</p>
+				<a className="hotelSite infoLine" href={url} target='_blank'>Website</a>
+				</div>
 			</div>
 			);
 	}

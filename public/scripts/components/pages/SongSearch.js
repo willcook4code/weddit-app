@@ -37,8 +37,10 @@ export default React.createClass({
 			<div className='songRequestBox'>
 				<h2>Request a Song!</h2>
 				<input type='text' placeholder='Song Title' ref='songSearch'/>
-				<button onClick= {this.runSearch}>Search</button>
-				{eachSong}
+				<button className="songSrchBtn"onClick= {this.runSearch}>Search</button>
+				<div className="resultsContainer">
+					{eachSong}
+				</div>
 			</div>
 		);
 	}

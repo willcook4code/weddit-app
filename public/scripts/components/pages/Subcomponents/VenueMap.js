@@ -17,7 +17,7 @@ export default React.createClass({
 		};
 		let location = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDORTq8B5-auRcsIQ5pE3lVosmLftZIwmk&q='+venue(this.props.venName)+','+this.props.venZip;
 		return(
-			<div className='venueWrapper'>
+			<div className='venueWrapper mapWrapper'>
 				<Iframe
 					url={location}
 					width="300"

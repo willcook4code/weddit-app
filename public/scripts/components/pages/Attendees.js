@@ -57,7 +57,7 @@ export default React.createClass({
 	},
 	updateAreaZip: function () {
 		this.setState({
-			areaZip: Locations.findWhere({locationType: 'venue'}).get('zip')
+			areaZip: Locations.findWhere({locationType: 'Venue'}).get('zip')
 		});
 	},
 	changeUser: function() {
@@ -90,6 +90,18 @@ export default React.createClass({
 		});
     },
 	render: function() {
+		let updateRsvp = null;
+		if (this.state.attendee.get('isGoing')) {
+			updateRsvp = (
+				<div className='updateRsvp'>
+					<h3>Update RSVP</h3>
+					<p>Number Attending</p>
+					<input type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
+					<p>{this.state.updateMsg}</p>
+					<button onClick={this.updateAtt}>Submit</button>
+				</div>
+				);
+		}
 		const listedHotels = this.state.Locations.models.filter((location, i, array) => {
 			if (location.get('locationType') === 'Hotel') {
 				return true;
@@ -134,27 +146,25 @@ export default React.createClass({
 		});
 		return(
 			<section className='attendeesPage'>
-				<div className='hotelDisplay'>
-					<h2>Hotels</h2>
-					{listedHotels}
+				<div className="mapContainer">
+					<div className='hotelDisplay mapDisplay'>
+						<h2 className="mapTitle">Hotels</h2>
+						{listedHotels}
+					</div>
+					<div className='venueDisplay mapDisplay btmMaps'>
+						<h2 className="mapTitle btmTitle">Venue(s)</h2>
+						{listedVenue}
+					</div>
+					<div className='wideSearchDisplay mapDisplay btmMaps'>
+						{eachSearch}
+					</div>
 				</div>
-				<div className='venueDisplay'>
-					<h2>Venue(s)</h2>
-					{listedVenue}
+				<div className="attActionContainer">
+					{updateRsvp}
+					<SongSearch 
+					userId = {this.state.attendee.get('userId')}
+					/>
 				</div>
-				<div className='wideSearchDisplay'>
-					{eachSearch}
-				</div>
-				<div className='whenVerified'>
-					<h3>Update RSVP</h3>
-					<p>Number Attending</p>
-					<input type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
-					<p>{this.state.updateMsg}</p>
-					<button onClick={this.updateAtt}>Submit</button>
-				</div>
-				<SongSearch 
-				userId = {this.state.attendee.get('userId')}
-				/>
 			</section>
 			);
 	}

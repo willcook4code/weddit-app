@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
 import user from '../stores/user';
+import attendee from '../stores/attendee';
 import Rayon from 'rayon';
 import $ from 'jquery';
 
@@ -9,6 +10,7 @@ export default React.createClass({
 	getInitialState: function() {
 		return {
 			user: user,
+			attendee: attendee,
 			logModalVisible: false,
 			errors: {}
 		};
@@ -17,6 +19,11 @@ export default React.createClass({
 		this.state.user.on('change', () => {
 			this.setState({
 				user: user
+			});
+		});
+		this.state.attendee.on('change', () => {
+			this.setState({
+				attendee: attendee
 			});
 		});
 	},
@@ -61,12 +68,18 @@ export default React.createClass({
 					<Link className="navLinks pageLink" to="/profile">Profile</Link>
 				</nav>
 			);
-		} else {
+		} else if (this.state.attendee.get('isGoing')) {
+			return (
+				<nav>
+					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
+				</nav>
+				);
+		}else {
 			return (
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
 					<a className="navLinks pageLink" onClick={this.openLogModal}>Login</a>
-					<Rayon isOpen={this.state.logModalVisible} onClose={this.closeLogModal} bodyClass="rayon-no-overflow">
+					<Rayon isOpen={this.state.logModalVisible} onClose={this.closeLogModal}>
 						<form className='loginForm' onSubmit={this.login}>
 							<input type='email' placeholder='email@domain.com' className='loginField' ref='email'/>
 							<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>

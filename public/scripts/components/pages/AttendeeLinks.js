@@ -29,7 +29,7 @@ export default React.createClass({
 			<div className='rsvpWrapper homeWrapper'>
 				<h1 className="introHeader"><i>Received an Invite?</i></h1>
 				<button className="modalOpenBtn rsvpBtn" onClick={this.openRsvpModal}><i>RSVP</i></button>
-				<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal} bodyClass="rayon-no-overflow">
+				<Rayon isOpen={this.state.rsvpModalVisible} onClose={this.closeRsvpModal}>
 					{this.showRsvpJSX(this.state.attStatusMessage)}
 				</Rayon>
 				<button className="modalOpenBtn infoBtn" onClick={this.openRsvpModal}><i>Event Info</i></button>

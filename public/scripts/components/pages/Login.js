@@ -46,7 +46,7 @@ export default React.createClass({
 			<div className='regWrapper homeWrapper'>
 				<h1 className="introHeader"><i>Planning a wedding?</i></h1>
 				<button className="modalOpenBtn" onClick={this.openRegModal}><i>Get Started</i></button>
-				<Rayon isOpen={this.state.regModalVisible} onClose={this.closeRegModal} bodyClass="rayon-no-overflow">
+				<Rayon isOpen={this.state.regModalVisible} onClose={this.closeRegModal}>
 					<form onSubmit={this.register}>
 						<h3 className="formPrompt">Enter your email</h3>
 						<input className="modalInput" type='text' placeholder='email@domain.com' ref='email'/>

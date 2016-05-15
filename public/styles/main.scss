@@ -1,9 +1,9 @@
 @import '../../node_modules/normalize.css/normalize';
-@import '../../node_modules/milligram/dist/milligram.min.css';
-@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Parisienne);
-@import 'variables';
+// @import '../../node_modules/milligram/dist/milligram.min.css';
 @import 'node_modules/rayon/src/styles/rayon';
 @import 'node_modules/rayon/src/styles/theme';
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Parisienne);
+@import 'variables';
 
 //Global
 body {
@@ -101,7 +101,7 @@ nav {
 	font-family: 'Lato', sans-serif;
     font-weight: 700;
 }
-//Modals
+//HomePageModals
 .formPrompt {
     text-align: left;
     padding-top: 1em;
@@ -279,7 +279,84 @@ nav {
 		margin-left: 2em;
 	}
 }
-
+//AttendeesPage
+.mapContainer {
+	display: block;
+	overflow: hidden;
+	float: left;
+	width: 75%;
+}
+.attActionContainer {
+	overflow: hidden;
+	float: right;
+	width: 25%;
+}
+.mapDisplay {
+	display: block;
+	overflow: hidden;
+    width: 98%;
+    float: left;
+    clear: left;
+    margin-top: 1em;
+    padding-bottom: .7em;
+    box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
+}
+.mapTitle {
+	margin-left: 1.3em;
+}
+.mapWrapper {
+	display: block;
+    overflow: hidden;
+    margin-left: 4%;
+    width: 46%;
+    float: left;
+    .frameWrap {
+    	float: left;
+    	width: 70%;
+    	margin-right: 1%;
+    }
+    .hotelSite {
+    	display: block;
+    }
+    .infoLine {
+    	margin: 0;
+    	padding-top: .1em;
+		overflow: hidden;
+		white-space: nowrap;
+	    text-overflow: ellipsis;
+    }
+    .infoName {
+    	padding-bottom: .2em;
+    	font-weight: 700;
+    }
+}
+.btmMaps {
+	// border-top: 2px solid rgba(42, 42, 42, 0.25);
+}
+.btmTitle {
+	margin-top: .2em;
+}
+.attActionContainer {
+	.songBox {
+		height: 20em;
+		clear: left;
+		margin-left: 0;
+		padding-left: 0;
+		width: 100%;
+	}
+	.songPic {
+		height: 14em;
+	}
+	.songInfo {
+		margin: .4em 47% .3em 0;
+	}
+	.songSrchBtn {
+		margin-left: 1em;
+	}
+	.successMsg {
+		padding: 2.7em;
+	}
+}
 
 
 

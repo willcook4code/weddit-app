@@ -39,16 +39,13 @@ export default React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
-				<img src={this.props.pic}/>
-				<p>{this.props.title}</p>
-				<p>By: {this.props.band}</p>
-				<p>{this.state.confirmReq}</p>
+			<div className="songBox">
+				<img className="songPic" src={this.props.pic}/>
+				<p className="songInfo songTitle">{this.props.title}</p>
+				<p className="songInfo artist">By: {this.props.band}</p>
 				<button onClick = {this.postRequest}>Request</button>
 				<Rayon isOpen={this.state.confirmModalVisible} onClose={this.closeConfirmModal} bodyClass="rayon-no-overflow">
-					<form>
-						<h3>{this.props.title} has been added to the request list.</h3>
-					</form>
+						<h3 className="successMsg">"{this.props.title}" has been added to the request list.</h3>
 				</Rayon>
 			</div>
 			);
