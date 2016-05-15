@@ -10,7 +10,8 @@ export default React.createClass({
 			bioModalVisible: false,
 			user: user,
 			addedMsg: null,
-			bio: bio
+			bio: bio,
+			addedMsg: null
 		};
 	},
 	componentDidMount: function() {
@@ -47,6 +48,9 @@ export default React.createClass({
 			registry1: this.refs.registry1.value,
 			registry2: this.refs.registry2.value,
 			userId: this.state.user.get('id')
+		});
+		this.setState({
+			addedMsg: 'Your information has been stored.'
 		});
 	},
 	openBioModal: function() {
