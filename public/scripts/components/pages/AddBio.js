@@ -54,6 +54,9 @@ export default React.createClass({
 			registry2: this.refs.registry2.value,
 			userId: this.state.user.get('id')
 		});
+		this.setState({
+			addedMsg: 'Your information has been submitted.'
+		});
 	},
 	openBioModal: function() {
 		this.setState({
