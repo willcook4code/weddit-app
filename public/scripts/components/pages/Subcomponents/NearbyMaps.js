@@ -6,7 +6,7 @@ export default React.createClass({
 		let location = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyDORTq8B5-auRcsIQ5pE3lVosmLftZIwmk&q='+this.props.searchType+'+near+'+this.props.areaZip;
 		return(
 			<div className='nearbyMaps mapWrapper'>
-				<h2 className="nearbyMapTitle btmTitle">{this.props.searchType}</h2>
+				<h2 className="nearbyMapTitle btmTitle"><i>{this.props.searchType}</i></h2>
 				<Iframe
 					url={location}
 					width="300"

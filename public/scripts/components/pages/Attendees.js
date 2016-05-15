@@ -148,11 +148,11 @@ export default React.createClass({
 			<section className='attendeesPage'>
 				<div className="mapContainer">
 					<div className='hotelDisplay mapDisplay'>
-						<h2 className="mapTitle">Hotels</h2>
+						<h2 className="mapTitle"><i>Hotels</i></h2>
 						{listedHotels}
 					</div>
 					<div className='venueDisplay mapDisplay btmMaps'>
-						<h2 className="mapTitle btmTitle">Venue(s)</h2>
+						<h2 className="mapTitle btmTitle"><i>Venue(s)</i></h2>
 						{listedVenue}
 					</div>
 					<div className='wideSearchDisplay mapDisplay btmMaps'>
