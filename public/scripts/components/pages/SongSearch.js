@@ -35,7 +35,7 @@ export default React.createClass({
 		});
 		return (
 			<div className='songRequestBox'>
-				<h2><i>Request a Song!</i></h2>
+				<h2 className="requestHeader"><i>Request a Song!</i></h2>
 				<input type='text' placeholder='Song Title' ref='songSearch'/>
 				<button className="songSrchBtn"onClick= {this.runSearch}>Search</button>
 				<div className="resultsContainer">
