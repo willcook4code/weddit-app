@@ -10,8 +10,8 @@ import AddInvites from './AddInvites';
 import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';
 import AddBio from './AddBio';
+import Bio from '../../collections/BioCollection';
 import bio from '../../stores/bio';
-// import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -20,16 +20,18 @@ export default React.createClass({
 			Attendees: Attendees,
 			Locations: Locations,
 			Requests: Requests,
+			Bio: Bio,
 			bio: bio
 		};
 	},
 	componentWillMount: function() {
 		this.state.user.on('update change', this.updateUser);
+		bio.on('update change', this.updateBio);
 		Attendees.on('update', this.updateAttendees);
 		Requests.on('update', this.updateRequests);
 		Locations.on('update', this.updateLocations);
-		this.state.bio.on('update change', this.updateBio);
-		bio.fetch({
+		Bio.on('update change', this.updateBioCol);
+		Bio.fetch({
 			data: {
 				where: {
 					userId: this.state.user.get('id')
@@ -59,11 +61,12 @@ export default React.createClass({
 		});
 	},
 	componentWillUnmount: function() {
-		this.state.user.off('update', this.updateUser);
+		this.state.user.off('update change', this.updateUser);
 		Attendees.off('update', this.updateAttendees);
 		Requests.off('update', this.updateRequests);
 		Locations.off('update', this.updateLocations);
-		this.state.bio.on('update change', this.updateBio);
+		bio.off('update change', this.updateBio);
+		Bio.off('update change', this.updateBioCol);
 	},
 	updateUser: function() {
 		this.setState({
@@ -72,7 +75,12 @@ export default React.createClass({
 	},
 	updateBio: function() {
 		this.setState({
-			bio: this.state.bio
+			bio: Bio.models
+		});
+	},
+	updateBioCol: function() {
+		this.setState({
+			Bio: Bio
 		});
 	},
 	updateAttendees: function() {
@@ -92,47 +100,11 @@ export default React.createClass({
 	},
 	handleFilestack: function(e) {
 		e.preventDefault();
-		// $.ajax({
-		//     url: '/api/v1/bio',
-		//     method: 'get',
-		//     data: {
-		//         where: {
-		//             userId: this.state.user.get('id')
-		//         }
-		//     },
-		//     success: (entry) => {
-		//     	this.state.bio.set(entry[0]);
-		//     	console.log(this.state.bio);
-		//     	console.log(bio);
-		//  		filepicker.pick({
-		// 		    	mimetype: 'image/*',
-		// 		    	conversions: ['crop', 'rotate'],
-		// 				cropRatio: 1,
-		// 				cropForce: true,
-		// 		    	container: 'window',
-		// 		    	services: ['COMPUTER', 'FACEBOOK']
-		// 		   	},
-		// 		   	(Blob) => {
-		// 		     	bio.save({
-		// 		     		pic: Blob.url,
-		// 		     		userId: this.state.user.get('id')
-		// 		     	});
-		// 		   	}
-		// 		); 
-		//     }
+		// this.state.bio.on('change', () => {
+		// 	this.setState({
+		// 		bio: this.state.bio
+		// 	});
 		// });
-		bio.fetch({
-			data: {
-				where: {
-					userId: this.state.user.get('id')
-				}
-			}
-		});
-		this.state.bio.on('change', () => {
-			this.setState({
-				bio: this.state.bio
-			});
-		});
  		filepicker.pick({
 		    	conversions: ['crop', 'rotate'],
 				cropRatio: 1,
@@ -141,12 +113,19 @@ export default React.createClass({
 		    	mimetype: 'image/*'
 		   	},
 		   	(Blob) => {
-		     	bio.save({
-		     		pic: Blob.url,
-		     		userId: this.state.user.get('id')
-		     	});
+		     	if (Bio.length) {
+					Bio.at(0).save({
+			     		pic: Blob.url,
+			     		userId: this.state.user.get('id')
+			     	});
+			    } else {
+			    	Bio.create({
+			     		pic: Blob.url,
+			     		userId: this.state.user.get('id')
+			     	});
+			    }
 		   	}
-		); 
+		);
 	},
 	render: function() {
 		const places = this.state.Locations.models.map((place, i, array) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Rayon from 'rayon';
 import user from '../../stores/user';
-// import Bio from '../../collections/BioCollection';
+import Bio from '../../collections/BioCollection';
 import bio from '../../stores/bio';
 
 export default React.createClass({
@@ -10,21 +10,15 @@ export default React.createClass({
 			bioModalVisible: false,
 			user: user,
 			addedMsg: null,
-			bio: bio
+			bio: bio,
+			Bio: Bio
 		};
 	},
 	componentWillMount: function() {
-		this.state.user.on('add', () => {
-			this.setState({
-				user: user
-			});
-		});
-		this.state.bio.on('update change', () => {
-			this.setState({
-				bio: this.state.bio
-			});
-		});
-		this.state.bio.fetch({
+		this.state.user.on('add', this.updateUser);
+		bio.on('update change', this.updateBio);
+		Bio.on('update change', this.updateBioCol);
+		Bio.fetch({
 			data: {
 				where: {
 					userId: this.state.user.get('id')
@@ -33,27 +27,41 @@ export default React.createClass({
 		});
 	},
 	componentWillUnmount: function() {
-		this.state.user.off('add', () => {
-			this.setState({
-				user: user
-			});
+		this.state.user.off('add', this.updateUser);
+		this.state.bio.off('update change', this.updateBio);
+		Bio.off('update change', this.updateBioCol);
+	},
+	updateUser: function() {
+		this.setState({
+			user: user
 		});
-		this.state.bio.off('update change', () => {
-			this.setState({
-				bio: this.state.bio
-			});
+	},	
+	updateBio: function() {
+		this.setState({
+			bio: Bio.models
 		});
 	},
 	addBio: function(e) {
 		e.preventDefault();
-		bio.save({
-			registrant1: this.refs.registrant1.value,
-			registrant2: this.refs.registrant2.value,
-			story: this.refs.story.value,
-			registry1: this.refs.registry1.value,
-			registry2: this.refs.registry2.value,
-			userId: this.state.user.get('id')
-		});
+		if (Bio.length) {
+			Bio.at(0).save({
+				registrant1: this.refs.registrant1.value,
+				registrant2: this.refs.registrant2.value,
+				story: this.refs.story.value,
+				registry1: this.refs.registry1.value,
+				registry2: this.refs.registry2.value,
+				userId: this.state.user.get('id')
+			});
+		} else {
+			Bio.create({
+				registrant1: this.refs.registrant1.value,
+				registrant2: this.refs.registrant2.value,
+				story: this.refs.story.value,
+				registry1: this.refs.registry1.value,
+				registry2: this.refs.registry2.value,
+				userId: this.state.user.get('id')
+			});
+		}
 		this.setState({
 			addedMsg: 'Your information has been submitted.'
 		});
