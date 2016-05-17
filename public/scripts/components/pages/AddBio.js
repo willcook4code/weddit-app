@@ -81,7 +81,7 @@ export default React.createClass({
 			<div>
 				<button onClick={this.openBioModal} className="addBioBtn addListingBtn">Add Bio</button>
 					<Rayon isOpen={this.state.bioModalVisible} onClose={this.closeBioModal} bodyClass="rayon-no-overflow">
-						<form className="addMod">
+						<form className="addMod bioModal">
 							<h3 className="formPrompt">Your First & Last Name</h3>
 							<input className="modalInput" type='text' placeholder='First Last' ref='registrant1'/>
 							<h3 className="formPrompt">Your Partner's First & Last Name</h3>
