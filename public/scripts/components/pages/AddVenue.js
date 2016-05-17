@@ -59,7 +59,7 @@ export default React.createClass({
 							<input className="modalInput" type='text' placeholder='eg: Some Hall' ref='name'/>
 							<h3 className="formPrompt">Zip Code</h3>
 							<input className="modalInput" type='text' placeholder='eg: 78701' ref='zip'/>
-							<p>{this.state.addedMsg}</p>
+							<p className="addedMsg">{this.state.addedMsg}</p>
 							<footer>
 								<a className="submitAdd" href="#" onClick={this.addVenue}>Add Venue</a>
 								<button type='button' onClick={this.closeVenueModal}>Close</button>

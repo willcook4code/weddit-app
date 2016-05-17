@@ -80,7 +80,7 @@ export default React.createClass({
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
 					<a className="navLinks pageLink" onClick={this.openLogModal}>Login</a>
 					<Rayon isOpen={this.state.logModalVisible} onClose={this.closeLogModal}>
-						<form className='loginForm' onSubmit={this.login}>
+						<form className='loginReg' onSubmit={this.login}>
 							<input type='email' placeholder='email@domain.com' className='loginField' ref='email'/>
 							<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>
 							<input type='password' placeholder='password' className='loginField' ref='password'/>

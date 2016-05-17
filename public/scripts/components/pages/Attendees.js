@@ -1,6 +1,5 @@
 import React from 'react';
 import Locations from '../../collections/AccommodationCollection';
-// import Bio from '../../collections/BioCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
 import LocationsDisplay from './Subcomponents/NearbyMaps';
@@ -17,7 +16,6 @@ export default React.createClass({
 			user: user,
 			attendee: attendee,
 			Locations: Locations,
-			// Bio: Bio,
 			bio: bio,
 			searchType: ['Restaurants', 'Attractions'],
 			areaZip: '',
@@ -28,12 +26,7 @@ export default React.createClass({
 		this.state.attendee.on('change', this.changeAttendee);
 		this.state.user.on('change', this.changeUser);
 		Locations.on('update', this.updateAreaZip);
-		// Bio.on('update', this.updateBio);
-		this.state.bio.on('update change', () => {
-			this.setState({
-				bio: this.state.bio
-			});
-		});
+		this.state.bio.on('update change', this.updateBio);
 		if (attendee.get('userId')) {
 			Locations.fetch({
 				data: {
@@ -78,6 +71,12 @@ export default React.createClass({
 		this.state.attendee.off('change', this.changeAttendee);
 		this.state.user.off('change', this.changeUser);
 		Locations.off('update', this.updateAreaZip);
+		this.state.bio.off('update change', this.updateBio);
+	},
+	updateBio: function() {
+		this.setState({
+			bio: this.state.bio
+		});
 	},
 	updateAreaZip: function () {
 		this.setState({

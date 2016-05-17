@@ -50,13 +50,15 @@ export default React.createClass({
 				<h1 className="introHeader"><i>Planning a wedding?</i></h1>
 				<button className="modalOpenBtn" onClick={this.openRegModal}><i>Get Started</i></button>
 				<Rayon isOpen={this.state.regModalVisible} onClose={this.closeRegModal}>
-					<form onSubmit={this.register}>
-						<h3 className="formPrompt">Enter your email</h3>
-						<input className="modalInput" type='text' placeholder='email@domain.com' ref='email'/>
-						<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>
-						<h3 className="formPrompt">Set a password</h3>
-						<input className="modalInput modalAccessInput" type='password' ref='password'/>
-						<div className="error">{this.state.errors.password ? this.state.errors.password.message : null}</div>
+					<form className="loginReg" onSubmit={this.register}>
+						<div className="regForm">
+							<h3 className="formPrompt">Enter your email</h3>
+							<input className="modalInput" type='text' placeholder='email@domain.com' ref='email'/>
+							<div className='error'>{this.state.errors.email ? this.state.errors.email.message : null} </div>
+							<h3 className="formPrompt">Set a password</h3>
+							<input className="modalInput modalAccessInput" type='password' ref='password'/>
+							<div className="error">{this.state.errors.password ? this.state.errors.password.message : null}</div>
+						</div>
 						<footer>
 							<button type='submit'>Register</button>
 							<button type='button' onClick={this.closeRegModal}>Close</button>
