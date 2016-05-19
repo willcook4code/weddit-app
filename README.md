@@ -12,10 +12,10 @@
 
 ## Wire Frames
   ![](./HomePage.jpg)
-  ![Home Page Modals](./HomePageModals.jpg)
-  ![User Profile](./UserProfile.jpg)
-  ![User Profile Modals](./UserProfileModals.jpg)
-  ![Attendees Page](./AttendeesPage.jpg)
+  [Home Page Modals](./HomePageModals.jpg)
+  [User Profile](./UserProfile.jpg)
+  [User Profile Modals](./UserProfileModals.jpg)
+  [Attendees Page](./AttendeesPage.jpg)
 
 ## Models
   ![](./Weddit Models.png)
