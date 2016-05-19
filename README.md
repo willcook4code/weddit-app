@@ -11,9 +11,9 @@
   [User Stories & Tickets](https://trello.com/b/PIgwNyDL/weddit)
 
 ## Wire Frames
+  ![](./UserProfile.jpg)
   ![](./HomePage.jpg)
   ![](./HomePageModals.jpg)
-  ![](./UserProfile.jpg)
   ![](./UserProfileModals.jpg)
   ![](./AttendeesPage.jpg)
 
