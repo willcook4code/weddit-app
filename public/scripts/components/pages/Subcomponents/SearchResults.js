@@ -2,12 +2,14 @@ import React from 'react';
 import request from '../../../models/Request';
 import Request from '../../../collections/RequestCollection';
 import Rayon from 'rayon';
+import user from '../../../stores/user';
 
 export default React.createClass({
 	getInitialState: function() {
 		return({
 			Request: Request,
 			request: new request(),
+			user: user,
 			confirmModalVisible: false
 		});
 	},
@@ -18,6 +20,11 @@ export default React.createClass({
 					userId: this.props.userId
 				}
 			}
+		});
+		this.state.user.on('update change', () => {
+			this.setState({
+				user: user
+			});
 		});
 		Request.on('update', this.updateRequest);
 		this.state.request.on('change', this.updaterequest);
@@ -51,23 +58,46 @@ export default React.createClass({
 			);
 	},
 	postRequest: function() {
-		let newRequest = {
-			trackId: this.props.trackId,
-			pic: this.props.pic,
-			title: this.props.title,
-			band: this.props.band,
-			userId: this.props.userId
-		};
-		this.state.request.set(newRequest);
-		let trackIds = Request.pluck('trackId');
-		let existingTracks = [];
-		// let counter = this.state.request.get('requestCount');
-		trackIds.forEach((track, i, array) => {
-			if (this.state.request.get('trackId') === track) {
-				existingTracks.push(this.state.request);
-		}});
-		if (existingTracks.length <= 0) {
-			Request.create(newRequest);
+		console.log(this.state.user);
+		if (this.state.user.get('id')) {
+			let newRequest = {
+				trackId: this.props.trackId,
+				pic: this.props.pic,
+				title: this.props.title,
+				band: this.props.band,
+				userId: this.state.user.get('id')
+			};
+			console.log(newRequest);
+			this.state.request.set(newRequest);
+			let trackIds = Request.pluck('trackId');
+			let existingTracks = [];
+			// let counter = this.state.request.get('requestCount');
+			trackIds.forEach((track, i, array) => {
+				if (this.state.request.get('trackId') === track) {
+					existingTracks.push(this.state.request);
+			}});
+			if (existingTracks.length <= 0) {
+				Request.create(newRequest);
+			}
+		} else {
+			let newRequest = {
+				trackId: this.props.trackId,
+				pic: this.props.pic,
+				title: this.props.title,
+				band: this.props.band,
+				userId: this.props.userId
+			};
+			this.state.request.set(newRequest);
+			let trackIds = Request.pluck('trackId');
+			let existingTracks = [];
+			// let counter = this.state.request.get('requestCount');
+			trackIds.forEach((track, i, array) => {
+				if (this.state.request.get('trackId') === track) {
+					existingTracks.push(this.state.request);
+			}});
+			if (existingTracks.length <= 0) {
+				Request.create(newRequest);
+			}
 		}
 		// if (existingTracks.length >=1) {
 		// 	let counter = this.state.request.get('requestCount');

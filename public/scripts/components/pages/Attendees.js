@@ -24,7 +24,7 @@ export default React.createClass({
 	},
 	componentWillMount: function() {
 		this.state.attendee.on('change', this.changeAttendee);
-		this.state.user.on('change', this.changeUser);
+		this.state.user.on('update change', this.changeUser);
 		Locations.on('update', this.updateAreaZip);
 		this.state.bio.on('update change', this.updateBio);
 		if (attendee.get('userId')) {
