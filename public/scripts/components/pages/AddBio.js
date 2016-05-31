@@ -2,7 +2,7 @@ import React from 'react';
 import Rayon from 'rayon';
 import user from '../../stores/user';
 import Bio from '../../collections/BioCollection';
-import bio from '../../stores/bio';
+// import bio from '../../stores/bio';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -10,13 +10,13 @@ export default React.createClass({
 			bioModalVisible: false,
 			user: user,
 			addedMsg: null,
-			bio: bio,
+			// bio: bio,
 			Bio: Bio
 		};
 	},
 	componentWillMount: function() {
 		this.state.user.on('add', this.updateUser);
-		bio.on('update change', this.updateBio);
+		// bio.on('update change', this.updateBio);
 		Bio.on('update change', this.updateBioCol);
 		Bio.fetch({
 			data: {
@@ -28,7 +28,7 @@ export default React.createClass({
 	},
 	componentWillUnmount: function() {
 		this.state.user.off('add', this.updateUser);
-		this.state.bio.off('update change', this.updateBio);
+		// this.state.bio.off('update change', this.updateBio);
 		Bio.off('update change', this.updateBioCol);
 	},
 	updateUser: function() {
@@ -36,14 +36,15 @@ export default React.createClass({
 			user: user
 		});
 	},	
-	updateBio: function() {
-		this.setState({
-			bio: Bio.models
-		});
-	},
+	// updateBio: function() {
+	// 	this.setState({
+	// 		bio: Bio.models
+	// 	});
+	// },
 	addBio: function(e) {
 		e.preventDefault();
 		if (Bio.length) {
+			console.log(Bio.at(0));
 			Bio.at(0).save({
 				registrant1: this.refs.registrant1.value,
 				registrant2: this.refs.registrant2.value,

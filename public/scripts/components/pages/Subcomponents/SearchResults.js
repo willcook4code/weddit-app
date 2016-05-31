@@ -21,23 +21,23 @@ export default React.createClass({
 				}
 			}
 		});
-		this.state.user.on('update change', () => {
-			this.setState({
-				user: user
-			});
-		});
-		Request.on('update', this.updateRequest);
-		this.state.request.on('change', this.updaterequest);
+		this.state.user.on('update change', this.updateUser);
+		Request.on('change', this.updateRequest);
+		this.state.request.on('add update change', this.updaterequest);
 	},
 	componentWillUnmount: function() {
-		Request.off('update', this.updateRequest);
-		this.state.request.off('change', this.updaterequest);
+		Request.off('change', this.updateRequest);
+		this.state.user.off('update change', this.updateUser);
+		this.state.request.off('add update change', this.updaterequest);
 	},
 	updateRequest: function() {
 		this.setState({Request: Request});
 	},
+	updateUser: function() {
+		this.setState({user: user});
+	},
 	updaterequest: function() {
-		this.setState({request: request});
+		this.setState({request: new request()});
 	},
 	closeConfirmModal: function() {
 		this.setState({
@@ -58,7 +58,6 @@ export default React.createClass({
 			);
 	},
 	postRequest: function() {
-		console.log(this.state.user);
 		if (this.state.user.get('id')) {
 			let newRequest = {
 				trackId: this.props.trackId,
@@ -67,17 +66,24 @@ export default React.createClass({
 				band: this.props.band,
 				userId: this.state.user.get('id')
 			};
-			console.log(newRequest);
 			this.state.request.set(newRequest);
 			let trackIds = Request.pluck('trackId');
 			let existingTracks = [];
-			// let counter = this.state.request.get('requestCount');
 			trackIds.forEach((track, i, array) => {
 				if (this.state.request.get('trackId') === track) {
-					existingTracks.push(this.state.request);
+				Request.set(Request.findWhere({trackId: track}));
+				existingTracks.push(Request);
 			}});
-			if (existingTracks.length <= 0) {
+			if (existingTracks.length) {
+				let counter = Request.at(0).get('requestCount');
+				counter++;
+				Request.at(0).save({
+					requestCount: counter
+				});
+				this.getInitialState;
+			} else {
 				Request.create(newRequest);
+				this.getInitialState;
 			}
 		} else {
 			let newRequest = {
@@ -90,23 +96,30 @@ export default React.createClass({
 			this.state.request.set(newRequest);
 			let trackIds = Request.pluck('trackId');
 			let existingTracks = [];
-			// let counter = this.state.request.get('requestCount');
 			trackIds.forEach((track, i, array) => {
 				if (this.state.request.get('trackId') === track) {
-					existingTracks.push(this.state.request);
+				Request.set(Request.findWhere({trackId: track}));
+				existingTracks.push(this.state.request);
 			}});
-			if (existingTracks.length <= 0) {
+			if (existingTracks.length) {
+				let counter = Request.at(0).get('requestCount');
+				counter++;
+				Request.at(0).save({
+					requestCount: counter
+				});
+			} else {
 				Request.create(newRequest);
 			}
 		}
-		// if (existingTracks.length >=1) {
-		// 	let counter = this.state.request.get('requestCount');
-		// 	this.state.request.save({
-		// 		requestCount: counter++
-		// 	});
-		// }
 		this.setState({
 			confirmModalVisible: true
 		});
+		this.state.Request.set(Request.fetch({
+			data: {
+				where: {
+					userId: this.props.userId
+				}
+			}
+		}));
 	}
 });

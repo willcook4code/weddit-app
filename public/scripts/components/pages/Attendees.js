@@ -93,11 +93,6 @@ export default React.createClass({
 			attendee: attendee
 		});
 	},
-	// updateBio: function () {
-	// 	this.setState({
-	// 		Bio: this.state.Bio.models
-	// 	});
-	// },
 	openInfoModal: function() {
         this.setState({
             infoModalVisible: true

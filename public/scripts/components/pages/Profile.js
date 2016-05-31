@@ -100,11 +100,6 @@ export default React.createClass({
 	},
 	handleFilestack: function(e) {
 		e.preventDefault();
-		// this.state.bio.on('change', () => {
-		// 	this.setState({
-		// 		bio: this.state.bio
-		// 	});
-		// });
  		filepicker.pick({
 		    	conversions: ['crop', 'rotate'],
 				cropRatio: 1,

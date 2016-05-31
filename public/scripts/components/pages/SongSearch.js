@@ -1,11 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
 import SongEntry from './Subcomponents/SearchResults';
+import Request from '../../collections/RequestCollection';
 
 export default React.createClass({
 	getInitialState: function() {
 		return {
-			song: []
+			song: [],
+			Request: Request
 		};
 	},
 	runSearch: function() {

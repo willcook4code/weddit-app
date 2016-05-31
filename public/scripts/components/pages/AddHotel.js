@@ -18,13 +18,6 @@ export default React.createClass({
 			});
 		});
 	},
-	// componentDidUnmount: function() {
-	// 	this.state.user.off('add', () => {
-	// 		this.setState({
-	// 			user: user
-	// 		});
-	// 	});
-	// },
 	addHotel: function(e) {
 		e.preventDefault();
 		let newHotel = {
