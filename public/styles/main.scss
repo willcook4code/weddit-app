@@ -269,8 +269,8 @@ nav {
     width: 41%;
     float: left;
     margin: 0 auto;
-    margin: 2%;
-    padding: 2%;
+    margin: 2% 4% 2% 0;
+    padding: 2% 4% 2% 0;
     white-space: nowrap;
 }
 .songPic {
@@ -279,6 +279,7 @@ nav {
     height: 9em;
     text-align: center;
     margin: 0em;
+    max-width: 85%;
 }
 .songInfo {
 	margin: .4em 0 .3em 0;
