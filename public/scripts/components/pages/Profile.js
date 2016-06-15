@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 import Rsvp from './Subcomponents/RsvpList';
 import Song from './Subcomponents/SongList';
 import UserPlaceList from './Subcomponents/UserPlaceList';
@@ -178,6 +179,9 @@ export default React.createClass({
 							<div className='column tblColumn tblTitle'>RSVP Status</div>
 						</div>
 						{invited}
+					</div>
+					<div>
+						<Link className="navLinks pageLink" to="/slideshow">Slideshow</Link>
 					</div>
 				</div>
 				<div className="rightSide">

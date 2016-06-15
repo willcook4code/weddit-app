@@ -1,5 +1,6 @@
 import React from 'react';
 import Locations from '../../collections/AccommodationCollection';
+import Scrapbook from '../../collections/ScrapbookCollection';
 import HotelDisplay from './Subcomponents/HotelList';
 import VenueDisplay from './Subcomponents/VenueMap';
 import LocationsDisplay from './Subcomponents/NearbyMaps';
@@ -112,6 +113,38 @@ export default React.createClass({
 			updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
 		});
     },
+    handleFilestack: function(e) {
+		e.preventDefault();
+ 		filepicker.pick({
+		    	conversions: ['crop', 'rotate'],
+				cropRatio: 1,
+				cropForce: true,
+		    	services: ['COMPUTER', 'CONVERT', 'FACEBOOK'],
+		    	mimetype: 'image/*'
+		   	},
+		   	(Blob) => {
+		   		if (this.state.user.get('id')) {
+			     	Scrapbook.create({
+			     		pic: Blob.url,
+						name: 'You',
+						caption: this.refs.caption.value,
+						inSlideshow: true,
+						userId: this.state.user.get('id')
+			     	});
+			     	this.refs.caption.value = '';
+			    } else {
+			    	Scrapbook.create({
+			     		pic: Blob.url,
+						name: this.state.attendee.get('name'),
+						caption: this.refs.caption.value,
+						inSlideshow: true,
+						userId: this.state.attendee.get('userId')
+			     	});
+			    	this.refs.caption.value = '';
+			    }
+		   	}
+		);
+	},
 	render: function() {
 		let updateRsvp = null;
 		if (this.state.attendee.get('isGoing')) {
@@ -193,6 +226,11 @@ export default React.createClass({
 					</div>
 				</div>
 				<div className="attActionContainer">
+					<div className='songRequestBox'>
+						<h2 className="requestHeader"><i>Share a Memory!</i></h2>
+						<input type='text' placeholder='Caption (optional)' ref='caption'/>
+						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>
+					</div>
 					{updateRsvp}
 					<SongSearch 
 					userId = {this.state.attendee.get('userId')}
