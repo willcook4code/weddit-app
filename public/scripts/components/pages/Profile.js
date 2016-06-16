@@ -11,6 +11,7 @@ import AddInvites from './AddInvites';
 import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';
 import AddBio from './AddBio';
+import AddRegistry from './AddRegistry';
 import Bio from '../../collections/BioCollection';
 import bio from '../../stores/bio';
 import Scrapbook from '../../collections/ScrapbookCollection';
@@ -193,6 +194,7 @@ export default React.createClass({
 					<div className='infoEditsWrapper'>
 						<button className="addListingBtn" onClick={this.handleFilestack}>Choose Profile Photo</button>
 						<AddBio />
+						<AddRegistry />
 						<AddInvites />
 						<AddHotel />
 						<AddVenue />

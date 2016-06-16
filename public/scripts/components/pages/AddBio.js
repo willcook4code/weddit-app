@@ -39,8 +39,6 @@ export default React.createClass({
 				registrant1: this.refs.registrant1.value,
 				registrant2: this.refs.registrant2.value,
 				story: this.refs.story.value,
-				registry1: this.refs.registry1.value,
-				registry2: this.refs.registry2.value,
 				userId: this.state.user.get('id')
 			});
 		} else {
@@ -48,8 +46,6 @@ export default React.createClass({
 				registrant1: this.refs.registrant1.value,
 				registrant2: this.refs.registrant2.value,
 				story: this.refs.story.value,
-				registry1: this.refs.registry1.value,
-				registry2: this.refs.registry2.value,
 				userId: this.state.user.get('id')
 			});
 		}

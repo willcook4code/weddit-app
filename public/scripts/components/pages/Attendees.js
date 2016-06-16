@@ -201,6 +201,22 @@ export default React.createClass({
 			);
 		});
 		let bioPicture = {backgroundImage: 'url('+this.state.bio.get('pic')+')'};
+		let registries = [this.state.bio.get('registry1'), this.state.bio.get('registry2')];
+		let eachReg = registries.map((registry, i, array) => {
+			if (registry === '') {
+				return null;
+			} else {
+				let url = null;
+				if (registry.indexOf('http://') === -1) {
+					url = 'http://'+registry;
+				} else {
+					url = registry;
+				}
+				return (
+					<li key={i}><a className="bioBody" href={url} target='_blank'>Registry</a></li>
+					);
+			}
+		});
 		return(
 			<section className='attendeesPage'>
 				<div className="attLeftSide" style={bioPicture}>
@@ -209,6 +225,7 @@ export default React.createClass({
 						<div className="bioWrapper">
 							<h2 className="stryHeading">Our Story</h2>
 							<p className="bioBody">{this.state.bio.get('story')}</p>
+							<ol>{eachReg}</ol>
 						</div>
 					</div>
 					<div className="mapContainer">
