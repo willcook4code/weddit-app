@@ -13,6 +13,8 @@ import AddVenue from './AddVenue';
 import AddBio from './AddBio';
 import Bio from '../../collections/BioCollection';
 import bio from '../../stores/bio';
+import Scrapbook from '../../collections/ScrapbookCollection';
+import PhotoGrid from './Subcomponents/PhotoGrid';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -32,6 +34,7 @@ export default React.createClass({
 		Requests.on('update', this.updateRequests);
 		Locations.on('update', this.updateLocations);
 		Bio.on('update change', this.updateBioCol);
+		Scrapbook.on('update change', this.updateScrapbook);
 		Bio.fetch({
 			data: {
 				where: {
@@ -60,6 +63,11 @@ export default React.createClass({
 				}
 			}
 		});
+		Scrapbook.fetch({
+			data: {
+				where: {userId: user.get('id')}
+			}
+		});
 	},
 	componentWillUnmount: function() {
 		this.state.user.off('update change', this.updateUser);
@@ -68,6 +76,12 @@ export default React.createClass({
 		Locations.off('update', this.updateLocations);
 		bio.off('update change', this.updateBio);
 		Bio.off('update change', this.updateBioCol);
+		Scrapbook.off('update change', this.updateScrapbook);
+	},
+	updateScrapbook: function() {
+		this.setState({
+			Scrapbook: Scrapbook.sort(Scrapbook.comparator = 'id')
+		});
 	},
 	updateUser: function() {
 		this.setState({
@@ -86,12 +100,12 @@ export default React.createClass({
 	},
 	updateAttendees: function() {
 		this.setState({
-			Attendees: Attendees
+			Attendees: Attendees.sort(Attendees.comparator = 'name')
 		});
 	},
 	updateRequests: function() {
 		this.setState({
-			Requests: Requests
+			Requests: Requests.sort()
 		});
 	},
 	updateLocations: function() {
@@ -124,6 +138,18 @@ export default React.createClass({
 		);
 	},
 	render: function() {
+		const eachImage = Scrapbook.models.map((photo, i, array) => {
+			return (
+				<PhotoGrid
+				key = {i}
+				name = {photo.get('name')}
+				pic = {photo.get('pic')}
+				caption = {photo.get('caption')}
+				inSlideshow = {photo.get('inSlideshow')}
+				thisPhoto = {photo}
+				/>
+			);
+		});
 		const places = this.state.Locations.models.map((place, i, array) => {
 			return(
 				<UserPlaceList 
@@ -182,6 +208,7 @@ export default React.createClass({
 					</div>
 					<div>
 						<Link className="navLinks pageLink" to="/slideshow">Slideshow</Link>
+						{eachImage}
 					</div>
 				</div>
 				<div className="rightSide">

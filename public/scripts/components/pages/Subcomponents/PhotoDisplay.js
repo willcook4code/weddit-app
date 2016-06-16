@@ -4,7 +4,7 @@ export default React.createClass({
 	render: function() {
 		let photoCap = null;
 		if (this.props.caption === '') {
-			photoCap = 'None';
+			photoCap = 'Not Entered';
 		} else {
 			photoCap = this.props.caption;
 		}

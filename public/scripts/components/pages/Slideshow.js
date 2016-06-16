@@ -19,6 +19,10 @@ export default React.createClass({
 			}
 		});
 	},
+	componentWillUnmount: function() {
+		this.state.user.off('update change', this.updateUser);
+		Scrapbook.off('update', this.updateScrapbook);
+	},
 	updateUser: function() {
 		this.setState({
 			user: this.state.user

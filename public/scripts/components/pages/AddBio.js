@@ -2,7 +2,6 @@ import React from 'react';
 import Rayon from 'rayon';
 import user from '../../stores/user';
 import Bio from '../../collections/BioCollection';
-// import bio from '../../stores/bio';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -10,13 +9,11 @@ export default React.createClass({
 			bioModalVisible: false,
 			user: user,
 			addedMsg: null,
-			// bio: bio,
 			Bio: Bio
 		};
 	},
 	componentWillMount: function() {
 		this.state.user.on('add', this.updateUser);
-		// bio.on('update change', this.updateBio);
 		Bio.on('update change', this.updateBioCol);
 		Bio.fetch({
 			data: {
@@ -28,23 +25,16 @@ export default React.createClass({
 	},
 	componentWillUnmount: function() {
 		this.state.user.off('add', this.updateUser);
-		// this.state.bio.off('update change', this.updateBio);
 		Bio.off('update change', this.updateBioCol);
 	},
 	updateUser: function() {
 		this.setState({
 			user: user
 		});
-	},	
-	// updateBio: function() {
-	// 	this.setState({
-	// 		bio: Bio.models
-	// 	});
-	// },
+	},
 	addBio: function(e) {
 		e.preventDefault();
 		if (Bio.length) {
-			console.log(Bio.at(0));
 			Bio.at(0).save({
 				registrant1: this.refs.registrant1.value,
 				registrant2: this.refs.registrant2.value,
@@ -89,10 +79,6 @@ export default React.createClass({
 							<input className="modalInput" type='text' placeholder='First Last' ref='registrant2'/>
 							<h3 className="formPrompt">Tell Us Your Story</h3>
 							<textarea className="modalInput" type='textarea' ref='story'/>
-							<h3 className="formPrompt">Registry 1 Url</h3>
-							<input className="modalInput" type='text' placeholder='optional' ref='registry1'/>
-							<h3 className="formPrompt">Registry 2 Url</h3>
-							<input className="modalInput" type='text' placeholder='optional' ref='registry2'/>
 							<p className="addedMsg">{this.state.addedMsg}</p>
 							<footer>
 								<a className="submitAdd" href="#" onClick={this.addBio}>Add Bio</a>
