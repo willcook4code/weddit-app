@@ -170,6 +170,7 @@ export default React.createClass({
 				key = {i}
 				name = {hotel.get('name')}
 				zip = {hotel.get('zip')}
+				phoneNumber = {hotel.get('phoneNumber')}
 				hotelUrl = {hotel.get('hotelUrl')}
 				cutoffDate = {hotel.get('cutoffDate')}
 				rate = {hotel.get('rate')}
@@ -245,6 +246,7 @@ export default React.createClass({
 				<div className="attActionContainer">
 					<div className='songRequestBox'>
 						<h2 className="requestHeader"><i>Share a Memory!</i></h2>
+						<p>Your favorites photos of the both or one of the couple.</p>
 						<input type='text' placeholder='Caption (optional)' ref='caption'/>
 						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>
 					</div>

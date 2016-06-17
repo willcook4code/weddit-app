@@ -24,6 +24,7 @@ export default React.createClass({
 			name: this.refs.hotelName.value,
 			zip: this.refs.hotelZip.value,
 			hotelUrl: this.refs.hotelUrl.value,
+			phoneNumber: this.refs.phoneNumber.value,
 			rate: this.refs.rate.value,
 			cutoffDate: this.refs.cutoff.value,
 			locationType: 'Hotel'
@@ -34,6 +35,7 @@ export default React.createClass({
 		});
 		this.refs.hotelName.value = '';
 		this.refs.hotelZip.value = '';
+		this.refs.phoneNumber.value = '';
 		this.refs.hotelUrl.value = '';
 		this.refs.rate.value = '';
 	},
@@ -59,6 +61,8 @@ export default React.createClass({
 							<input className="modalInput" type='text' placeholder='eg: 78701' ref='hotelZip'/>
 							<h3 className="formPrompt">Website</h3>
 							<input className="modalInput" type='text' placeholder='eg: www.sheraton.com' ref='hotelUrl'/>
+							<h3 className="formPrompt">Phone</h3>
+							<input className="modalInput" type='text' placeholder='eg: (555) 555-5555' ref='phoneNumber'/>
 							<h3 className="formPrompt">Rate</h3>
 							<input className="modalInput" type='text' placeholder='eg: $99' ref='rate'/>
 							<h3 className="formPrompt">Rate Cutoff Date</h3>

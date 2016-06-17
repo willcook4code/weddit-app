@@ -41,6 +41,7 @@ export default React.createClass({
 				<p className="infoLine">Rate: {this.props.rate}</p>
 				<p className="infoLine">Book by:</p>
 				<p className="infoLine">{moment(this.props.cutoffDate).format('MMM Do YYYY')}</p>
+				<p className="infoLine" >Reservations: <br/> {this.props.phoneNumber}</p>
 				<a className="hotelSite infoLine" href={url} target='_blank'>Website</a>
 				</div>
 			</div>

@@ -24,6 +24,7 @@ export default React.createClass({
 				<h4 className="placeType">{this.props.type}</h4>
 				<span className="placeName placeInfo">{this.props.name}</span>
 				<a href={url} target='_blank' className="placeUrl placeInfo smlInfo">{website}</a>
+				<span className="placePhone placeInfo smlInfo">{this.props.phoneNumber}</span>
 				<span className="placeRate placeInfo smlInfo">{this.props.rate}</span>
 				<span className="cutoffDate placeInfo smlInfo">{date}</span>
 				<button className="placeBtn" onClick={this.deletePlace}>Remove</button>

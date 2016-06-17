@@ -67,7 +67,7 @@ export default React.createClass({
 					<p className="error">{this.state.rsvpMsg}</p>
 					<p className="error">{this.state.errorMsg}</p>
 					<h3 className="formPrompt">Your Name</h3>
-					<input className="modalInput" type='text' placeholder='Please enter as appears on invite' ref='name'/>
+					<input className="modalInput" type='text' placeholder='As appears on invite' ref='name'/>
 					<h3 className="formPrompt">Please Enter Your Access Code</h3>
 					<input className="modalInput modalAccessInput" type='text' ref='accessCode'/>
 					<button className="verifyBtn" onClick={this.verify}>Enter</button>
@@ -106,7 +106,7 @@ export default React.createClass({
 		    method: 'get',
 		    data: {
 		        where: {
-		            name: this.refs.name.value,
+		            name: (this.refs.name.value).toLowerCase(),
 		            accessCode: this.refs.accessCode.value
 		        }
 		    },

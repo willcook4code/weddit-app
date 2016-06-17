@@ -6,6 +6,7 @@ export default Backbone.Model.extend({
 		zip: '',
 		locationType: '',
 		hotelUrl: '',
+		phoneNumber: '',
 		rate: '',
 		cutoffDate: null
 	},

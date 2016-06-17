@@ -21,7 +21,7 @@ export default React.createClass({
 	enterAttendee: function(e) {
 		e.preventDefault();
 		let newAttendee = {
-			name: this.refs.name.value,
+			name: (this.refs.name.value).toLowerCase(),
 			accessCode: this.state.user.get('id')+'-'+this.randomPW(),
 			party: 0,
 			maxGuests: this.refs.max.value

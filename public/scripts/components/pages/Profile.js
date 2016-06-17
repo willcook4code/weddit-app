@@ -158,6 +158,7 @@ export default React.createClass({
 				location = {place}
 				name = {place.get('name')}
 				website = {place.get('hotelUrl')}
+				phoneNumber = {place.get('phoneNumber')}
 				rate = {place.get('rate')}
 				cutoffDate = {place.get('cutoffDate')}
 				type = {place.get('locationType')}
