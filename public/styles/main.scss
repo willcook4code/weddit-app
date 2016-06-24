@@ -21,7 +21,11 @@ button {
 	cursor: pointer;
 }
 .rayon {
-	border-radius: 2em;
+    border-radius: 2em;
+}
+.rayon-footer {
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
 }
 .error {
     padding-top: 2em;
@@ -37,7 +41,7 @@ nav {
 		font-size: 1.5em;
 	}
 	.rayon {
-	    height: 20em;
+	    height: 22em;
 	    max-width: 20em;
 	    margin: 0 auto;
 	    padding: 6em 11.2%;
