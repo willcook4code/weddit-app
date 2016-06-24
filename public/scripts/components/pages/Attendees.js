@@ -244,13 +244,13 @@ export default React.createClass({
 					</div>
 				</div>
 				<div className="attActionContainer">
+					{updateRsvp}
 					<div className='songRequestBox'>
 						<h2 className="requestHeader"><i>Share a Memory!</i></h2>
 						<p>Your favorites photos of the both or one of the couple.</p>
 						<input type='text' placeholder='Caption (optional)' ref='caption'/>
 						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>
 					</div>
-					{updateRsvp}
 					<SongSearch 
 					userId = {this.state.attendee.get('userId')}
 					/>

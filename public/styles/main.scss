@@ -20,6 +20,13 @@ button {
 	border: 3px solid $silk;
 	cursor: pointer;
 }
+.rayon {
+	border-radius: 2em;
+}
+.error {
+    padding-top: 2em;
+    margin: 0;
+}
 //Navbar
 nav {
 	padding: 1em;
@@ -395,9 +402,14 @@ nav {
 	}
 	.songRequestBox {
 		padding-left: 1.5em;
+	    margin-bottom: 2em;
+	    > p {
+	    	margin-top: .2em;
+	    }
 	}
 	.requestHeader {
 		margin-top: 0;
+		margin-bottom: .2em;
 	}
 	.songBox {
 		height: 20em;
@@ -413,7 +425,8 @@ nav {
 		margin: .4em 47% .3em 0;
 	}
 	.songSrchBtn {
-		margin-left: 1em;
+	    display: block;
+    	margin-top: 1em;
 	}
 	.successMsg {
 		padding: 2.7em;
