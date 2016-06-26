@@ -214,7 +214,7 @@ export default React.createClass({
 					url = registry;
 				}
 				return (
-					<li key={i}><a className="bioBody" href={url} target='_blank'>Registry</a></li>
+					<li key={i}><a className="bioBody" href={url} target='_blank'>{url}</a></li>
 					);
 			}
 		});
@@ -226,7 +226,8 @@ export default React.createClass({
 						<div className="bioWrapper">
 							<h2 className="stryHeading">Our Story</h2>
 							<p className="bioBody">{this.state.bio.get('story')}</p>
-							<ol>{eachReg}</ol>
+							<h2 className="stryHeading">Links to Our Registries</h2>
+							<ol className="regList">{eachReg}</ol>
 						</div>
 					</div>
 					<div className="mapContainer">
@@ -247,7 +248,7 @@ export default React.createClass({
 					{updateRsvp}
 					<div className='songRequestBox'>
 						<h2 className="requestHeader"><i>Share a Memory!</i></h2>
-						<p>Your favorites photos of the both or one of the couple.</p>
+						<p>Your favorite photos of the bride and/or groom.</p>
 						<input type='text' placeholder='Caption (optional)' ref='caption'/>
 						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>
 					</div>

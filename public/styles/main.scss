@@ -177,9 +177,9 @@ nav {
 }
 .attHeader {
 	display: block;
-	overflow: hidden;
+	overflow: visible;
 	float: left;
-	width: 5em;
+	width: 15.5%;
 	margin-left: 1em;
 }
 .infoEditsWrapper {
@@ -187,7 +187,7 @@ nav {
 	overflow: hidden;
 	float: right;
 	margin-top: 1em;
-	width: 25em;
+	width: 81%;
 }
 .attTable {
 	display: block;
@@ -349,6 +349,9 @@ nav {
 	width: 80%;
     line-height: 1.5em;
     margin: 0 auto;
+}
+.regList {
+	padding-left: 6.3em;
 }
 .mapDisplay {
 	display: block;
