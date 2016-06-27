@@ -213,8 +213,11 @@ export default React.createClass({
 				} else {
 					url = registry;
 				}
+				let initReg = url.substring((url.indexOf('.'))+1, url.indexOf('.com'));
+				let regTitle = initReg.charAt(0).toUpperCase()+initReg.substring(1);
+				// (url.substring((url.indexOf('.'))+1, url.indexOf('.com')).charAt(0).toUpperCase())+(url.substring((url.indexOf('.'))+1, url.indexOf('.com')).substring(1));
 				return (
-					<li key={i}><a className="bioBody" href={url} target='_blank'>{url}</a></li>
+					<li key={i}><a className="bioBody" href={url} target='_blank'>{regTitle}</a></li>
 					);
 			}
 		});
