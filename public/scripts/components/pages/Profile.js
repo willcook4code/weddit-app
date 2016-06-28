@@ -8,6 +8,7 @@ import Locations from '../../collections/AccommodationCollection';
 import Requests from '../../collections/RequestCollection';
 import user from '../../stores/user';
 import AddInvites from './AddInvites';
+import AddHoneyfund from './addHoneyFund';
 import AddHotel from './AddHotel';
 import AddVenue from './AddVenue';
 import AddBio from './AddBio';
@@ -196,6 +197,7 @@ export default React.createClass({
 						<button className="addListingBtn" onClick={this.handleFilestack}>Choose Profile Photo</button>
 						<AddBio />
 						<AddRegistry />
+						<AddHoneyfund />
 						<AddInvites />
 						<AddHotel />
 						<AddVenue />

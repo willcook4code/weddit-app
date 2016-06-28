@@ -7,7 +7,8 @@ export default Backbone.Model.extend({
 		pic: '',
 		story: '',
 		registry1: '',
-		registry2: ''
+		registry2: '',
+		honeyfund: ''
 	},
 	urlRoot: '/api/v1/bio',
 	idAttribute: 'id'

@@ -215,12 +215,24 @@ export default React.createClass({
 				}
 				let initReg = url.substring((url.indexOf('.'))+1, url.indexOf('.com'));
 				let regTitle = initReg.charAt(0).toUpperCase()+initReg.substring(1);
-				// (url.substring((url.indexOf('.'))+1, url.indexOf('.com')).charAt(0).toUpperCase())+(url.substring((url.indexOf('.'))+1, url.indexOf('.com')).substring(1));
 				return (
 					<li key={i}><a className="bioBody" href={url} target='_blank'>{regTitle}</a></li>
 					);
 			}
 		});
+		let honeyfund = null;
+		if (this.state.bio.get('honeyfund') !== '') {
+			let honeyUrl = null;
+				if ((this.state.bio.get('honeyfund')).indexOf('http://') === -1) {
+					honeyUrl = ('http://'+this.state.bio.get('honeyfund'));
+				} else {
+					honeyUrl = this.state.bio.get('honeyfund');
+				}
+			let initHoney = honeyUrl.substring((honeyUrl.indexOf('.'))+1, honeyUrl.indexOf('.com'));
+			let honeyTitle = initHoney.charAt(0).toUpperCase()+initHoney.substring(1);
+			honeyfund = <p className="honList">Honeyfund - <a href={honeyUrl} target='_blank'>
+				{honeyTitle}</a></p>;
+		}
 		return(
 			<section className='attendeesPage'>
 				<div className="attLeftSide" style={bioPicture}>
@@ -231,6 +243,7 @@ export default React.createClass({
 							<p className="bioBody">{this.state.bio.get('story')}</p>
 							<h2 className="stryHeading">Links to Our Registries</h2>
 							<ol className="regList">{eachReg}</ol>
+							{honeyfund}
 						</div>
 					</div>
 					<div className="mapContainer">
