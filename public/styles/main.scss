@@ -28,7 +28,8 @@ button {
 	border-bottom-right-radius: 2em;
 }
 .error {
-    padding-top: 2em;
+	display: none;
+    padding-top: .3em;
     margin: 0;
 }
 //Navbar
@@ -91,7 +92,7 @@ nav {
 	}
 	.regForm {
         margin: 0 auto;
-    	width: 14em;
+    	width: 11em;
 	}
 	.introHeader {
 		padding-top: .5em;
@@ -108,7 +109,7 @@ nav {
 .rsvpWrapper {
     float: right;
     .rayon {
-    	min-height: 14em;
+    	min-height: 11em;
     }
     .modalInput {
 		width: 14.5em;
@@ -120,6 +121,12 @@ nav {
 	.verifyBtn {
 	    width: 18%;
 	    position: absolute;
+	}
+	.attTitle {
+		padding-top: 0em;
+	}
+	.attInput {
+		margin-bottom: 1.5em;
 	}
 }
 .introHeader {

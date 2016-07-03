@@ -51,8 +51,8 @@ export default React.createClass({
 		if (this.state.attendee.get('accessCode')) {
 			whenVerified = (
 				<div className='whenVerified'>
-					<h3 className="formPrompt">Number Attending</h3>
-					<input className="modalInput" type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
+					<h3 className="formPrompt attTitle">Number Attending</h3>
+					<input className="modalInput attInput" type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
 					<footer>
 						<button onClick={this.attend}>Accept</button>
 						<button onClick={this.decline}>Decline</button>
@@ -69,7 +69,7 @@ export default React.createClass({
 					<h3 className="formPrompt">Your Name</h3>
 					<input className="modalInput" type='text' placeholder='As appears on invite' ref='name'/>
 					<h3 className="formPrompt">Please Enter Your Access Code</h3>
-					<input className="modalInput modalAccessInput" type='text' ref='accessCode'/>
+					<input className="modalInput modalAccessInput" placeholder='(Case sensitive)' type='text' ref='accessCode'/>
 					<button className="verifyBtn" onClick={this.verify}>Enter</button>
 				</div>
 				{whenVerified}
@@ -113,6 +113,7 @@ export default React.createClass({
 		    success: (entry) => {
 		    	this.state.attendee.set(entry[0]);
 		    	if (!this.state.attendee.get('id')) {
+		    		$('.error').show();
 		    		this.setState({
 		    			errorMsg: 'The information you entered was not found.  Please verify and re-enter.'
 		    		});
