@@ -230,7 +230,7 @@ export default React.createClass({
 				}
 			let initHoney = honeyUrl.substring((honeyUrl.indexOf('.'))+1, honeyUrl.indexOf('.com'));
 			let honeyTitle = initHoney.charAt(0).toUpperCase()+initHoney.substring(1);
-			honeyfund = <p className="honList">Honeyfund - <a href={honeyUrl} target='_blank'>
+			honeyfund = <p className="honList"><a href={honeyUrl} target='_blank'>
 				{honeyTitle}</a></p>;
 		}
 		return(

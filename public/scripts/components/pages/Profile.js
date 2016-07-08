@@ -212,8 +212,10 @@ export default React.createClass({
 						{invited}
 					</div>
 					<div>
-						<Link className="navLinks pageLink" to="/slideshow">Slideshow</Link>
-						{eachImage}
+						<Link className="navLinks pageLink slideshowBtn" to="/slideshow">Go To Slideshow</Link>
+						<div className="photoBucket">
+							{eachImage}
+						</div>
 					</div>
 				</div>
 				<div className="rightSide">

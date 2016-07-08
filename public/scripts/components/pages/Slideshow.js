@@ -2,6 +2,7 @@ import React from 'react';
 import Scrapbook from '../../collections/ScrapbookCollection';
 import PhotoDisplay from './Subcomponents/PhotoDisplay';
 import user from '../../stores/user';
+import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -41,6 +42,7 @@ export default React.createClass({
 				return false;
 			}
 		}).map((photo, i, array) => {
+			console.log(i);
 			return (
 				<PhotoDisplay 
 				key = {i}
@@ -50,9 +52,10 @@ export default React.createClass({
 				/>
 			);
 		});
+
 		return(
 			<section>
-				<div>
+				<div className="slideshow">
 					{eachImage}
 				</div>
 			</section>

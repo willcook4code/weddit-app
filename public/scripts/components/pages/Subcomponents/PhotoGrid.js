@@ -28,7 +28,7 @@ export default React.createClass({
 				caption = {this.props.caption}
 				thisPhoto = {this.props.thisPhoto}
 				/>
-				<button onClick={this.editSlideshow}>{displayed}</button>
+				<button className="slideshowToggleBtn" onClick={this.editSlideshow}>{displayed}</button>
 			</div>
 		);
 	}

@@ -9,7 +9,7 @@ export default React.createClass({
 			photoCap = this.props.caption;
 		}
 		return (
-			<div>
+			<div className="photoContent">
 				<img src={this.props.pic}/>
 				<p>Caption: {photoCap}</p>
 				<p>Submitted by: {this.props.name}</p>

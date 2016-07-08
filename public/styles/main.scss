@@ -242,6 +242,58 @@ nav {
 	margin-left: .5em;
 	margin-bottom: .5em;
 }
+.slideshowBtn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.6em;
+    padding: 0.6em;
+    width: 28%;
+    color: white;
+    background: $silk;
+    font-size: 1.4em;
+    font-family: 'Lato', sans-serif;
+    line-height: 0.7em;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0px 0px 5px 2px ghostwhite;
+    border-radius: 1em;
+}
+.photoBucket {
+	display: flex;
+	margin: 2em;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+.PhotoGrid {
+    margin-bottom: 1.5em;
+    padding: 1em 0;
+    background: rgba(220,208,192, 0.3);
+    border-radius: 0.3em;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .2);
+}
+.photoContent {
+	> img {
+		height: 12em;
+	    border-radius: 1em;
+	    box-shadow: 0px 0px 4px;
+	    margin: 0px 0.8em;
+	}
+	> p {
+		text-align: left;
+	    width: 80%;
+    	margin: 0.4em auto;
+	}
+}
+.slideshowToggleBtn {
+	display: block;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 1em;
+    padding: 0.3em 0.1em;
+}
 .rightSide {
 	overflow: hidden;
 	float: right;
@@ -386,8 +438,9 @@ nav {
     float: left;
     .frameWrap {
     	float: left;
-    	width: 70%;
-    	margin-right: 1%;
+	    width: 50%;
+	    margin-right: 1%;
+	    margin-bottom: 1em;
     }
     .hotelSite {
     	display: block;
@@ -448,6 +501,21 @@ nav {
 	}
 	.successMsg {
 		padding: 2.7em;
+	}
+}
+//Slideshow Page
+.slideshow {
+	margin: 0 auto;
+	padding: 40px;
+	width: 80%;
+	.photoContent {
+		text-align: center;
+		> img {
+			height: 39em;
+		}
+		> p {
+			display: none;
+		}
 	}
 }
 
