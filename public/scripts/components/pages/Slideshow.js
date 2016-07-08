@@ -2,7 +2,7 @@ import React from 'react';
 import Scrapbook from '../../collections/ScrapbookCollection';
 import PhotoDisplay from './Subcomponents/PhotoDisplay';
 import user from '../../stores/user';
-import $ from 'jquery';
+import Slider from 'react-slick';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -52,12 +52,18 @@ export default React.createClass({
 				/>
 			);
 		});
-
+		var settings = {
+	      autoplay: true,
+	      infinite: true,
+	      speed: 4000,
+	      slidesToShow: 1,
+	      slidesToScroll: 1
+	    };
 		return(
-			<section>
-				<div className="slideshow">
+			<section className="slider">
+				<Slider className="slideshow" {...settings}>
 					{eachImage}
-				</div>
+				</Slider>
 			</section>
 		);
 	}

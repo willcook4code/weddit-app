@@ -507,11 +507,15 @@ nav {
 .slideshow {
 	margin: 0 auto;
 	padding: 40px;
-	width: 80%;
+	width: 55em;
 	.photoContent {
 		text-align: center;
 		> img {
 			height: 39em;
+		    display: inline;
+		    clear: right;
+		    float: left;
+		    margin-right: 17.5em;
 		}
 		> p {
 			display: none;
