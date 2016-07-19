@@ -74,7 +74,7 @@ export default React.createClass({
 							<h3 className="formPrompt">Your Partner's First & Last Name</h3>
 							<input className="modalInput" type='text' placeholder='First Last' ref='registrant2'/>
 							<h3 className="formPrompt">Tell Us Your Story</h3>
-							<textarea className="modalInput" type='textarea' ref='story'/>
+							<textarea className="modalInput" type='text' ref='story'></textarea>
 							<p className="addedMsg">{this.state.addedMsg}</p>
 							<footer>
 								<a className="submitAdd" href="#" onClick={this.addBio}>Add Bio</a>

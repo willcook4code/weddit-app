@@ -240,7 +240,7 @@ export default React.createClass({
 						<h2 className="greeting"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
 						<div className="bioWrapper">
 							<h2 className="stryHeading">Our Story</h2>
-							<p className="bioBody">{this.state.bio.get('story')}</p>
+							<pre className="bioBody">{this.state.bio.get('story')}</pre>
 							<h2 className="stryHeading">Links to Our Registries</h2>
 							<ol className="regList">{eachReg}</ol>
 							{honeyfund}
