@@ -47,6 +47,7 @@ export default React.createClass({
 		this.setState({
 			addedMsg: 'Your information has been submitted.'
 		});
+		this.refs.honeyfund.value = '';
 	},
 	openRegModal: function() {
 		this.setState({

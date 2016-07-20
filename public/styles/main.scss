@@ -378,16 +378,18 @@ nav {
 //AttendeesPage
 .attLeftSide {
 	display: block;
-	overflow: hidden;
-	float: left;
-	width: 75%;    
-    background-size: cover;
-    background-position: 50% 50%;
+	height: 40em;
+    overflow-x: hidden;
+    float: left;
+    width: 75%;
+    background-size: 100%;
 }
 .greeting {
-	padding-left: 4%;
-	padding-bottom: .1em;
-	margin-top: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    top: 2em;
+    text-align: center;
+    padding: .1em 0.3em;
     background-color: rgba(255, 255, 255, 0.75);
     font-size: 2em;
     box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
@@ -399,6 +401,7 @@ nav {
     margin-bottom: 2em;
     padding-bottom: 0.5em;
     padding-top: 1em;
+    margin-top: 24em;
 }
 .stryHeading {
 	margin-top: 0;

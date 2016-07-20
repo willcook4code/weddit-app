@@ -208,7 +208,9 @@ export default React.createClass({
 				return null;
 			} else {
 				let url = null;
-				if (registry.indexOf('http://') === -1) {
+				if (registry.indexOf('https://')) {
+					url = registry;
+				} else if (registry.indexOf('http://') === -1) {
 					url = 'http://'+registry;
 				} else {
 					url = registry;
@@ -247,11 +249,11 @@ export default React.createClass({
 						</div>
 					</div>
 					<div className="mapContainer">
-						<div className='hotelDisplay mapDisplay'>
+						<div id="hotel" className='hotelDisplay mapDisplay'>
 							<h2 className="mapTitle"><i>Hotels</i></h2>
 							{listedHotels}
 						</div>
-						<div className='venueDisplay mapDisplay btmMaps'>
+						<div id="venue" className='venueDisplay mapDisplay btmMaps'>
 							<h2 className="mapTitle btmTitle"><i>Venue(s)</i></h2>
 							{listedVenue}
 						</div>

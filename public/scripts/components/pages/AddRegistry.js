@@ -71,6 +71,8 @@ export default React.createClass({
 		this.setState({
 			addedMsg: 'Your information has been submitted.'
 		});
+		this.refs.registry1.value = '';
+		this.refs.registry2.value = '';
 	},
 	openRegModal: function() {
 		this.setState({

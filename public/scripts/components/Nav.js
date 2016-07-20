@@ -72,6 +72,8 @@ export default React.createClass({
 			return (
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
+					<a className="navLinks pageLink" href="#hotel">Hotels</a>
+					<a className="navLinks pageLink" href="#venue">Venue(s)</a>
 				</nav>
 				);
 		}else {

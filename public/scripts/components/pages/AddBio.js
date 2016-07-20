@@ -48,6 +48,9 @@ export default React.createClass({
 				story: this.refs.story.value,
 				userId: this.state.user.get('id')
 			});
+			this.refs.registrant1.value = '';
+			this.refs.registrant2.value = '';
+			this.refs.story.value = '';
 		}
 		this.setState({
 			addedMsg: 'Your information has been submitted.'
