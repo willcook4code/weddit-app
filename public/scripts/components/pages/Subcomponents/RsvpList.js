@@ -12,7 +12,7 @@ export default React.createClass({
 			<div className="row tblRow">
 			    <div className="column tblColumn tblEntry colName colName">{this.props.name}</div>
 				<div className="column tblColumn tblEntry centerAlign">{this.props.accessCode}</div>
-				<div className="column tblColumn tblEntry centerAlign">{this.props.party}</div>
+				<div className="column tblColumn tblEntry centerAlign">{this.props.party} of {this.props.maxGuests}</div>
 				<div className="column tblColumn tblEntry centerAlign">{rsvp}</div>
 			</div>
 			);

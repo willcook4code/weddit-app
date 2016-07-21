@@ -178,6 +178,20 @@ export default React.createClass({
 				/>
 				);
 		});
+		let start = 0;
+		const totals = this.state.Attendees.models.map((invitee, i, array) => {
+			start = start + invitee.get('party');
+			if (i === (this.state.Attendees.models.length - 1)) {
+				return start;
+			}
+		});
+		let begin = 0;
+		const totalInvited = this.state.Attendees.models.map((invitee, j, array) => {
+			begin = begin + Number(invitee.get('maxGuests'));
+			if (j === (array.length - 1)) {
+				return begin;
+			}
+		});
 		const invited = this.state.Attendees.models.map((invitee, i, array) => {
 			return(
 				<Rsvp 
@@ -186,6 +200,7 @@ export default React.createClass({
 				accessCode = {invitee.get('accessCode')}
 				party = {invitee.get('party')}
 				isGoing = {invitee.get('isGoing')}
+				maxGuests = {invitee.get('maxGuests')}
 				/>
 				);
 		});
@@ -210,6 +225,7 @@ export default React.createClass({
 							<div className='column tblColumn tblTitle'>RSVP Status</div>
 						</div>
 						{invited}
+						<h3>Of the {totalInvited} people invited, {totals} plan to attend.</h3>
 					</div>
 					<div>
 						<Link className="navLinks pageLink slideshowBtn" to="/slideshow">Go To Slideshow</Link>

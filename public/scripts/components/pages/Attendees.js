@@ -218,7 +218,7 @@ export default React.createClass({
 				let initReg = url.substring((url.indexOf('.'))+1, url.indexOf('.com'));
 				let regTitle = initReg.charAt(0).toUpperCase()+initReg.substring(1);
 				return (
-					<li key={i}><a className="bioBody" href={url} target='_blank'>{regTitle}</a></li>
+					<li key={i}><a className="bioBody regLink" href={url} target='_blank'>{regTitle}</a></li>
 					);
 			}
 		});

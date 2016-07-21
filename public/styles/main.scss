@@ -378,7 +378,7 @@ nav {
 //AttendeesPage
 .attLeftSide {
 	display: block;
-	height: 40em;
+	height: 47.3em;
     overflow-x: hidden;
     float: left;
     width: 75%;
@@ -412,8 +412,17 @@ nav {
     line-height: 1.5em;
     margin: 0 auto;
     margin-bottom: 1.5em;
+    padding: 1.5em;
 	font-family: sans-serif;
 	white-space: pre-wrap;
+	background: rgba(255,255,255,0.25);
+    border: 7px solid rgba(255,255,255,0.05);
+    border-radius: 0.5em;
+}
+.regLink {
+	padding: 0;
+	background: none;
+	border: none;
 }
 .regList {
 	padding-left: 6.3em;
@@ -486,6 +495,10 @@ nav {
 	.requestHeader {
 		margin-top: 0;
 		margin-bottom: .2em;
+	}
+	.resultsContainer {
+		height: 25em;
+    	overflow-x: hidden;
 	}
 	.songBox {
 		height: 20em;
