@@ -156,7 +156,7 @@ export default React.createClass({
 		if (this.state.attendee.get('isGoing')) {
 			updateRsvp = (
 				<div className='updateRsvp'>
-					<h3 className="updateRsvpHeader">Update RSVP</h3>
+					<h3 className="updateRsvpHeader fancy">Update RSVP</h3>
 					<p>Number Attending</p>
 					<input type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
 					<p>{this.state.updateMsg}</p>
