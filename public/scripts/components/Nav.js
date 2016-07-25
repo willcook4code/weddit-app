@@ -59,10 +59,10 @@ export default React.createClass({
         });
     },
     scrollToHotel: function() {
-	    $('.attLeftSide').animate({scrollTop: ($('#hotel').position().top + 10)},1000);
+	    $('.attLeftSide').animate({scrollTop: ($('#hotel').position().top + '86px')},1000);
 	},
 	scrollToVenue: function() {
-	    $('.attLeftSide').animate({scrollTop: $('#venue').position().top + 10},1000);
+	    $('.attLeftSide').animate({scrollTop: ($('#venue').position().top + '86px')},1000);
 	},
 	render: function() {
 		if (this.state.user.get('id')) {
