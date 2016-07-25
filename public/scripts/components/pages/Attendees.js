@@ -245,22 +245,22 @@ export default React.createClass({
 			<section className='attendeesPage'>
 				<div className="attLeftSide" style={bioPicture}>
 					<div key={this.state.bio.get('id')} className="bioContainer">
-						<h2 className="greeting"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
+						<h2 className="greeting fancy"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
 						<div className="bioWrapper">
-							<h2 className="stryHeading"><i>Our Story</i></h2>
+							<h2 className="stryHeading fancy"><i>Our Story</i></h2>
 							<pre className="bioBody">{this.state.bio.get('story')}</pre>
-							<h2 className="stryHeading"><i>Links to Our Registries</i></h2>
-							<ol className="regList">{eachReg}</ol>
+							<h2 className="stryHeading fancy"><i>Links to Our Registries</i></h2>
+							<ul className="regList">{eachReg}</ul>
 							{honeyfund}
 						</div>
 					</div>
 					<div className="mapContainer">
 						<div id="hotel" className='hotelDisplay mapDisplay'>
-							<h2 className="mapTitle"><i>Hotels</i></h2>
+							<h2 className="mapTitle fancy"><i>Hotels</i></h2>
 							{listedHotels}
 						</div>
 						<div id="venue" className='venueDisplay mapDisplay btmMaps'>
-							<h2 className="mapTitle btmTitle"><i>Venue(s)</i></h2>
+							<h2 className="mapTitle btmTitle fancy"><i>Venue(s)</i></h2>
 							{listedVenue}
 						</div>
 						<div className='wideSearchDisplay mapDisplay btmMaps'>
@@ -271,7 +271,7 @@ export default React.createClass({
 				<div className="attActionContainer">
 					{updateRsvp}
 					<div className='songRequestBox'>
-						<h2 className="requestHeader"><i>Share a Memory!</i></h2>
+						<h2 className="requestHeader fancy"><i>Share a Memory!</i></h2>
 						<p>Your favorite photos of the bride and/or groom.</p>
 						<input type='text' placeholder='Caption (optional)' ref='caption'/>
 						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>

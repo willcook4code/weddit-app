@@ -388,6 +388,9 @@ nav {
     width: 75%;
     background-size: 100%;
 }
+.fancy {
+	font-family: 'Satisfy', cursive;
+}
 .greeting {
     overflow: hidden;
     box-sizing: border-box;
@@ -429,10 +432,13 @@ nav {
 	border: none;
 }
 .regList {
-	padding-left: 6.3em;
+	padding-left: 5.1em;
+    list-style: none;
+    margin-bottom: 3px;
 }
 .honList {
 	padding-left: 5.1em;
+    margin-top: 0;
 }
 .mapDisplay {
 	display: block;
@@ -526,9 +532,6 @@ nav {
 	}
 }
 //Slideshow Page
-// .slider {
-// 	display: block;
-// }
 .slide {
 	display: none;
     overflow: hidden;
