@@ -106,12 +106,18 @@ export default React.createClass({
     },
     updateAtt: function(e) {
     	e.preventDefault();
-		this.state.attendee.save({
-			party: this.refs.party.value
-		});
-		this.setState({
-			updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
-		});
+    	if (this.refs.party.value > this.state.attendee.get('maxGuests')) {
+    		this.setState({
+    			updateMsg: 'Sorry. The number of guests in your party is limited to '+ this.state.attendee.get('maxGuests')+'.  Please re-enter the information.'
+    		});
+		} else {
+			this.state.attendee.save({
+				party: this.refs.party.value
+			});
+			this.setState({
+				updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
+			});
+		}
     },
     handleFilestack: function(e) {
 		e.preventDefault();
@@ -241,9 +247,9 @@ export default React.createClass({
 					<div key={this.state.bio.get('id')} className="bioContainer">
 						<h2 className="greeting"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
 						<div className="bioWrapper">
-							<h2 className="stryHeading">Our Story</h2>
+							<h2 className="stryHeading"><i>Our Story</i></h2>
 							<pre className="bioBody">{this.state.bio.get('story')}</pre>
-							<h2 className="stryHeading">Links to Our Registries</h2>
+							<h2 className="stryHeading"><i>Links to Our Registries</i></h2>
 							<ol className="regList">{eachReg}</ol>
 							{honeyfund}
 						</div>

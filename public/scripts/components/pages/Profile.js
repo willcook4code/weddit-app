@@ -225,7 +225,7 @@ export default React.createClass({
 							<div className='column tblColumn tblTitle'>RSVP Status</div>
 						</div>
 						{invited}
-						<h3>Of the {totalInvited} people invited, {totals} plan to attend.</h3>
+						<h3 className="totals">Of the {totalInvited} people invited, {totals} plan to attend.</h3>
 					</div>
 					<div>
 						<Link className="navLinks pageLink slideshowBtn" to="/slideshow">Go To Slideshow</Link>

@@ -66,7 +66,7 @@ export default React.createClass({
 				<div>
 					<p className="error">{this.state.rsvpMsg}</p>
 					<p className="error">{this.state.errorMsg}</p>
-					<h3 className="formPrompt">Your Name</h3>
+					<h3 className="formPrompt">Your Username</h3>
 					<input className="modalInput" type='text' placeholder='As appears on invite' ref='name'/>
 					<h3 className="formPrompt">Please Enter Your Access Code</h3>
 					<input className="modalInput modalAccessInput" placeholder='(Case sensitive)' type='text' ref='accessCode'/>
@@ -83,11 +83,18 @@ export default React.createClass({
 	},
 	attend: function(e) {
 		e.preventDefault();
-		this.state.attendee.save({
-			party: this.refs.party.value,
-			isGoing: true
-		});
-		browserHistory.push('/attendees');
+		if (this.refs.party.value > this.state.attendee.get('maxGuests')) {
+			$('.error').show();
+    		this.setState({
+    			errorMsg: 'Sorry. The number of guests in your party is limited to '+ this.state.attendee.get('maxGuests')+'.  Please re-enter the information.'
+    		});
+		} else {
+			this.state.attendee.save({
+				party: this.refs.party.value,
+				isGoing: true
+			});
+			browserHistory.push('/attendees');
+		}
 	},
 	decline: function(e) {
 		e.preventDefault();

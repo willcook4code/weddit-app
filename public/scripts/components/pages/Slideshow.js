@@ -2,7 +2,7 @@ import React from 'react';
 import Scrapbook from '../../collections/ScrapbookCollection';
 import PhotoDisplay from './Subcomponents/PhotoDisplay';
 import user from '../../stores/user';
-import Slider from 'react-slick';
+import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -34,6 +34,10 @@ export default React.createClass({
 			Scrapbook: Scrapbook
 		});
 	},
+	runSlideshow: function() {
+		
+		$('#0').fadeToggle('slow');
+	},
 	render: function() {
 		let eachImage = Scrapbook.models.filter((photo, i, array) => {
 			if (photo.get('inSlideshow')) {
@@ -42,29 +46,15 @@ export default React.createClass({
 				return false;
 			}
 		}).map((photo, i, array) => {
-			console.log(i);
 			return (
-				<PhotoDisplay 
-				key = {i}
-				name = {photo.get('name')}
-				pic = {photo.get('pic')}
-				caption = {photo.get('caption')}
-				/>
+				<img className="slide" id={i} key={i} src={photo.get('pic')}/>
 			);
 		});
-		var settings = {
-	      autoplay: true,
-	      infinite: true,
-	      speed: 4000,
-	      slidesToShow: 1,
-	      slidesToScroll: 1
-	    };
 		return(
-			<section className="slider">
-				<Slider className="slideshow" {...settings}>
-					{eachImage}
-				</Slider>
-			</section>
+			<div className="slider">
+				<button onClick={this.runSlideshow}> Run Slideshow </button>
+				{eachImage}
+			</div>
 		);
 	}
 });

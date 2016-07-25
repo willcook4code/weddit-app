@@ -58,6 +58,12 @@ export default React.createClass({
             logModalVisible: false
         });
     },
+    scrollToHotel: function() {
+	    $('.attLeftSide').animate({scrollTop: $('#hotel').offset().top},1000);
+	},
+	scrollToVenue: function() {
+	    $('.attLeftSide').animate({scrollTop: $('#venue').offset().top},1000);
+	},
 	render: function() {
 		if (this.state.user.get('id')) {
 			return(
@@ -72,8 +78,8 @@ export default React.createClass({
 			return (
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
-					<a className="navLinks pageLink" href="#hotel">Hotels</a>
-					<a className="navLinks pageLink" href="#venue">Venue(s)</a>
+					<a className="navLinks pageLink" href="#" onClick={this.scrollToHotel}>Hotels</a>
+					<a className="navLinks pageLink" href="#" onClick={this.scrollToVenue}>Venue(s)</a>
 				</nav>
 				);
 		}else {
