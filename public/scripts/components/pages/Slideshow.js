@@ -35,7 +35,14 @@ export default React.createClass({
 		});
 	},
 	runSlideshow: function() {
-		
+		let eachImage = Scrapbook.models.filter((photo, i, array) => {
+			if (photo.get('inSlideshow')) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		console.log(eachImage.length);
 		$('#0').fadeToggle('slow');
 	},
 	render: function() {
