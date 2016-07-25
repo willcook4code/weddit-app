@@ -532,11 +532,28 @@ nav {
 	}
 }
 //Slideshow Page
-.slide {
-	display: none;
-    overflow: hidden;
+.slider {
+	overflow: hidden;
+    height: 42.4em;
+    width: 628px;
     margin: 0 auto;
+}
+.slideWrapper {
+	min-width: 1000em;
+    padding: 0;
+}
+.slideContainer {
+	float: left;
+    width: 628px;
+    list-style: none;
+    text-align: center;
+}
+.slide {
     height: 39em;
+}
+.runSlideshow {
+	display: block;
+    margin: 0 auto;
 }
 
 

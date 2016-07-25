@@ -35,15 +35,12 @@ export default React.createClass({
 		});
 	},
 	runSlideshow: function() {
-		let eachImage = Scrapbook.models.filter((photo, i, array) => {
-			if (photo.get('inSlideshow')) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		console.log(eachImage.length);
-		$('#0').fadeToggle('slow');
+		setInterval(() => {
+				$('.slideWrapper').animate({marginLeft: '-628px'},1000,function(){
+					$(this).find('li:last').after($(this).find('li:first'));
+					$(this).css({marginLeft:'0'});
+				});
+			},5000);
 	},
 	render: function() {
 		let eachImage = Scrapbook.models.filter((photo, i, array) => {
@@ -54,13 +51,17 @@ export default React.createClass({
 			}
 		}).map((photo, i, array) => {
 			return (
-				<img className="slide" id={i} key={i} src={photo.get('pic')}/>
+				<li key={i} className="slideContainer">
+				<img className="slide" id={i} src={photo.get('pic')}/>
+				</li>
 			);
 		});
 		return(
 			<div className="slider">
-				<button onClick={this.runSlideshow}> Run Slideshow </button>
+				<ul className="slideWrapper">
 				{eachImage}
+				</ul>
+				<button className="runSlideshow" onClick={this.runSlideshow}> Run Slideshow </button>
 			</div>
 		);
 	}
