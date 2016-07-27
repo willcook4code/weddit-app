@@ -387,7 +387,9 @@ nav {
     overflow-x: hidden;
     float: left;
     width: 75%;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 .fancy {
 	font-family: 'Satisfy', cursive;
