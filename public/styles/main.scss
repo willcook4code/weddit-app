@@ -36,7 +36,7 @@ button {
 nav {
 	padding: 1em;
 	.logoPic {
-		width: 15%;
+		width: 8em;
 	}
 	.navLinks {
 		font-size: 1.5em;
@@ -57,7 +57,7 @@ nav {
 	.pageLink {
 		float: right;
 		margin-right: 1.5em;
-		margin-top: .3em;
+		margin-top: .7em;
 		cursor: pointer;
 		font-family: 'Lato', sans-serif;
 		text-decoration: none;
@@ -66,26 +66,28 @@ nav {
 }
 //Home Page
 .homePage {
-    display: block;
-    overflow: hidden;
-    padding: 7em 12em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 7% 17%;
     background-image: url("./../images/homePage.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0em 66%;
 }
 .homeWrapper {
-	display: block;
+    display: block;
     overflow: hidden;
-    padding: 1px;
+    padding: 2px;
     padding-top: 0em;
     height: 15em;
-    width: 47%;
+    width: 20em;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.5);
+    margin: 1em auto;
 }
 .regWrapper {
-	float: left;
 	.rayon {
 	    width: 19em;
     	margin: 0 auto;
@@ -107,7 +109,6 @@ nav {
 	}
 }
 .rsvpWrapper {
-    float: right;
     .rayon {
     	min-height: 11em;
     }
