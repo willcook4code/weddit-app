@@ -17,6 +17,7 @@ import Bio from '../../collections/BioCollection';
 import bio from '../../stores/bio';
 import Scrapbook from '../../collections/ScrapbookCollection';
 import PhotoGrid from './Subcomponents/PhotoGrid';
+import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -139,6 +140,18 @@ export default React.createClass({
 		   	}
 		);
 	},
+	seeGoing: function () {
+		$('.rsvpList').not($('.rsvpList:contains(\'Yes\')')).detach();
+		if (!'.rsvpList'.length) {
+			$('.tblHead').append('<h2>No invites match the criteria</h2>').css('text-align', 'center');
+		}
+	},
+	seeRegrets: function () {
+		$('.rsvpList').not($('.rsvpList:contains(\'No\')')).detach();
+		if (!$('.rsvpList').length) {
+			$('.tblHead').append('<h2>No invites match the criteria</h2>').css('text-align', 'center');
+		}
+	},
 	render: function() {
 		const eachImage = Scrapbook.models.map((photo, i, array) => {
 			return (
@@ -219,6 +232,8 @@ export default React.createClass({
 					</div>
 					<div className="container attTable">
 						<div className="row tblRow tblHead">
+							<button className="seeGoing" onClick={this.seeGoing}>Going</button>
+							<button className="seeGoing" onClick={this.seeRegrets}>Regrets</button>
 							<div className='column tblColumn tblTitle nameHeader colName'>Name</div>
 							<div className='column tblColumn tblTitle'>Access Code</div>
 							<div className='column tblColumn tblTitle'># in Party</div>
