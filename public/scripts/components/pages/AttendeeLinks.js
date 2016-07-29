@@ -88,6 +88,11 @@ export default React.createClass({
     		this.setState({
     			errorMsg: 'Sorry. The number of guests in your party is limited to '+ this.state.attendee.get('maxGuests')+'.  Please re-enter the information.'
     		});
+    	} else if (this.refs.party.value < 1) {
+    		$('.error').show();
+    		this.setState({
+    			errorMsg: 'Please update the number of people attending before continuing.'
+    		});	
 		} else {
 			this.state.attendee.save({
 				party: this.refs.party.value,
@@ -124,7 +129,7 @@ export default React.createClass({
 		    		this.setState({
 		    			errorMsg: 'The information you entered was not found.  Please verify and re-enter.'
 		    		});
-		    	} else if (this.state.attendee.get('isGoing')) {
+		    	} else if (this.state.attendee.get('isGoing') === true) {
 	    		 	this.setState({
 			            rsvpModalVisible: false
 			        });
