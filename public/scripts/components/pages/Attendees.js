@@ -156,7 +156,7 @@ export default React.createClass({
 		if (this.state.attendee.get('isGoing')) {
 			updateRsvp = (
 				<div className='updateRsvp'>
-					<h3 className="updateRsvpHeader fancy">Update RSVP</h3>
+					<h3 className="updateRsvpHeader fancy"><i>Update RSVP</i></h3>
 					<p>Number Attending</p>
 					<input type='number' min='0' max={this.state.attendee.get('maxGuests')} ref='party'/>
 					<p>{this.state.updateMsg}</p>
@@ -245,22 +245,22 @@ export default React.createClass({
 			<section className='attendeesPage'>
 				<div className="attLeftSide" style={bioPicture}>
 					<div key={this.state.bio.get('id')} className="bioContainer">
-						<h2 className="greeting fancy">Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</h2>
+						<h2 className="greeting fancy"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
 						<div className="bioWrapper">
-							<h2 className="stryHeading fancy">Our Story</h2>
+							<h2 className="stryHeading fancy"><i>Our Story</i></h2>
 							<pre className="bioBody">{this.state.bio.get('story')}</pre>
-							<h2 className="stryHeading fancy">Links to Our Registries</h2>
+							<h2 className="stryHeading fancy"><i>Links to Our Registries</i></h2>
 							<ul className="regList">{eachReg}</ul>
 							{honeyfund}
 						</div>
 					</div>
 					<div className="mapContainer">
 						<div id="hotel" className='hotelDisplay mapDisplay'>
-							<h2 className="mapTitle fancy">Hotels</h2>
+							<h2 className="mapTitle fancy"><i>Hotels</i></h2>
 							{listedHotels}
 						</div>
 						<div id="venue" className='venueDisplay mapDisplay btmMaps'>
-							<h2 className="mapTitle btmTitle fancy">Venue(s)</h2>
+							<h2 className="mapTitle btmTitle fancy"><i>Venue(s)</i></h2>
 							{listedVenue}
 						</div>
 						<div className='wideSearchDisplay mapDisplay btmMaps'>
@@ -271,7 +271,7 @@ export default React.createClass({
 				<div className="attActionContainer">
 					{updateRsvp}
 					<div className='songRequestBox'>
-						<h2 className="requestHeader fancy">Share a Memory!</h2>
+						<h2 className="requestHeader fancy"><i>Share a Memory!</i></h2>
 						<p>Your favorite photos of the bride and/or groom.</p>
 						<input type='text' placeholder='Caption (optional)' ref='caption'/>
 						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>
