@@ -1,6 +1,5 @@
 import React from 'react';
 import Scrapbook from '../../collections/ScrapbookCollection';
-import PhotoDisplay from './Subcomponents/PhotoDisplay';
 import user from '../../stores/user';
 import $ from 'jquery';
 

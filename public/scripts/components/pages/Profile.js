@@ -140,18 +140,21 @@ export default React.createClass({
 		   	}
 		);
 	},
-	// seeGoing: function () {
-	// 	$('.rsvpList').not($('.rsvpList:contains(\'Yes\')')).detach();
-	// 	if (!'.rsvpList'.length) {
-	// 		$('.tblHead').append('<h2>No invites match the criteria</h2>').css('text-align', 'center');
-	// 	}
-	// },
-	// seeRegrets: function () {
-	// 	$('.rsvpList').not($('.rsvpList:contains(\'No\')')).detach();
-	// 	if (!$('.rsvpList').length) {
-	// 		$('.tblHead').append('<h2>No invites match the criteria</h2>').css('text-align', 'center');
-	// 	}
-	// },
+	seeGoing: function (e) {
+		$('.rsvpList').hide();
+		$(`.${$(e.target).data('rsvp-status')}`).show();
+	},
+	seeRegrets: function (e) {
+		$('.rsvpList').hide();
+		$(`.${$(e.target).data('rsvp-status')}`).show();
+	},
+	seeNA: function (e) {
+		$('.rsvpList').hide();
+		$(`.${$(e.target).data('rsvp-status')}`).show();
+	},
+	seeAll: function (e) {
+		$('.rsvpList').show();
+	},
 	render: function() {
 		const eachImage = Scrapbook.models.map((photo, i, array) => {
 			return (
@@ -232,6 +235,12 @@ export default React.createClass({
 					</div>
 					<div className="container attTable">
 						<div className="row tblRow tblHead">
+							<div className="filterContainer">
+								<button className="filter" data-rsvp-status="Yes" onClick={this.seeGoing}>Going</button>
+								<button className="filter" data-rsvp-status="No" onClick={this.seeRegrets}>Regrets</button>
+								<button className="filter" data-rsvp-status="NA" onClick={this.seeNA}>No Response</button>
+								<button className="filter" onClick={this.seeAll}>See All</button>
+							</div>
 							<div className='column tblColumn tblTitle nameHeader colName'>Name</div>
 							<div className='column tblColumn tblTitle'>Access Code</div>
 							<div className='column tblColumn tblTitle'># in Party</div>
