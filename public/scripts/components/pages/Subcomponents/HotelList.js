@@ -25,11 +25,11 @@ export default React.createClass({
 		}
 		return(
 			<div className='hotelWrapper mapWrapper'>
-				<div className='frameWrap'>
+				<div className='frameWrap hotelFrame'>
 					<Iframe
 						url={location}
 						width="100%"
-						height="180"
+						height="100%"
 						position="relative"
 						float="left"
 						frameborder="0" style="border:0"
@@ -39,9 +39,9 @@ export default React.createClass({
 				<div className="hotelInfo">
 				<p className="infoLine infoName">{this.props.name}</p>
 				<p className="infoLine">Rate: {this.props.rate}</p>
-				<p className="infoLine">Book by:</p>
+				<p className="infoLine bookHead">Book by:</p>
 				<p className="infoLine">{moment(this.props.cutoffDate).format('MMM Do YYYY')}</p>
-				<p className="infoLine" >Reservations: <br/> {this.props.phoneNumber}</p>
+				<p className="infoLine" >Reservations: <br className="break"/> {this.props.phoneNumber}</p>
 				<a className="hotelSite infoLine" href={url} target='_blank'>Website</a>
 				</div>
 			</div>

@@ -224,7 +224,7 @@ export default React.createClass({
 				let initReg = url.substring((url.indexOf('.'))+1, url.indexOf('.com'));
 				let regTitle = initReg.charAt(0).toUpperCase()+initReg.substring(1);
 				return (
-					<li key={i}><a className="bioBody regLink" href={url} target='_blank'>{regTitle}</a></li>
+					<li key={i} className="reg"><a className="bioBody regLink" href={url} target='_blank'>{regTitle}</a></li>
 					);
 			}
 		});
@@ -245,7 +245,8 @@ export default React.createClass({
 			<section className='attendeesPage'>
 				<div className="attLeftSide" style={bioPicture}>
 					<div key={this.state.bio.get('id')} className="bioContainer">
-						<h2 className="greeting fancy"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
+ 						<h2 className="greeting fancy"><i>Greetings from {this.state.bio.get('registrant1')} & {this.state.bio.get('registrant2')}!</i></h2>
+						<div className="mobelPic" style={bioPicture}> </div>
 						<div className="bioWrapper">
 							<h2 className="stryHeading fancy"><i>Our Story</i></h2>
 							<pre className="bioBody">{this.state.bio.get('story')}</pre>
@@ -273,7 +274,7 @@ export default React.createClass({
 					<div className='songRequestBox'>
 						<h2 className="requestHeader fancy"><i>Share a Memory!</i></h2>
 						<p>Your favorite photos of the bride and/or groom.</p>
-						<input type='text' placeholder='Caption (optional)' ref='caption'/>
+						<input className="attInput" type='text' placeholder='Caption (optional)' ref='caption'/>
 						<button className="songSrchBtn"onClick= {this.handleFilestack}>Post a Photo</button>
 					</div>
 					<SongSearch 

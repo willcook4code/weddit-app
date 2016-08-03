@@ -20,7 +20,7 @@ export default React.createClass({
 			<div className='venueWrapper mapWrapper'>
 				<Iframe
 					url={location}
-					width="300"
+					width="100%"
 					height="225"
 					position="relative"
 					frameborder="0" style="border:0"
