@@ -222,17 +222,17 @@ export default React.createClass({
 		});
 		return(
 			<section className='profilePage'>
+				<div className='infoEditsWrapper'>
+					<button className="addListingBtn" onClick={this.handleFilestack}>Choose Profile Photo</button>
+					<AddBio />
+					<AddRegistry />
+					<AddHoneyfund />
+					<AddInvites />
+					<AddHotel />
+					<AddVenue />
+				</div>
 				<div className='attendeesWrapper'>
 					<h2 className='attHeader' ><i>Attendees</i></h2>
-					<div className='infoEditsWrapper'>
-						<button className="addListingBtn" onClick={this.handleFilestack}>Choose Profile Photo</button>
-						<AddBio />
-						<AddRegistry />
-						<AddHoneyfund />
-						<AddInvites />
-						<AddHotel />
-						<AddVenue />
-					</div>
 					<div className="container attTable">
 						<div className="row tblRow tblHead">
 							<div className="filterContainer">

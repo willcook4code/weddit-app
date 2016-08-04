@@ -38,6 +38,10 @@ nav {
 	.logoPic {
 		width: 8em;
 	}
+	.navLinkContainer {
+		overflow: hidden;
+		float: right;
+	}
 	.navLinks {
 		font-size: 1.5em;
 	}
@@ -183,19 +187,26 @@ nav {
 	float: left;
 	width: 65%;
 }
+.infoEditsWrapper {
+	display: flex;
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.addListingBtn {
+	display: block;
+	overflow: hidden;
+	float: left;
+	margin: .5em;
+}
 .attHeader {
 	display: block;
 	overflow: visible;
 	float: left;
 	width: 15.5%;
 	margin-left: 1em;
-}
-.infoEditsWrapper {
-	display: block;
-	overflow: hidden;
-	float: right;
-	margin-top: 1em;
-	width: 81%;
 }
 .attTable {
 	display: block;
@@ -258,13 +269,6 @@ nav {
 	margin-bottom: .6em;
 	background-color: white;
 	box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
-}
-.addListingBtn {
-	display: block;
-	overflow: hidden;
-	float: left;
-	margin-left: .5em;
-	margin-bottom: .5em;
 }
 .totals {
 	float: right;
@@ -427,6 +431,9 @@ nav {
     font-size: 2em;
     box-shadow: 2px 2px 2px 1px rgba(42, 42, 42, 0.25);
 }
+.mobelPic {
+	display: none;
+}
 .bioWrapper {
     padding-left: .5em;
     background-color: rgba(255, 255, 255, 0.75);
@@ -488,6 +495,7 @@ nav {
     float: left;
     .frameWrap {
     	float: left;
+    	height: 180px;
 	    width: 50%;
 	    margin-right: 1%;
 	    margin-bottom: 1em;
@@ -506,6 +514,12 @@ nav {
     	padding-bottom: .2em;
     	font-weight: 700;
     }
+}
+.venueWrapper {
+	width: 43%;
+}
+.nearbyMaps {
+	width: 43%;
 }
 .btmTitle {
 	margin-top: .2em;
@@ -582,8 +596,114 @@ nav {
     margin: 0 auto;
 }
 
+@media(max-width: 1015px) {
+	.mapWrapper {
+		.frameWrap {
+			margin-bottom: 0;
+			width: 86%;
+		}
+		.hotelInfo {
+			clear: left;
+	    	width: 86%;
+		}
+		.infoLine {
+			margin-left: 1.3em;
+		}
+		.infoName {
+			margin: 0;
+			margin-left: .5em;
+		}
+		.bookHead {
+			width: 4.2em;
+			float: left;
+		}
+		.break {
+			display: none;
+		}
+	}
+}
 
-
+@media(max-width: 956px) {
+	.mapWrapper {
+		float: none;
+		width: 80%;
+		margin: 0 auto;
+		margin-bottom: 2em;
+		.frameWrap {
+		    width: 100%;
+    		height: 20em;
+		}
+		.hotelFrame {
+			margin-bottom: .5em;
+		}
+	}
+	.attActionContainer {
+		.songRequestBox {
+			padding-left: .7em;
+		}
+		.attInput {
+			width: 9.5em;
+		}
+	}
+}
+@media(max-width: 699px) {
+	nav {
+		.navLinkContainer {
+			overflow: visible;
+			float: none;
+			margin: 0 auto;
+			width: 24em;
+		}
+	}
+	.attLeftSide {
+		height: 100%;
+		float: none;
+		width: 100%;
+		background-size: 0;
+	}
+	.greeting {
+		margin-bottom: 0.1em;
+		background-color: rgba(141, 91, 76, 0.3);
+	}
+	.mobelPic {
+	    display: block;
+	    height: 23.8125em;
+	    background-size: cover;
+	}
+	.bioWrapper {
+		margin-top: .2em;
+		margin-bottom: .1em;
+		background-color: rgba(141, 91, 76, 0.3);
+	}
+	.mapDisplay {
+		margin-top: .2em;
+		margin-bottom: .1em;
+		background-color: rgba(141, 91, 76, 0.3);
+	}
+	.attActionContainer {
+	    overflow: hidden;
+	    float: none;
+	    width: 90%;
+	    margin: 0 auto;
+	    margin-top: 1em;
+	}
+	.stryHeading {
+		margin-bottom: 0;
+	}
+	.regList {
+		padding-left: 3.1em;
+		display: inline;
+		line-height: 4em;
+	}
+	.reg {
+	    display: inline;
+    	margin-right: 1em;
+	}
+	.honList {
+	    padding-left: 0;
+	    display: inline;
+	}
+}
 
 
 
