@@ -59,12 +59,12 @@ export default React.createClass({
             logModalVisible: false
         });
     },
-    scrollToHotel: function() {
-	    $('.hotelNav').animate({scrollTop: ($('#hotel').position().top + '15em')},1000);
-	},
-	scrollToVenue: function() {
-	    $('.venueNav').animate({scrollTop: ($('#venue').position().top + '15em')},1000);
-	},
+ //    scrollToHotel: function() {
+	//     $('.hotelNav').animate({scrollTop: ($('#hotel').position().top + '15em')},1000);
+	// },
+	// scrollToVenue: function() {
+	//     $('.venueNav').animate({scrollTop: ($('#venue').position().top + '15em')},1000);
+	// },
 	render: function() {
 		if (this.state.user.get('id')) {
 			return(
@@ -81,8 +81,8 @@ export default React.createClass({
 			return (
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
-					<a className="navLinks pageLink hotelNav" href="#" onClick={this.scrollToHotel}>Hotels</a>
-					<a className="navLinks pageLink venueNav" href="#" onClick={this.scrollToVenue}>Venue(s)</a>
+					<a className="navLinks pageLink hotelNav" href="#hotel" onClick={this.scrollToHotel}>Hotels</a>
+					<a className="navLinks pageLink venueNav" href="#venue" onClick={this.scrollToVenue}>Venue(s)</a>
 				</nav>
 				);
 		}else {
