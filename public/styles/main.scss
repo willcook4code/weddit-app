@@ -38,6 +38,10 @@ nav {
 	.logoPic {
 		width: 8em;
 	}
+	.navLinkContainer {
+		overflow: hidden;
+		float: right;
+	}
 	.navLinks {
 		font-size: 1.5em;
 	}
@@ -183,20 +187,26 @@ nav {
 	float: left;
 	width: 65%;
 }
+.infoEditsWrapper {
+	display: flex;
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.addListingBtn {
+	display: block;
+	overflow: hidden;
+	float: left;
+	margin: .5em;
+}
 .attHeader {
 	display: block;
 	overflow: visible;
 	float: left;
 	width: 15.5%;
 	margin-left: 1em;
-}
-.infoEditsWrapper {
-	display: flex;
-    float: right;
-    margin-top: 1em;
-    width: 81%;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 .attTable {
 	display: block;
@@ -259,13 +269,6 @@ nav {
 	margin-bottom: .6em;
 	background-color: white;
 	box-shadow: 2px 2px 2px 1px rgba(42,42,42, .25);
-}
-.addListingBtn {
-	display: block;
-	overflow: hidden;
-	float: left;
-	margin-left: .5em;
-	margin-bottom: .5em;
 }
 .totals {
 	float: right;
@@ -644,6 +647,14 @@ nav {
 	}
 }
 @media(max-width: 699px) {
+	nav {
+		.navLinkContainer {
+			overflow: visible;
+			float: none;
+			margin: 0 auto;
+			width: 24em;
+		}
+	}
 	.attLeftSide {
 		height: 100%;
 		float: none;
@@ -652,7 +663,7 @@ nav {
 	}
 	.greeting {
 		margin-bottom: 0.1em;
-		background-color: white;
+		background-color: rgba(141, 91, 76, 0.3);
 	}
 	.mobelPic {
 	    display: block;
@@ -662,12 +673,12 @@ nav {
 	.bioWrapper {
 		margin-top: .2em;
 		margin-bottom: .1em;
-		background-color: white;
+		background-color: rgba(141, 91, 76, 0.3);
 	}
 	.mapDisplay {
 		margin-top: .2em;
 		margin-bottom: .1em;
-		background-color: white;
+		background-color: rgba(141, 91, 76, 0.3);
 	}
 	.attActionContainer {
 	    overflow: hidden;

@@ -44,6 +44,7 @@ export default React.createClass({
 				browserHistory.push('/profile');
 			},
 			error: (errorArg) => {
+					$('.error').show();
 					this.setState({errors: errorArg.responseJSON});
 			}
 		});
@@ -69,9 +70,11 @@ export default React.createClass({
 			return(
 				<nav>
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>
-					<a href="#" className="navLinks pageLink" onClick={this.logout}>Logout</a>
-					<Link className="navLinks pageLink" to="/attendees">Attendees</Link>
-					<Link className="navLinks pageLink" to="/profile">Profile</Link>
+					<div className="navLinkContainer">
+						<a href="#" className="navLinks pageLink" onClick={this.logout}>Logout</a>
+						<Link className="navLinks pageLink" to="/attendees">Attendees</Link>
+						<Link className="navLinks pageLink" to="/profile">Profile</Link>
+					</div>
 				</nav>
 			);
 		} else if (this.state.attendee.get('isGoing')) {
