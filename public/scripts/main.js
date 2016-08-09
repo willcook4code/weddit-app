@@ -25,7 +25,7 @@ function requireAuth(nextState, replace) {
 filepicker.setKey('Ag3tUE5dSvu5zBGHOQGl0z');
 const router = (
 	<Router history={browserHistory}>
-		 <Route path='/' component={App}>
+	  	<Route path='/' component={App}>
 	      <IndexRoute component={Home} />
 	      <Route path='profile' component={Profile} onEnter={requireAuth}/>
 	      <Route path='attendees' component={Attendees} />
