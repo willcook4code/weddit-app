@@ -18,6 +18,7 @@ export default React.createClass({
 			});
 		}.bind(this));
 		this.refs.songSearch.value = '';
+		$('.songBox').show();
 	},
 	render: function() {
 		const eachSong = this.state.song.map((song, i, array) => {

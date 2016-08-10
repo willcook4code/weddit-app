@@ -3,6 +3,7 @@ import request from '../../../models/Request';
 import Request from '../../../collections/RequestCollection';
 import Rayon from 'rayon';
 import user from '../../../stores/user';
+import $ from 'jquery';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -43,6 +44,7 @@ export default React.createClass({
 		this.setState({
 			confirmModalVisible: false
 		});
+		$('.songBox').hide();
 	},
 	render: function() {
 		return (
@@ -57,7 +59,7 @@ export default React.createClass({
 			</div>
 			);
 	},
-	postRequest: function() {
+	postRequest: function(e) {
 		if (this.state.user.get('id')) {
 			let newRequest = {
 				trackId: this.props.trackId,
