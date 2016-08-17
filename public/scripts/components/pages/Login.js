@@ -66,6 +66,6 @@ export default React.createClass({
 					</form>
 				</Rayon>
 			</div>
-			);
+		);
 	}
 });

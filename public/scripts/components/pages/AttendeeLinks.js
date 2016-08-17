@@ -108,7 +108,7 @@ export default React.createClass({
 			isGoing: false
 		});
 		this.setState({
-			attStatusMessage: 'Ok, have a good life!'
+			attStatusMessage: 'Sad face... We still love you!'
 		});
 	},
 	verify: function(e) {
