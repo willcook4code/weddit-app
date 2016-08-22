@@ -35,11 +35,11 @@ export default React.createClass({
 	},
 	runSlideshow: function() {
 		setInterval(() => {
-				$('.slideWrapper').animate({marginLeft: '-628px'},5000,function(){
+				$('.slideWrapper').animate({marginLeft: '-628px'},1000,function(){
 					$(this).find('li:last').after($(this).find('li:first'));
 					$(this).css({marginLeft:'0'});
 				});
-			},1000);
+			},5000);
 	},
 	render: function() {
 		let eachImage = Scrapbook.models.filter((photo, i, array) => {
