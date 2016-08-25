@@ -57,10 +57,10 @@ export default React.createClass({
 		});
 		return(
 			<div className="slider">
+				<button className="runSlideshow" onClick={this.runSlideshow}> Run Slideshow </button>
 				<ul className="slideWrapper">
 				{eachImage}
 				</ul>
-				<button className="runSlideshow" onClick={this.runSlideshow}> Run Slideshow </button>
 			</div>
 		);
 	}
