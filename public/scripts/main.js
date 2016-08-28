@@ -21,7 +21,6 @@ function requireAuth(nextState, replace) {
 	    });
 	}
 }
-
 filepicker.setKey('Ag3tUE5dSvu5zBGHOQGl0z');
 const router = (
 	<Router history={browserHistory}>
