@@ -106,17 +106,29 @@ export default React.createClass({
     },
     updateAtt: function(e) {
     	e.preventDefault();
+    	console.log(typeof(this.refs.party.value));
     	if (this.refs.party.value > this.state.attendee.get('maxGuests')) {
     		this.setState({
     			updateMsg: 'Sorry. The number of guests in your party is limited to '+ this.state.attendee.get('maxGuests')+'.  Please re-enter the information.'
     		});
 		} else {
-			this.state.attendee.save({
-				party: this.refs.party.value
-			});
-			this.setState({
-				updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
-			});
+			if (this.refs.party.value === '0') {
+				this.state.attendee.save({
+					party: this.refs.party.value,
+					isGoing: false
+				});
+				this.setState({
+					updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
+				});
+			} else {
+				this.state.attendee.save({
+					party: this.refs.party.value,
+					isGoing: true
+				});
+				this.setState({
+					updateMsg: 'Your party has been updated to a total of '+this.refs.party.value+'.'
+				});
+			}
 		}
     },
     handleFilestack: function(e) {
@@ -153,7 +165,7 @@ export default React.createClass({
 	},
 	render: function() {
 		let updateRsvp = null;
-		if (this.state.attendee.get('isGoing')) {
+		if (this.state.attendee.get('id')) {
 			updateRsvp = (
 				<div className='updateRsvp'>
 					<h3 className="updateRsvpHeader fancy"><i>Update RSVP</i></h3>

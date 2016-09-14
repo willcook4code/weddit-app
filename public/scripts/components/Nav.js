@@ -71,7 +71,7 @@ export default React.createClass({
 					</div>
 				</nav>
 			);
-		} else if (this.state.attendee.get('isGoing')) {
+		} else if (this.state.attendee.get('id')) {
 			return (
 				<nav className="nav">
 					<Link className="navLinks logo" to="/"><img className="logoPic" src="./../../../images/Weddit_Logo.png"/></Link>

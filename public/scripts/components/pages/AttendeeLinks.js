@@ -108,8 +108,9 @@ export default React.createClass({
 			isGoing: false
 		});
 		this.setState({
-			attStatusMessage: 'Sad face... We still love you!'
-		});
+            rsvpModalVisible: false
+        });
+		browserHistory.push('/attendees');
 	},
 	verify: function(e) {
 		e.preventDefault();
@@ -129,7 +130,7 @@ export default React.createClass({
 		    		this.setState({
 		    			errorMsg: 'The information you entered was not found.  Please verify and re-enter.'
 		    		});
-		    	} else if (this.state.attendee.get('isGoing') === true) {
+		    	} else if (this.state.attendee.get('isGoing') !== null) {
 	    		 	this.setState({
 			            rsvpModalVisible: false
 			        });
